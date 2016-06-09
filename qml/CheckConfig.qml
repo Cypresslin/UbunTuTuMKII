@@ -1,11 +1,12 @@
 import QtQuick 2.0
 import Process 1.0
 import "colour.js" as Colour
+import QtQuick.Dialogs 1.2
 
 Item {
     Component.onCompleted: {
-        console.log('Log loaded')
-        shell.start(applicationDirPath + '/utils/adb', ['shell', 'tail', '-f', '/home/phablet/.cache/upstart/scope-registry.log'])
+        console.log('Check Config')
+        shell.start(applicationDirPath + '/utils/check_config.py', [])
     }
     Process {
         id: shell
@@ -22,7 +23,7 @@ Item {
             topMargin: 30
             horizontalCenter: parent.horizontalCenter
         }
-        text: "System Log"
+        text: "App Config Check"
         font.pointSize: 16
     }
 
@@ -33,9 +34,10 @@ Item {
             left: parent.left
             right: parent.right
             bottom: parent.bottom
-            margins: 30
+            margins: 40
         }
-        font.pointSize: 16
+        text: 'Running Checker...\n'
+        font.pointSize: 12
         selectionColor: Colour.palette['Green']
         wrapMode: TextEdit.WordWrap
         cursorPosition: log.text.length

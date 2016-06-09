@@ -60,11 +60,11 @@ Item {
         id: title
         anchors {
             top: parent.top
-            topMargin: 50
+            topMargin: 30
             horizontalCenter: parent.horizontalCenter
         }
         text: "Choose a Package to Install"
-        font.pointSize: 20
+        font.pointSize: 16
     }
 
     TextEdit {

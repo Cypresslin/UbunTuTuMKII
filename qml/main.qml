@@ -1,14 +1,15 @@
 import QtQuick 2.0
 import QtQuick.Window 2.0
 import "colour.js" as Colour
+import Ubuntu.Components 1.2
 import Process 1.0 
 
 Window {
 
-    title: "UbunTuTu - ADB for human beings"
+    title: "UbunTuTuMKII - App monitoring tool"
     visible: true
-    width: 800
-    height: 600
+    width: 1280
+    height: 720
     color: Colour.palette['Porcelain']
 
     Process {
@@ -81,9 +82,11 @@ Window {
 
         model: ListModel {
             ListElement { name: "Home" }
-            ListElement { name: "Install" }
-            ListElement { name: "Screenshot" }
-            ListElement { name: "Log" }
+            ListElement { name: "AppLauncher" }
+            ListElement { name: "CheckConfig" }
+            ListElement { name: "TrustStore" }
+            ListElement { name: "Watcher" }
+            //ListElement { name: "Log" }
             //ListElement { name: "Setting" }
         }
 
@@ -91,11 +94,12 @@ Window {
             Rectangle {
                 width: listView.width 
                 height: 80
-                color: listView.currentIndex == index ? Colour.palette['Blue'] : Colour.palette['Ash']
+                color: listView.currentIndex == index ? UbuntuColors.orange : Colour.palette['Ash']
+                                   //Colour.palette['Blue'] : Colour.palette['Ash']
                 Text {
                     text: name
                     anchors.centerIn: parent
-                    font.pointSize: 20
+                    font.pointSize: 16
                     font.bold: true
                     color: Colour.palette['Inkstone']
                 }
@@ -109,7 +113,8 @@ Window {
                 Rectangle {
                     width: parent.height / Math.sqrt(2)
                     height: width
-                    color: Colour.palette['Blue']
+                    color: UbuntuColors.orange 
+                    // Colour.palette['Blue']
                     transform: Rotation { origin.x: 25; origin.y: 25; angle: 45}
                     anchors {
                         right: parent.right

@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import Process 1.0
 import "colour.js" as Colour
+import Ubuntu.Components 0.1
 
 Item {
     Component.onCompleted: {
@@ -19,11 +20,11 @@ Item {
     Text {
         anchors {
             top: parent.top
-            topMargin: 50
+            topMargin: 30
             horizontalCenter: parent.horizontalCenter
         }
         text: "System Information"
-        font.pointSize: 20
+        font.pointSize: 16
     }
 
     TextEdit {

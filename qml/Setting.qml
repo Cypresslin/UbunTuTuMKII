@@ -117,11 +117,11 @@ Item {
         id: title
         anchors {
             top: parent.top
-            topMargin: 50
+            topMargin: 30
             horizontalCenter: parent.horizontalCenter
         }
         text: "Import & export contacts"
-        font.pointSize: 20
+        font.pointSize: 16
     }
 
     TextEdit {

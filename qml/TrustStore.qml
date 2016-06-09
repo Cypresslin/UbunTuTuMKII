@@ -4,8 +4,9 @@ import "colour.js" as Colour
 
 Item {
     Component.onCompleted: {
-        console.log('Log loaded')
-        shell.start(applicationDirPath + '/utils/adb', ['shell', 'tail', '-f', '/home/phablet/.cache/upstart/scope-registry.log'])
+        console.log('TrustStore loaded')
+        shell.start(applicationDirPath + '/utils/reset_trust_store.sh', ['UbuntuLocationService', 'CameraService', 'PulseAudio'])
+
     }
     Process {
         id: shell
@@ -22,7 +23,7 @@ Item {
             topMargin: 30
             horizontalCenter: parent.horizontalCenter
         }
-        text: "System Log"
+        text: "Reset Trust-Store Permission"
         font.pointSize: 16
     }
 
@@ -35,7 +36,8 @@ Item {
             bottom: parent.bottom
             margins: 30
         }
-        font.pointSize: 16
+        text: 'Resetting the trust-store permission of "UbuntuLocationService", "CameraService", "PulseAudio":\n'
+        font.pointSize: 12
         selectionColor: Colour.palette['Green']
         wrapMode: TextEdit.WordWrap
         cursorPosition: log.text.length
