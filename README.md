@@ -38,6 +38,7 @@ Before using all of its feature, you will need to allow your device to run comma
 ## License 
 
 Copyright © 2016 Ping-Hsun (penk) Chen <<penkia@gmail.com>>
+
 Copyright © 2016 Po-Hsu Lin <<po-hsu.lin@canonical.com>>
 
 The source code is, unless otherwise specified, distributed under the terms of the MIT License.
