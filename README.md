@@ -20,7 +20,7 @@ On Linux:
 
     cd Process; qmake && make && sudo make install; cd ..
     qmake && make 
-    ./UbunTuTu.app
+    ./UbunTuTu
 
 ## Credits 
 
@@ -32,6 +32,8 @@ On Linux:
 
 The name of the executed app will be stored in /tmp/.app_name.
 Whenever you need to call certain app name, just read that file
+
+Before using all of its feature, you will need to allow your device to run command as root, without asking passwords.
 
 ## License 
 
