@@ -71,8 +71,8 @@ Item {
             }
             text: "Launch!"
             onClicked: {
-                console.log("Lauching App: " + textInput.text)
-                launch_cmd.start(applicationDirPath + '/utils/launch_app.sh', [textInput.text, applicationDirPath])
+                console.log("Lauching App: " + appToLaunchInput.text)
+                launch_cmd.start(applicationDirPath + '/utils/launch_app.sh', [appToLaunchInput.text, applicationDirPath])
             }
     }
 
@@ -84,7 +84,7 @@ Item {
     }
 
     Text {
-        id: typeSomething
+        id: placeholderText
         anchors {
             left: parent.left
             right: sendButton.left
@@ -98,7 +98,7 @@ Item {
     }
 
     TextInput {
-        id: textInput
+        id: appToLaunchInput
         anchors {
             left: parent.left;
             right: sendButton.left;
@@ -113,11 +113,11 @@ Item {
         id: focusScope
         width: 250; height: 28
 
-        property string text: textInput.text
+        property string text: appToLaunchInput.text
         signal clear
 
         onClear: {
-            textInput.text=""
+            appToLaunchInput.text=""
         }
     }
 
@@ -137,22 +137,22 @@ Item {
             onClicked: {
                 //toogle focus to be able to jump out of input method composer
                 focusScope.focus = false;
-                textInput.text = '';
+                appToLaunchInput.text = '';
                 focusScope.focus = true;
             }
         }
     }
 
     states: State {
-        name: "hasText"; when: (textInput.text != '' || textInput.inputMethodComposing)
-        PropertyChanges { target: typeSomething; opacity: 0 }
+        name: "hasText"; when: (appToLaunchInput.text != '' || appToLaunchInput.inputMethodComposing)
+        PropertyChanges { target: placeholderText; opacity: 0 }
         PropertyChanges { target: clear; opacity: 1 }
     }
 
     transitions: [
         Transition {
             from: ""; to: "hasText"
-            NumberAnimation { exclude: typeSomething; properties: "opacity" }
+            NumberAnimation { exclude: placeholderText; properties: "opacity" }
         },
         Transition {
             from: "hasText"; to: ""
