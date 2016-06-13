@@ -3,6 +3,7 @@ import Process 1.0
 import "colour.js" as Colour
 import QtQuick.Dialogs 1.2
 import Ubuntu.Components 0.1
+import QtQuick.Layouts 1.2
 
 Item {
     Component.onCompleted: {
@@ -22,137 +23,144 @@ Item {
             appStatus.text += readAll();
         }
     }
-
-    Text {
-        id: title
-        anchors {
-            top: parent.top
-            topMargin: 30
-            horizontalCenter: parent.horizontalCenter
-        }
-        text: "Apps status:"
-        font.pointSize: 16
-    }
-
-    TextEdit {
-        id: appList
-        anchors {
-            top: title.bottom
-            right: parent.rigt
-            left: parent.left
-            margins: 40
-        }
-        text: 'Current running apps:\n'
-        font.pointSize: 12
-        selectionColor: Colour.palette['Green']
-    }
-
-    TextEdit {
-        id: appStatus
-        anchors {
-            top: appList.bottom
-            right: parent.rigt 
-            left: parent.left
-            bottom: sendButton.top
-            margins: 40
-        }
-        text: 'Status change from ubuntu-app-watch:\n'
-        font.pointSize: 12
-        selectionColor: Colour.palette['Green']
-    }
-
-
-    Button{
-            id: sendButton
+    ColumnLayout {
+        anchors.fill: parent
+        spacing: units.gu(5)
+        Text {
+            id: title
             anchors {
-                right: clear.right
-                bottom: parent.bottom
-                margins: 30
+                horizontalCenter: parent.horizontalCenter
             }
-            text: "Launch!"
-            onClicked: {
-                console.log("Lauching App: " + textInput.text)
-                launch_cmd.start(applicationDirPath + '/utils/launch_app.sh', [textInput.text, applicationDirPath])
+            text: "Apps status:"
+            font.pointSize: 16
+        }
+        Flickable {
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            clip: true
+            contentHeight: appList.contentHeight
+
+
+            TextEdit {
+                id: appList
+                text: 'Current running apps:\n'
+                font.pointSize: 12
+                selectionColor: Colour.palette['Green']
             }
-    }
-
-    Process {
-        id: launch_cmd
-        onReadyRead:{
-            console.log(readAll())
         }
-    }
 
-    Text {
-        id: typeSomething
-        anchors {
-            left: parent.left
-            right: sendButton.left
-            bottom: parent.bottom
-            margins: 40
+        Flickable {
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            clip: true
+            contentHeight: appStatus.contentHeight
+            TextEdit {
+                id: appStatus
+                anchors.fill: parent
+                wrapMode: "WrapAtWordBoundaryOrAnywhere"
+                text: 'Status change from ubuntu-app-watch:\n'
+                font.pointSize: 12
+                selectionColor: Colour.palette['Green']
+            }
         }
-        text: "App name"
-        color: "gray"
-        font.italic: true
-        font.pointSize: 14
-    }
+        Item {
+            Layout.fillWidth: true
+            height: placeholderText.height + 40 // pseudo topMargin
 
-    TextInput {
-        id: textInput
-        anchors {
-            left: parent.left;
-            right: sendButton.left;
-            bottom: parent.bottom
-            margins: 40}
-        focus: true;
-        selectByMouse: true
-        font.pointSize: 14
-    }
+            Button{
+                    id: sendButton
+                    anchors {
+                        right: clear.right
+                        bottom: parent.bottom
+                        margins: 30
+                    }
+                    text: "Launch!"
+                    onClicked: {
+                        console.log("Lauching App: " + appToLaunchInput.text)
+                        launch_cmd.start(applicationDirPath + '/utils/launch_app.sh', [appToLaunchInput.text, applicationDirPath])
+                    }
+            }
 
-    FocusScope {
-        id: focusScope
-        width: 250; height: 28
+            Process {
+                id: launch_cmd
+                onReadyRead:{
+                    console.log(readAll())
+                }
+            }
 
-        property string text: textInput.text
-        signal clear
+            Text {
+                id: placeholderText
+                anchors {
+                    left: parent.left
+                    right: sendButton.left
+                    bottom: parent.bottom
+                    margins: 40
+                }
+                text: "App name"
+                color: "gray"
+                font.italic: true
+                font.pointSize: 14
+            }
 
-        onClear: {
-            textInput.text=""
-        }
-    }
+            TextInput {
+                id: appToLaunchInput
+                anchors {
+                    left: parent.left;
+                    right: sendButton.left;
+                    bottom: parent.bottom
+                    margins: 40
+                    }
+                focus: true;
+                selectByMouse: true
+                font.pointSize: 14
+            }
 
-    Image {
-        id: clear
-        anchors {
-            right: parent.right;
-            rightMargin: 8;
-            verticalCenter: parent.verticalCenter }
+            FocusScope {
+                id: focusScope
+                width: 250; height: 28
 
-        MouseArea {
-            // allow area to grow beyond image size
-            // easier to hit the area on high DPI devices
-            anchors.centerIn: parent
-            height:focusScope.height
-            width: focusScope.height
-            onClicked: {
-                //toogle focus to be able to jump out of input method composer
-                focusScope.focus = false;
-                textInput.text = '';
-                focusScope.focus = true;
+                property string text: appToLaunchInput.text
+                signal clear
+
+                onClear: {
+                    appToLaunchInput.text=""
+                }
+            }
+
+            Image {
+                id: clear
+                anchors {
+                    right: parent.right;
+                    rightMargin: 8;
+                    verticalCenter: parent.verticalCenter }
+
+                MouseArea {
+                    // allow area to grow beyond image size
+                    // easier to hit the area on high DPI devices
+                    anchors.centerIn: parent
+                    height:focusScope.height
+                    width: focusScope.height
+                    onClicked: {
+                        //toogle focus to be able to jump out of input method composer
+                        focusScope.focus = false;
+                        appToLaunchInput.text = '';
+                        focusScope.focus = true;
+                    }
+                }
             }
         }
     }
 
     states: State {
-        name: "hasText"; when: (textInput.text != '' || textInput.inputMethodComposing)
-        PropertyChanges { target: typeSomething; opacity: 0 }
+        name: "hasText"; when: (appToLaunchInput.text != '' || appToLaunchInput.inputMethodComposing)
+        PropertyChanges { target: placeholderText; opacity: 0 }
         PropertyChanges { target: clear; opacity: 1 }
     }
 
     transitions: [
         Transition {
             from: ""; to: "hasText"
-            NumberAnimation { exclude: typeSomething; properties: "opacity" }
+            NumberAnimation { exclude: placeholderText; properties: "opacity" }
         },
         Transition {
             from: "hasText"; to: ""

@@ -55,92 +55,118 @@ Item {
     Text {
         id: aaTitle
         anchors {
-            top: title.bottom
+            top: netLogFlickable.bottom
             horizontalCenter: parent.horizontalCenter
             margins: 30
         }
         text: "Apparmor messages"
         font.pointSize: 16
     }
-    TextEdit {
-        id: aaLog
+    Flickable {
+        id: aaLogFlickable
+        contentHeight: aaLog.contentHeight
+        clip: true
+        height: 150
         anchors {
             top: aaTitle.bottom
             left: parent.left
             right: parent.right
             margins: 30
         }
-        font.pointSize: 10
-        selectionColor: Colour.palette['Green']
-        wrapMode: TextEdit.WordWrap
-        cursorPosition: aaLog.text.length
+
+        TextEdit {
+            id: aaLog
+            anchors.fill: parent
+            font.pointSize: 10
+            selectionColor: Colour.palette['Green']
+            wrapMode: TextEdit.WordWrap
+            cursorPosition: aaLog.text.length
+        }
     }
 
     Text {
         id: fileTitle
         anchors {
-            top: aaLog.bottom 
+            top: aaLogFlickable.bottom
             horizontalCenter: parent.horizontalCenter
             margins: 30
         }
         text: 'File Access and Modificatios'
         font.pointSize: 16
     }
-    TextEdit {
-        id: fileOpenLog
+    Flickable {
+        id: fileOpenFlickable
         height: 300
         width: 350
+        clip: true
+        contentHeight: fileOpenLog.contentHeight
         anchors {
             top: fileTitle.bottom
             left: parent.left
             margins: 30
             bottomMargin: 200
         }
-        text: 'Opened files will be logged here'
-        font.pointSize: 10
-        selectionColor: Colour.palette['Green']
-        wrapMode: TextEdit.WordWrap
-        cursorPosition: fileOpenLog.text.length
+        TextEdit {
+            id: fileOpenLog
+            anchors.fill: parent
+            text: 'Opened files will be logged here'
+            font.pointSize: 10
+            selectionColor: Colour.palette['Green']
+            wrapMode: TextEdit.WordWrap
+            cursorPosition: fileOpenLog.text.length
+        }
     }
-    TextEdit {
-        id: fileChangeLog
+    Flickable {
         height: 300
         width: 350
+        clip: true
+        contentHeight: fileChangeLog.contentHeight
         anchors {
             top: fileTitle.bottom
             right: parent.right
             margins: 30
             bottomMargin: 200
         }
-        text: 'File changes:\n'
-        font.pointSize: 10
-        selectionColor: Colour.palette['Green']
-        wrapMode: TextEdit.WordWrap
-        cursorPosition: fileOpenLog.text.length
+
+        TextEdit {
+            id: fileChangeLog
+            anchors.fill: parent
+            text: 'File changes:\n'
+            font.pointSize: 10
+            selectionColor: Colour.palette['Green']
+            wrapMode: TextEdit.WordWrap
+            cursorPosition: fileOpenFlickable.text.length
+        }
     }
 
     Text {
         id: netTitle
         anchors {
-            top: fileOpenLog.bottom
+            top: title.bottom
             horizontalCenter: parent.horizontalCenter
             margins: 30
         }
         text: 'Internet Traffic Monitor'
         font.pointSize: 16
     }
-    TextEdit {
-        id: netLog
+    Flickable {
+        id: netLogFlickable
+        contentHeight: netLog.contentHeight
+        clip: true
+        height: 150
         anchors {
             top: netTitle.bottom
             left: parent.left
             right: parent.right
             margins: 30
         }
-        text: 'internet traffic will be logged here'
-        font.pointSize: 10
-        selectionColor: Colour.palette['Green']
-        wrapMode: TextEdit.WordWrap
-        cursorPosition: fileOpenLog.text.length
+        TextEdit {
+            id: netLog
+            text: 'internet traffic will be logged here'
+            font.pointSize: 10
+            selectionColor: Colour.palette['Green']
+            wrapMode: TextEdit.WordWrap
+            cursorPosition: fileOpenLog.text.length
+        }
     }
 }
