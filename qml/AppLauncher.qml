@@ -39,8 +39,6 @@ Item {
             Layout.fillWidth: true
             clip: true
             contentHeight: appList.contentHeight
-
-
             TextEdit {
                 id: appList
                 text: 'Current running apps:\n'

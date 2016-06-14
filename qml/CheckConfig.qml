@@ -2,6 +2,8 @@ import QtQuick 2.0
 import Process 1.0
 import "colour.js" as Colour
 import QtQuick.Dialogs 1.2
+import QtQuick.Layouts 1.2
+
 
 Item {
     Component.onCompleted: {
@@ -15,31 +17,30 @@ Item {
             console.log(log.text)
         }
     }
-
-    Text {
-        id: title
-        anchors {
-            top: parent.top
-            topMargin: 30
-            horizontalCenter: parent.horizontalCenter
+    ColumnLayout {
+        anchors.fill: parent
+        spacing: units.gu(5)
+        Text {
+            id: title
+            anchors {
+                horizontalCenter: parent.horizontalCenter
+            }
+            text: "App Config Check"
+            font.pointSize: 16
         }
-        text: "App Config Check"
-        font.pointSize: 16
-    }
-
-    TextEdit {
-        id: log
-        anchors {
-            top: title.bottom
-            left: parent.left
-            right: parent.right
-            bottom: parent.bottom
-            margins: 40
+        Flickable {
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            clip: true
+            contentHeight: appList.contentHeight
+            TextEdit {
+                id: log
+                text: 'Running Checker...\n'
+                font.pointSize: 12
+                selectionColor: Colour.palette['Green']
+                wrapMode: TextEdit.WordWrap
+                cursorPosition: log.text.length
+            }
         }
-        text: 'Running Checker...\n'
-        font.pointSize: 12
-        selectionColor: Colour.palette['Green']
-        wrapMode: TextEdit.WordWrap
-        cursorPosition: log.text.length
     }
 }
