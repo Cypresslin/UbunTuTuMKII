@@ -8,7 +8,7 @@ Item {
     Component.onCompleted: {
         console.log('App launcher loaded')
         all_apps.start(applicationDirPath + '/utils/list_app.py', ['--list'])
-        cmd_list.start(applicationDirPath + '/utils/adb', ['shell', 'ubuntu-app-list'])
+        cmd_list.start(applicationDirPath + '/utils/list_app.py', ['--watch'])
         cmd_watch.start(applicationDirPath + '/utils/adb', ['shell', 'ubuntu-app-watch'])
     }
     Process {
@@ -22,13 +22,13 @@ Item {
                 app_list.append( {text: item, app: exec } )
             }
             hintText.text = "Ready"
-            hintText.color = "green"
+            hintText.color = "lime"
         }
     }
     Process {
         id: cmd_list
         onReadyRead: {
-            appList.text +=  readAll();
+            appList.text = 'Current running apps:\n' + readAll();
         }
     }
     Process {
