@@ -7,13 +7,16 @@ Author: Po-Hsu Lin <po-hsu.lin@canonical.com>
 '''
 
 import argparse
-import subprocess
 import json
+import subprocess
+import sys
+import time
 
+delay = 2
 parser = argparse.ArgumentParser(description='List / Check Apps')
 group = parser.add_mutually_exclusive_group(required=True)
-group.add_argument('--check', action='store_true',
-                    help='')
+group.add_argument('--watch', action='store_true',
+                    help='watch current running apps')
 group.add_argument('--list', action='store_true',
                     help='list all available click apps')
 
@@ -47,3 +50,15 @@ if args.list:
     for app in app_dict:
         for ver in app_dict[app]['ver']:
             print('{} ({}), {}'.format(app, ver, app_dict[app]['exec']))
+
+if args.watch:
+    try:
+        while True:
+            print(subprocess.check_output(['adb', 'shell', 'ubuntu-app-list']).decode('utf-8'))
+            # Flush the stdout, invoke the onReadyRead event in QML
+            sys.stdout.flush()
+            time.sleep(delay)
+    except KeyboardInterrupt:
+        print("Process Terminated by user")
+    except Exception as e:
+        print("Exception occurred - {}".format(e))
