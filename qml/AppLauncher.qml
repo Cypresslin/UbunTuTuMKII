@@ -16,8 +16,8 @@ Item {
         onReadyRead: {
             var items = readAll().toString().replace(/\n$/, "").split('\n')
             for (var i in items) {
-                var item = items[i].split(',')[0]
-                var exec = items[i].split(',')[1]
+                var item = items[i].split(',')[0].trim()
+                var exec = items[i].split(',')[1].trim()
                 console.log(item, '-', exec)
                 app_list.append( {text: item, app: exec } )
             }
