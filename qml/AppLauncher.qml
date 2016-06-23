@@ -1,15 +1,29 @@
+import QtQuick.Controls 1.4
 import QtQuick 2.0
 import Process 1.0
 import "colour.js" as Colour
-import QtQuick.Dialogs 1.2
-import Ubuntu.Components 0.1
 import QtQuick.Layouts 1.2
 
 Item {
     Component.onCompleted: {
         console.log('App launcher loaded')
+        all_apps.start(applicationDirPath + '/utils/list_app.py', ['--list'])
         cmd_list.start(applicationDirPath + '/utils/adb', ['shell', 'ubuntu-app-list'])
         cmd_watch.start(applicationDirPath + '/utils/adb', ['shell', 'ubuntu-app-watch'])
+    }
+    Process {
+        id: all_apps
+        onReadyRead: {
+            var items = readAll().toString().replace(/\n$/, "").split('\n')
+            for (var i in items) {
+                var item = items[i].split(',')[0]
+                var exec = items[i].split(',')[1]
+                console.log(item, '-', exec)
+                app_list.append( {text: item, app: exec } )
+            }
+            hintText.text = "Ready"
+            hintText.color = "green"
+        }
     }
     Process {
         id: cmd_list
@@ -24,14 +38,18 @@ Item {
         }
     }
     ColumnLayout {
-        anchors.fill: parent
+        anchors {
+            fill: parent
+            margins: 40
+            topMargin: 30
+        }
         spacing: units.gu(5)
         Text {
             id: title
             anchors {
                 horizontalCenter: parent.horizontalCenter
             }
-            text: "Apps status:"
+            text: "App Launcher"
             font.pointSize: 16
         }
         Flickable {
@@ -63,107 +81,70 @@ Item {
         }
         Item {
             Layout.fillWidth: true
-            height: placeholderText.height + 40 // pseudo topMargin
+            height: runButton.height + 40 // pseudo topMargin
 
-            Button{
-                    id: sendButton
-                    anchors {
-                        right: clear.right
-                        bottom: parent.bottom
-                        margins: 30
-                    }
-                    text: "Launch!"
-                    onClicked: {
-                        console.log("Lauching App: " + appToLaunchInput.text)
-                        launch_cmd.start(applicationDirPath + '/utils/launch_app.sh', [appToLaunchInput.text, applicationDirPath])
-                    }
+            ComboBox {
+                id: app_cb
+                currentIndex: 0
+                width: 250
+                anchors {
+                    left: parent.left
+                    bottom: parent.bottom
+                }
+                model: ListModel{
+                    id: app_list
+                    ListElement { text: "Select App..."; app: ''}
+                }
+                onCurrentIndexChanged: console.debug(app_list.get(currentIndex).text + ", " + app_list.get(currentIndex).app)
             }
 
+            Button{
+                id: runButton
+                anchors {
+                    left: app_cb.right
+                    bottom: app_cb.bottom
+                    leftMargin: 10
+                }
+                text: "Start!"
+                onClicked: {
+                    if (app_cb.currentIndex != 0){
+                        console.log("Lauching App: " + app_list.get(app_cb.currentIndex).text)
+                        launch_cmd.start(applicationDirPath + '/utils/launch_app.sh', [ app_list.get(app_cb.currentIndex).app, applicationDirPath])
+                        hintText.text = "App monitoring started"
+                        hintText.color = ""
+                    } else {
+                        console.log("Please select an app to start")
+                        hintText.text = "Please select an app to start"
+                        hintText.color = "red"
+                    }
+                }
+            }
             Process {
                 id: launch_cmd
                 onReadyRead:{
                     console.log(readAll())
                 }
             }
-
             Text {
-                id: placeholderText
+                id: statusText
                 anchors {
-                    left: parent.left
-                    right: sendButton.left
-                    bottom: parent.bottom
-                    margins: 40
+                    left: runButton.right
+                    verticalCenter: app_cb.verticalCenter
+                    leftMargin: 5
                 }
-                text: "App name"
-                color: "gray"
-                font.italic: true
-                font.pointSize: 14
+                text: "Status: "
             }
-
-            TextInput {
-                id: appToLaunchInput
+            Text {
+                id: hintText
                 anchors {
-                    left: parent.left;
-                    right: sendButton.left;
-                    bottom: parent.bottom
-                    margins: 40
-                    }
-                focus: true;
-                selectByMouse: true
-                font.pointSize: 14
-            }
-
-            FocusScope {
-                id: focusScope
-                width: 250; height: 28
-
-                property string text: appToLaunchInput.text
-                signal clear
-
-                onClear: {
-                    appToLaunchInput.text=""
+                    left: statusText.right
+                    verticalCenter: app_cb.verticalCenter
+                    leftMargin: 5
                 }
+                text: "Loading app list..."
+                color: "red"
             }
 
-            Image {
-                id: clear
-                anchors {
-                    right: parent.right;
-                    rightMargin: 8;
-                    verticalCenter: parent.verticalCenter }
-
-                MouseArea {
-                    // allow area to grow beyond image size
-                    // easier to hit the area on high DPI devices
-                    anchors.centerIn: parent
-                    height:focusScope.height
-                    width: focusScope.height
-                    onClicked: {
-                        //toogle focus to be able to jump out of input method composer
-                        focusScope.focus = false;
-                        appToLaunchInput.text = '';
-                        focusScope.focus = true;
-                    }
-                }
-            }
         }
     }
-
-    states: State {
-        name: "hasText"; when: (appToLaunchInput.text != '' || appToLaunchInput.inputMethodComposing)
-        PropertyChanges { target: placeholderText; opacity: 0 }
-        PropertyChanges { target: clear; opacity: 1 }
-    }
-
-    transitions: [
-        Transition {
-            from: ""; to: "hasText"
-            NumberAnimation { exclude: placeholderText; properties: "opacity" }
-        },
-        Transition {
-            from: "hasText"; to: ""
-            NumberAnimation { properties: "opacity" }
-        }
-    ]
-
 }

@@ -5,10 +5,6 @@
 #
 
 APP=$1
-DIR=$2  # This is needed to allow it to launch in parent dir
-if [ ! -z $2 ]; then
-    DIR=$DIR/utils/
-fi
 
 function errorMsg(){
     [ -f /tmp/.app_name ] && rm /tmp/.app_name
@@ -16,14 +12,9 @@ function errorMsg(){
 }
 
 if [ ! -z $APP ]; then
-    # Make sure the $APP name is in the app list
-    if [ `$DIR./list_app.py --check $APP` == "True" ]; then
-        echo "$APP" > /tmp/.app_name
-        adb shell nohup ubuntu-app-launch $APP 2&> /dev/null
-        echo "$APP launched"
-    else
-        errorMsg "Error: App $APP not found"
-    fi
+    echo "$APP" > /tmp/.app_name
+    adb shell nohup ubuntu-app-launch $APP 2&> /dev/null
+    echo "$APP launched"
 else
     errorMsg "Error: No app name was given"
 fi
