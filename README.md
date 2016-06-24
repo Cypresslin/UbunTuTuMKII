@@ -16,8 +16,9 @@ UbunTuTuMKII, a variant form Penk's UbunTuTu, is a prototyping graphical tool fo
 
 ## Build 
 
-On Linux:
+On Ubuntu Linux:
 
+    sudo apt-get install ubuntu-sdk
     cd Process; qmake && make && sudo make install; cd ..
     qmake && make 
     ./UbunTuTu
@@ -36,6 +37,8 @@ Whenever you need to call certain app name, just read that file
 Before using all of its feature, you will need to allow your device to run command as root, without asking passwords.
 
 ## License 
+
+Copyright © 2016 Maciej Kisielewski <<maciej.kisielewski@canonical.com>>
 
 Copyright © 2016 Ping-Hsun (penk) Chen <<penkia@gmail.com>>
 
