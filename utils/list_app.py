@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 '''
-A script to list alll available apps, or check the existence of certain app
+A script to list all available apps, or check the existence of certain app
 It will get the list from /home/phablet/.local/share/applications/
 
 Author: Po-Hsu Lin <po-hsu.lin@canonical.com>
@@ -49,7 +49,7 @@ if args.list:
     # Return app titles and version here for QML combobox
     for app in app_dict:
         for ver in app_dict[app]['ver']:
-            print('{} ({}), {}'.format(app, ver, app_dict[app]['exec']))
+            print('{} ({}), {}, {}'.format(app, ver, app_dict[app]['exec'], app_dict[app]['info']))
 
 if args.watch:
     try:
