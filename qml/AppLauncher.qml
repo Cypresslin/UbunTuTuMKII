@@ -18,8 +18,9 @@ Item {
             for (var i in items) {
                 var item = items[i].split(',')[0].trim()
                 var exec = items[i].split(',')[1].trim()
+                var info = items[i].split(',')[2].trim()
                 console.log(item, '-', exec)
-                app_list.append( {text: item, app: exec } )
+                app_list.append( {text: item, app: exec, maintainer: info} )
             }
             hintText.text = "Ready"
             hintText.color = "lime"
@@ -79,6 +80,20 @@ Item {
                 selectionColor: Colour.palette['Green']
             }
         }
+        Text {
+            id: authorLabel
+            text: "Maintainers: "
+            font.pointSize: 12
+        }
+        Text {
+            id: authorText
+            text: "(Please select an App)"
+            font.pointSize: 12
+            anchors {
+                verticalCenter: authorLabel.verticalCenter
+                left: authorLabel.right
+            }
+        }
         Item {
             Layout.fillWidth: true
             height: runButton.height + 40 // pseudo topMargin
@@ -95,7 +110,10 @@ Item {
                     id: app_list
                     ListElement { text: "Select App..."; app: ''}
                 }
-                onCurrentIndexChanged: console.debug(app_list.get(currentIndex).text + ", " + app_list.get(currentIndex).app)
+                onCurrentIndexChanged: {
+                    authorText.text = app_list.get(currentIndex).maintainer
+                    console.debug(app_list.get(currentIndex).text + ", " + app_list.get(currentIndex).app)
+                }
             }
 
             Button{
@@ -109,7 +127,7 @@ Item {
                 onClicked: {
                     if (app_cb.currentIndex != 0){
                         console.log("Lauching App: " + app_list.get(app_cb.currentIndex).text)
-                        launch_cmd.start(applicationDirPath + '/utils/launch_app.sh', [ app_list.get(app_cb.currentIndex).app, applicationDirPath])
+                        launch_cmd.start(applicationDirPath + '/utils/launch_app.sh', [app_list.get(app_cb.currentIndex).app])
                         hintText.text = "App monitoring started"
                         hintText.color = ""
                     } else {
