@@ -20,12 +20,13 @@ Window {
                 connectIndicator.color = Colour.palette['Green']
                 connectText.text = "Connected"
             }
+            loader.source = "Home.qml";
         }
     }
 
     Component.onCompleted: {
         process.start(applicationDirPath + "/utils/adb", ["devices"]); 
-        loader.source = "Home.qml";
+//        loader.source = "Home.qml";
     }
 
     Rectangle {
