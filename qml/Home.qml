@@ -6,13 +6,7 @@ import Ubuntu.Components 0.1
 Item {
     Component.onCompleted: {
         console.log('Home loaded')
-        cmd_adb.start(applicationDirPath + '/utils/adb', ['start-server'])
-    }
-    Process {
-        id: cmd_adb
-        onReadyRead:{
-            sic.start(applicationDirPath + '/utils/adb', ['shell', 'system-image-cli', '-i'])
-        }
+        sic.start(applicationDirPath + '/utils/adb', ['shell', 'system-image-cli', '-i'])
     }
     Process {
         id: sic
