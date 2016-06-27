@@ -2,14 +2,15 @@ import QtQuick 2.0
 import Process 1.0
 import "colour.js" as Colour
 import QtQuick.Dialogs 1.2
+import Ubuntu.Components 1.3
 
 Item {
     Component.onCompleted: {
         console.log('Watcher loaded')
-        cmd_aaLog.start(applicationDirPath + '/utils/adb', ['shell', 'tail', '-f', '/var/log/syslog'])
-        cmd_file_changes.start(applicationDirPath + '/utils/file_watcher.py', ['--changes'])
-        cmd_file_lsof.start(applicationDirPath + '/utils/file_watcher.py', ['--lsof'])
-        cmd_netLog.start(applicationDirPath + '/utils/internet_watcher.py',[])
+//        cmd_aaLog.start(applicationDirPath + '/utils/adb', ['shell', 'tail', '-f', '/var/log/syslog'])
+//        cmd_file_changes.start(applicationDirPath + '/utils/file_watcher.py', ['--changes'])
+//        cmd_file_lsof.start(applicationDirPath + '/utils/file_watcher.py', ['--lsof'])
+//        cmd_netLog.start(applicationDirPath + '/utils/internet_watcher.py',[])
     }
     Process {
         id: cmd_aaLog
@@ -40,19 +41,88 @@ Item {
         }
     }
 
-
-    Text {
-        id: title
+    Column {
+        spacing: units.gu(1)
         anchors {
             top: parent.top
-            topMargin: 30
             horizontalCenter: parent.horizontalCenter
+            topMargin: 30
         }
-        text: "Mighty App Watcher"
-        font.pointSize: 16
+        Row {
+            id: titleRow
+            Text {
+                id: title
+                text: "Mighty App Watcher"
+                font.pointSize: 16
+            }
+            anchors {
+                horizontalCenter: parent.horizontalCenter
+            }
+        }
+        Row {
+            id: internetRow
+            spacing: units.gu(1)
+            Switch {
+                id: tcpdumpSwitch
+                checked: false
+                onClicked: toggle()
+
+                function timestamp() {
+                    var locale =  Qt.locale()
+                    var currentTime = new Date()
+                    return currentTime.toLocaleString(locale, "yyyyMMdd-hh-mm-ss")
+                }
+
+                function toggle(){
+                    if (tcpdumpSwitch.checked){
+                        var filename = timestamp() + '.pcap' 
+                        tcpdumpStat.text = "Started"
+                        tcpfnText.text = filename
+                        var filename = timestamp() + '.pcap'
+                        cmd_tcpGo.start(applicationDirPath + '/utils/adb', ['shell', 'sudo', './tcpdump', '-n', '-w', filename])
+                    } else {
+                        tcpdumpStat.text = "Stopped"
+                        cmd_tcpStop.start(applicationDirPath + '/utils/adb', ['shell', 'sudo', 'pkill', '-f', 'tcpdump'])
+                     // File size will mismatch here, caused by the stop-time difference
+                        cmd_tcpPull.start(applicationDirPath + '/utils/adb', ['pull', tcpfnText.text])
+                    }
+                }
+            }
+            Process {
+            id: cmd_tcpGo
+                onReadyRead: {
+                    console.log(readAll())
+                }
+            }
+            Process {
+            id: cmd_tcpStop
+                onReadyRead: {
+                    console.log(readAll())
+                }
+            }
+            Process {
+            id: cmd_tcpPull
+                onReadyRead: {
+                    console.log(readAll())
+                }
+            }
+            Text {
+                id: tcpdumpLabel
+                text: "TCP dump:"
+            }
+            Text {
+                id: tcpdumpStat
+                text: "Stopped"
+            }
+            Text {
+                id: tcpfnText
+                text: ""
+            }
+        }
     }
 
-    Text {
+
+/*    Text {
         id: aaTitle
         anchors {
             top: netLogFlickable.bottom
@@ -169,4 +239,5 @@ Item {
             cursorPosition: fileOpenLog.text.length
         }
     }
+*/
 }
