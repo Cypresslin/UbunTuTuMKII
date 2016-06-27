@@ -1,7 +1,6 @@
 import QtQuick.Controls 1.4
 import QtQuick 2.0
 import Process 1.0
-import "colour.js" as Colour
 import QtQuick.Layouts 1.2
 
 Item {
@@ -11,6 +10,7 @@ Item {
         cmd_list.start(applicationDirPath + '/utils/list_app.py', ['--watch'])
         cmd_watch.start(applicationDirPath + '/utils/adb', ['shell', 'ubuntu-app-watch'])
     }
+
     Process {
         id: all_apps
         onReadyRead: {
@@ -32,10 +32,16 @@ Item {
             appList.text = 'Current running apps:\n' + readAll();
         }
     }
+    function timestamp() {         
+        var locale =  Qt.locale()
+        var currentTime = new Date()
+        return currentTime.toLocaleString(locale, "yyyy-MM-dd hh:mm:ss")
+    }
+
     Process {
         id: cmd_watch
         onReadyRead: {
-            appStatus.text += readAll();
+            appStatus.text += timestamp() + ' - ' + readAll();
         }
     }
     ColumnLayout {
