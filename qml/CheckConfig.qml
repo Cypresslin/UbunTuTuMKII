@@ -1,7 +1,8 @@
 import QtQuick 2.0
 import Process 1.0
 import "colour.js" as Colour
-import QtQuick.Dialogs 1.2
+import QtQuick.Controls 1.4
+//import QtQuick.Dialogs 1.2
 import QtQuick.Layouts 1.2
 
 
@@ -64,10 +65,13 @@ Item {
 
 
     ColumnLayout {
+        id: mainCol
         anchors {
             fill: parent
-            margins: 40
+            rightMargin: 30
+            leftMargin: 40
             topMargin: 30
+            bottomMargin: 50
         }
         spacing: units.gu(5)
         Text {
@@ -180,6 +184,71 @@ Item {
                 wrapMode: TextEdit.WordWrap
                 cursorPosition: rulesLog.text.length
             }
+        }
+    }
+    RowLayout {
+        anchors {
+            top: mainCol.bottom
+            left: mainCol.left
+        }
+        Text{
+            id: resetLabel
+            text: "Reset Permissions:"
+            font.bold: true
+        }
+        CheckBox {
+            id: cameraCb
+            text: "CameraService"
+            checked: true
+        }
+        CheckBox {
+            id: audioCb
+            text: "PulseAudio"
+            checked: true
+        }
+        CheckBox {
+            id: locationCb
+            text: "UbuntuLocationService"
+            checked: true
+        }
+        Button {
+            id: runButton
+            text: "Start!"
+            onClicked: {
+                var permissions = []
+                if (cameraCb.checked) {
+                    permissions.push(cameraCb.text)
+                }
+                if (audioCb.checked) {
+                    permissions.push(audioCb.text)
+                }
+                if (locationCb.checked) {
+                    permissions.push(locationCb.text)
+                }
+                if (permissions.length > 0){
+                    cmd_reset.start(applicationDirPath + '/utils/reset_trust_store.sh', permissions)
+                    trustText.text = "Permission resetted"
+                    trustText.color = "green"
+                } else {
+                    trustText.text = "No target selected"
+                    trustText.color = "red"
+                }
+            }
+        }
+        Process {
+            id: cmd_reset
+            onReadyRead: {
+                console.log(readAll())
+            }
+        }
+        Text {
+            id: trustText
+            anchors {
+                left: runButton.right
+                leftMargin: units.gu(2)
+            }
+            text: "Ready"
+            color: "green"
         }
     }
 }

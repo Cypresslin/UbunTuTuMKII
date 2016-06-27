@@ -85,7 +85,6 @@ Window {
             ListElement { name: "Home" }
             ListElement { name: "AppLauncher" }
             ListElement { name: "CheckConfig" }
-            ListElement { name: "TrustStore" }
             ListElement { name: "Watcher" }
             //ListElement { name: "Log" }
             //ListElement { name: "Setting" }
