@@ -111,7 +111,7 @@ Item {
                     ListElement { text: "Select App..."; app: ''}
                 }
                 onCurrentIndexChanged: {
-                    authorText.text = app_list.get(currentIndex).maintainer
+                    authorText.text = (app_list.get(currentIndex).maintainer) ? app_list.get(currentIndex).maintainer : "(Please select an App)"
                     console.debug(app_list.get(currentIndex).text + ", " + app_list.get(currentIndex).app)
                 }
             }
