@@ -28,6 +28,7 @@ On Ubuntu Linux:
 * `utils/convert` is a statically linked ImageMagick version 6.8.9-9 built with `png` delegate 
 * `utils/adb` is ADB version 1.0.32 from Android SDK platform tool 
 * `utils/nethogs` is nethogs version 0.8.1 built with ARM architecture, please push it to your device in advance.
+* `utils/tcpdump` is tcpdump version 4.7.4 built with ATM architecture, please push it to your device in advcane.
 
 ## Notes
 
