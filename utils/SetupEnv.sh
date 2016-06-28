@@ -10,9 +10,10 @@
 adb start-server
 result=`adb devices | grep "device$"`
 if [ $? -eq 0 ]; then
-    username=`adb shell whoami`
+    # need to get rid of the CarriageReturn here
+    username=`adb shell whoami | tr -d '\r'`
     echo "User: $username"
-    read -rsp "Password: " pass; echo 
+    read -rsp "Password: " pass; echo ""
 
     echo 'Re-mount root file-system as writable...'
     adb shell "echo $pass | sudo -S mount -o remount,rw /"
@@ -22,7 +23,9 @@ if [ $? -eq 0 ]; then
 
     # Allow sudo command, not recommended
     echo 'Adding sudoer setting...'
-    adb shell "echo $pass | sudo -S sh -c 'echo -n $username ALL=NOPASSWD: ALL > /etc/sudoers.d/$username'"
+    cmd="$username ALL=NOPASSWD: ALL"
+    file="/etc/sudoers.d/$username"
+    adb shell "echo $pass | sudo -S sh -c 'echo $cmd > $file'"
 
     echo "Re-mount root file-system as read-only..."
     adb shell "echo $pass | sudo -S mount -o remount,ro /"
