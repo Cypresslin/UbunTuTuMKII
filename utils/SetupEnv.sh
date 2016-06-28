@@ -20,6 +20,10 @@ if [ $? -eq 0 ]; then
     echo 'Setting AppArmor audit level to "all"...'
     adb shell "echo $pass | sudo -S sh -c 'echo -n all > /sys/module/apparmor/parameters/audit'"
 
+    # Allow sudo command, not recommended
+    echo 'Adding sudoer setting...'
+    adb shell "echo $pass | sudo -S sh -c 'echo -n $username ALL=NOPASSWD: ALL > /etc/sudoers.d/$username'"
+
     echo "Re-mount root file-system as read-only..."
     adb shell "echo $pass | sudo -S mount -o remount,ro /"
 

@@ -23,6 +23,14 @@ On Ubuntu Linux:
     qmake && make 
     ./UbunTuTu
 
+## Preparation
+
+With your Ubuntu Touch / Phone device connected:
+
+    ./utils/SetupEnv.sh
+
+You will only need to run this once.
+
 ## Credits 
 
 * `utils/convert` is a statically linked ImageMagick version 6.8.9-9 built with `png` delegate 
