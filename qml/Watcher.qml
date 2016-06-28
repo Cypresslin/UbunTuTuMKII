@@ -52,7 +52,7 @@ Item {
             id: titleRow
             Text {
                 id: title
-                text: "Mighty App Watcher"
+                text: i18n.tr("Mighty App Watcher")
                 font.pointSize: 16
             }
             anchors {
@@ -65,7 +65,7 @@ Item {
 
             Text {
                 id: tcpdumpLabel
-                text: "TCP dump:"
+                text: i18n.tr("TCP dump:")
             }
             Switch {
                 anchors {
@@ -112,7 +112,7 @@ Item {
             }
             Button {
                 id: tcpcpButton
-                text: "Copy file"
+                text: i18n.tr("Copy file")
                 anchors {
                     verticalCenter: tcpdumpLabel.verticalCenter
                 }
@@ -128,7 +128,7 @@ Item {
         Row {
             id: netTitleRow
             Text {
-                text: 'Internet Traffic Monitor'
+                text: i18n.tr('Internet Traffic Monitor')
                 font.pointSize: 16
             }
         }
@@ -142,7 +142,7 @@ Item {
             }
             TextEdit {
                 id: netLog
-                text: 'internet traffic will be logged here'
+                text: i18n.tr('internet traffic will be logged here')
                 font.pointSize: 10
                 selectionColor: Colour.palette['Green']
                 wrapMode: TextEdit.WordWrap

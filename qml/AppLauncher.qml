@@ -29,7 +29,7 @@ Item {
     Process {
         id: cmd_list
         onReadyRead: {
-            appList.text = 'Current running apps:\n' + readAll();
+            appList.text = i18n.tr('Current running apps:\n') + readAll();
         }
     }
     function timestamp() {         
@@ -56,7 +56,7 @@ Item {
             anchors {
                 horizontalCenter: parent.horizontalCenter
             }
-            text: "App Launcher"
+            text: i18n.tr("App Launcher")
             font.pointSize: 16
         }
         Flickable {
@@ -66,7 +66,7 @@ Item {
             contentHeight: appList.contentHeight
             TextEdit {
                 id: appList
-                text: 'Current running apps:\n'
+                text: i18n.tr('Current running apps:\n')
                 font.pointSize: 12
                 selectionColor: Colour.palette['Green']
             }
@@ -81,19 +81,19 @@ Item {
                 id: appStatus
                 anchors.fill: parent
                 wrapMode: "WrapAtWordBoundaryOrAnywhere"
-                text: 'Status change from ubuntu-app-watch:\n'
+                text: i18n.tr('Status change from ubuntu-app-watch:\n')
                 font.pointSize: 12
                 selectionColor: Colour.palette['Green']
             }
         }
         Text {
             id: authorLabel
-            text: "Maintainers: "
+            text: i18n.tr("Maintainers: ")
             font.pointSize: 12
         }
         Text {
             id: authorText
-            text: "(Please select an App)"
+            text: i18n.tr("(Please select an App)")
             font.pointSize: 12
             anchors {
                 verticalCenter: authorLabel.verticalCenter
@@ -114,10 +114,10 @@ Item {
                 }
                 model: ListModel{
                     id: app_list
-                    ListElement { text: "Select App..."; app: ''}
+                    ListElement { text: i18n.tr("Select App..."); app: ''}
                 }
                 onCurrentIndexChanged: {
-                    authorText.text = (app_list.get(currentIndex).maintainer) ? app_list.get(currentIndex).maintainer : "(Please select an App)"
+                    authorText.text = (app_list.get(currentIndex).maintainer) ? app_list.get(currentIndex).maintainer : i18n.tr("(Please select an App)")
                     console.debug(app_list.get(currentIndex).text + ", " + app_list.get(currentIndex).app)
                 }
             }
@@ -129,16 +129,16 @@ Item {
                     bottom: app_cb.bottom
                     leftMargin: 10
                 }
-                text: "Start!"
+                text: i18n.tr("Start!")
                 onClicked: {
                     if (app_cb.currentIndex != 0){
                         console.log("Lauching App: " + app_list.get(app_cb.currentIndex).text)
                         launch_cmd.start(applicationDirPath + '/utils/launch_app.sh', [app_list.get(app_cb.currentIndex).app])
-                        hintText.text = "App monitoring started"
+                        hintText.text = i18n.tr("App monitoring started")
                         hintText.color = ""
                     } else {
                         console.log("Please select an app to start")
-                        hintText.text = "Please select an app to start"
+                        hintText.text = i18n.tr("Please select an app to start")
                         hintText.color = "red"
                     }
                 }
@@ -156,7 +156,7 @@ Item {
                     verticalCenter: app_cb.verticalCenter
                     leftMargin: 5
                 }
-                text: "Status: "
+                text: i18n.tr("Status: ")
             }
             Text {
                 id: hintText
@@ -165,7 +165,7 @@ Item {
                     verticalCenter: app_cb.verticalCenter
                     leftMargin: 5
                 }
-                text: "Loading app list..."
+                text: i18n.tr("Loading app list...")
                 color: "red"
             }
 

@@ -25,7 +25,7 @@ Item {
             color: Colour.palette['Green']
             Text {
                 anchors.centerIn: parent
-                text: 'Import Contacts'
+                text: i18n.tr('Import Contacts')
                 color: 'white'
                 font.bold: true
                 font.pointSize: 14
@@ -45,7 +45,7 @@ Item {
             Text {
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
-                text: 'Export Contacts'
+                text: i18n.tr('Export Contacts')
                 clip: true
                 font.bold: true
                 font.pointSize: 14
@@ -71,7 +71,7 @@ Item {
 
     FileDialog {
         id: fileDialog
-        title: "Please choose a contact file"
+        title: i18n.tr("Please choose a contact file")
         folder: shortcuts.documents
         //selectMultiple: false
         //selectFolder: false
@@ -90,7 +90,7 @@ Item {
 
     FileDialog {
         id: dirDialog
-        title: "Please choose a directory"
+        title: i18n.tr("Please choose a directory")
         folder: shortcuts.home
         //selectMultiple: false
         //selectFolder: true
@@ -120,7 +120,7 @@ Item {
             topMargin: 30
             horizontalCenter: parent.horizontalCenter
         }
-        text: "Import & export contacts"
+        text: i18n.tr("Import & export contacts")
         font.pointSize: 16
     }
 

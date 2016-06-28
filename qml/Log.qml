@@ -22,7 +22,7 @@ Item {
             topMargin: 30
             horizontalCenter: parent.horizontalCenter
         }
-        text: "System Log"
+        text: i18n.tr("System Log")
         font.pointSize: 16
     }
 
