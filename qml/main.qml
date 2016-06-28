@@ -25,6 +25,8 @@ Window {
     }
 
     Component.onCompleted: {
+        i18n.domain = 'ubuntutu'
+        i18n.bindtextdomain('ubuntutu','./share/locale')
         process.start(applicationDirPath + "/utils/adb", ["devices"]); 
 //        loader.source = "Home.qml";
     }
