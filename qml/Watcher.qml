@@ -2,14 +2,15 @@ import QtQuick 2.0
 import Process 1.0
 import "colour.js" as Colour
 import QtQuick.Dialogs 1.2
+import Ubuntu.Components 1.3
 
 Item {
     Component.onCompleted: {
         console.log('Watcher loaded')
-        cmd_aaLog.start(applicationDirPath + '/utils/adb', ['shell', 'tail', '-f', '/var/log/syslog'])
-        cmd_file_changes.start(applicationDirPath + '/utils/file_watcher.py', ['--changes'])
-        cmd_file_lsof.start(applicationDirPath + '/utils/file_watcher.py', ['--lsof'])
-        cmd_netLog.start(applicationDirPath + '/utils/internet_watcher.py',[])
+//        cmd_aaLog.start(applicationDirPath + '/utils/adb', ['shell', 'tail', '-f', '/var/log/syslog'])
+//        cmd_file_changes.start(applicationDirPath + '/utils/file_watcher.py', ['--changes'])
+//        cmd_file_lsof.start(applicationDirPath + '/utils/file_watcher.py', ['--lsof'])
+//        cmd_netLog.start(applicationDirPath + '/utils/internet_watcher.py',[])
     }
     Process {
         id: cmd_aaLog
@@ -35,24 +36,123 @@ Item {
     Process {
         id: cmd_netLog
         onReadyRead: {
-            netLog.text = readAll();
-            console.log(netLog.text)
+            netLog.text += readAll();
+//            console.log(netLog.text)
         }
     }
 
-
-    Text {
-        id: title
+    Column {
+        spacing: units.gu(2)
         anchors {
             top: parent.top
-            topMargin: 30
             horizontalCenter: parent.horizontalCenter
+            topMargin: 30
         }
-        text: "Mighty App Watcher"
-        font.pointSize: 16
+        Row {
+            id: titleRow
+            Text {
+                id: title
+                text: "Mighty App Watcher"
+                font.pointSize: 16
+            }
+            anchors {
+                horizontalCenter: parent.horizontalCenter
+            }
+        }
+        Row {
+            id: tcpRow
+            spacing: units.gu(1)
+
+            Text {
+                id: tcpdumpLabel
+                text: "TCP dump:"
+            }
+            Switch {
+                anchors {
+                    verticalCenter: tcpdumpLabel.verticalCenter
+                }
+                id: tcpdumpSwitch
+                checked: false
+                onClicked: toggle()
+
+                function timestamp() {
+                    var locale =  Qt.locale()
+                    var currentTime = new Date()
+                    return currentTime.toLocaleString(locale, "yyyyMMdd-hh-mm-ss")
+                }
+
+                function toggle(){
+                    if (tcpdumpSwitch.checked){
+                        var filename = timestamp() + '.pcap' 
+                        tcpfnText.text = filename
+                        var filename = timestamp() + '.pcap'
+                        cmd_tcpGo.start(applicationDirPath + '/utils/adb', ['shell', 'sudo', './tcpdump', '-n', '-w', filename])
+                    } else {
+                        cmd_tcpStop.start(applicationDirPath + '/utils/adb', ['shell', 'sudo', 'pkill', '-f', 'tcpdump'])
+                    }
+                }
+            }
+            Process {
+            id: cmd_tcpGo
+                onReadyRead: {
+                    console.log(readAll())
+                }
+            }
+            Process {
+            id: cmd_tcpStop
+                onReadyRead: {
+                    console.log(readAll())
+                }
+            }
+            Process {
+            id: cmd_tcpPull
+                onReadyRead: {
+                    console.log(readAll())
+                }
+            }
+            Button {
+                id: tcpcpButton
+                text: "Copy file"
+                anchors {
+                    verticalCenter: tcpdumpLabel.verticalCenter
+                }
+                onClicked: {
+                     cmd_tcpPull.start(applicationDirPath + '/utils/adb', ['pull', tcpfnText.text])
+                }
+            }
+            Text {
+                id: tcpfnText
+                text: ""
+            }
+        }
+        Row {
+            id: netTitleRow
+            Text {
+                text: 'Internet Traffic Monitor'
+                font.pointSize: 16
+            }
+        }
+        Row {
+            id: netRow
+            Flickable {
+                id: netLogFlickable
+                contentHeight: netLog.contentHeight
+                clip: true
+                height: 150
+            }
+            TextEdit {
+                id: netLog
+                text: 'internet traffic will be logged here'
+                font.pointSize: 10
+                selectionColor: Colour.palette['Green']
+                wrapMode: TextEdit.WordWrap
+                cursorPosition: netLog.text.length
+            }
+        }
     }
 
-    Text {
+
+/*    Text {
         id: aaTitle
         anchors {
             top: netLogFlickable.bottom
@@ -138,35 +238,5 @@ Item {
             cursorPosition: fileOpenFlickable.text.length
         }
     }
-
-    Text {
-        id: netTitle
-        anchors {
-            top: title.bottom
-            horizontalCenter: parent.horizontalCenter
-            margins: 30
-        }
-        text: 'Internet Traffic Monitor'
-        font.pointSize: 16
-    }
-    Flickable {
-        id: netLogFlickable
-        contentHeight: netLog.contentHeight
-        clip: true
-        height: 150
-        anchors {
-            top: netTitle.bottom
-            left: parent.left
-            right: parent.right
-            margins: 30
-        }
-        TextEdit {
-            id: netLog
-            text: 'internet traffic will be logged here'
-            font.pointSize: 10
-            selectionColor: Colour.palette['Green']
-            wrapMode: TextEdit.WordWrap
-            cursorPosition: fileOpenLog.text.length
-        }
-    }
+*/
 }

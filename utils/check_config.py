@@ -29,7 +29,7 @@ args = parser.parse_args()
 # Get the app name from the temperorary file
 try:
     with open('/tmp/.app_name', 'r') as f:
-        app = f.readline()
+        app = f.readline().rstrip()
 
     if args.app_name:
         print(app)
