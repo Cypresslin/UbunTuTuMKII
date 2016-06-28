@@ -85,7 +85,7 @@ Item {
                     if (tcpdumpSwitch.checked){
                         var filename = timestamp() + '.pcap' 
                         tcpfnText.text = filename
-                        var filename = timestamp() + '.pcap'
+                        tcpfnText.color = 'black'
                         cmd_tcpGo.start(applicationDirPath + '/utils/adb', ['shell', 'sudo', './tcpdump', '-n', '-w', filename])
                     } else {
                         cmd_tcpStop.start(applicationDirPath + '/utils/adb', ['shell', 'sudo', 'pkill', '-f', 'tcpdump'])
@@ -117,7 +117,8 @@ Item {
                     verticalCenter: tcpdumpLabel.verticalCenter
                 }
                 onClicked: {
-                     cmd_tcpPull.start(applicationDirPath + '/utils/adb', ['pull', tcpfnText.text])
+                    tcpfnText.color = 'green'
+                    cmd_tcpPull.start(applicationDirPath + '/utils/adb', ['pull', tcpfnText.text])
                 }
             }
             Text {
