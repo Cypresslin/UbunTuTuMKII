@@ -39,8 +39,31 @@ Window {
             top: parent.top
             left: parent.left
         }
-
         Row {
+            id: labelRow
+            anchors {
+                bottom: appRow.top
+                margins: 20
+            }
+            Text {
+                text: "Checking:"
+                font.pointSize: 10
+            }
+        }
+        Row {
+            id: appRow
+            anchors {
+                bottom: adbRow.top
+                margins: 20
+            }
+            Text {
+                id: appNameLabel
+                text: "APP NAME"
+                font.pointSize: 10
+            }
+        }
+        Row {
+            id: adbRow
             anchors {
                 bottom: parent.bottom
                 left: parent.left

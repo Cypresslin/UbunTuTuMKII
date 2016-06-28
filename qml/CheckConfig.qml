@@ -9,18 +9,10 @@ import QtQuick.Layouts 1.2
 Item {
     Component.onCompleted: {
         console.log('Check Config')
-        cmd_name.start(applicationDirPath + '/utils/check_config.py', ['--app-name'])
         cmd_mode.start(applicationDirPath + '/utils/check_config.py', ['--check-mode'])
         cmd_proc.start(applicationDirPath + '/utils/check_config.py', ['--check-process'])
         cmd_policy.start(applicationDirPath + '/utils/check_config.py', ['--check-policy'])
         cmd_rules.start(applicationDirPath + '/utils/check_config.py', ['--check-rules'])
-    }
-    Process {
-        id: cmd_name
-        onReadyRead: {
-            appText.text = readAll().toString().replace(/\n$/, "")
-            console.log("Checking: " + appText.text)
-        }
     }
     Process {
         id: cmd_mode
@@ -88,8 +80,8 @@ Item {
             font.bold: true
         }
         Text {
-            id: appText
-            text: i18n.tr("App Name")
+            id: appNameText
+            text: appNameLabel.text
             color: "green"
             anchors {
                 left: appLabel.right
