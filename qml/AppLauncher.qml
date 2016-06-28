@@ -136,6 +136,7 @@ Item {
                         launch_cmd.start(applicationDirPath + '/utils/launch_app.sh', [app_list.get(app_cb.currentIndex).app])
                         hintText.text = i18n.tr("App monitoring started")
                         hintText.color = ""
+                        appNameLabel.text = app_list.get(app_cb.currentIndex).app
                     } else {
                         console.log("Please select an app to start")
                         hintText.text = i18n.tr("Please select an app to start")
