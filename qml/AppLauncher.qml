@@ -35,7 +35,7 @@ Item {
     function timestamp() {         
         var locale =  Qt.locale()
         var currentTime = new Date()
-        return currentTime.toLocaleString(locale, "yyyy-MM-dd hh:mm:ss")
+        return currentTime.toLocaleString(locale, "yyyyMMdd hh:mm:ss")
     }
 
     Process {
@@ -114,7 +114,7 @@ Item {
                 }
                 model: ListModel{
                     id: app_list
-                    ListElement { text: i18n.tr("Select App..."); app: ''}
+                    ListElement { text: "Select App..."; app: ''}
                 }
                 onCurrentIndexChanged: {
                     authorText.text = (app_list.get(currentIndex).maintainer) ? app_list.get(currentIndex).maintainer : i18n.tr("(Please select an App)")

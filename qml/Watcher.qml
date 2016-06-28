@@ -3,14 +3,25 @@ import Process 1.0
 import "colour.js" as Colour
 import QtQuick.Dialogs 1.2
 import Ubuntu.Components 1.3
+import QtQuick.Layouts 1.2
+
 
 Item {
     Component.onCompleted: {
         console.log('Watcher loaded')
+          cmd_file_access.start(applicationDirPath + '/utils/file_watcher.py', ['--access', '--app', appNameLabel.text])
 //        cmd_aaLog.start(applicationDirPath + '/utils/adb', ['shell', 'tail', '-f', '/var/log/syslog'])
 //        cmd_file_changes.start(applicationDirPath + '/utils/file_watcher.py', ['--changes'])
 //        cmd_file_lsof.start(applicationDirPath + '/utils/file_watcher.py', ['--lsof'])
 //        cmd_netLog.start(applicationDirPath + '/utils/internet_watcher.py',[])
+    }
+    Process {
+        id: cmd_file_access
+        onReadyRead: {
+            var string = readAll()
+            fileAccLog.text += string
+            console.log(string)
+        }
     }
     Process {
         id: cmd_aaLog
@@ -42,27 +53,31 @@ Item {
     }
 
     Column {
-        spacing: units.gu(2)
-        anchors {
-            top: parent.top
+        anchors { 
+            fill: parent
+            margins: 30
+            
             horizontalCenter: parent.horizontalCenter
-            topMargin: 30
         }
+        spacing: units.gu(2)
         Row {
             id: titleRow
+            spacing: units.gu(2)
+            anchors {
+                horizontalCenter: parent.horizontalCenter
+            }
             Text {
                 id: title
                 text: i18n.tr("Mighty App Watcher")
                 font.pointSize: 16
             }
-            anchors {
-                horizontalCenter: parent.horizontalCenter
-            }
         }
         Row {
             id: tcpRow
             spacing: units.gu(1)
-
+            anchors {
+                horizontalCenter: parent.horizontalCenter
+            }
             Text {
                 id: tcpdumpLabel
                 text: i18n.tr("TCP dump:")
@@ -127,7 +142,9 @@ Item {
             }
         }
         Row {
-            id: netTitleRow
+            anchors {
+                horizontalCenter: parent.horizontalCenter
+             }
             Text {
                 text: i18n.tr('Internet Traffic Monitor')
                 font.pointSize: 16
@@ -135,21 +152,54 @@ Item {
         }
         Row {
             id: netRow
-            Flickable {
-                id: netLogFlickable
-                contentHeight: netLog.contentHeight
-                clip: true
-                height: 150
+//            Flickable {
+//                contentHeight: netLog.contentHeight
+//                clip: true
+//                height: 150
+
+                TextEdit {
+                    id: netLog
+                    text: i18n.tr('internet traffic will be logged here')
+                    font.pointSize: 10
+                    selectionColor: Colour.palette['Green']
+                    wrapMode: TextEdit.WordWrap
+                    cursorPosition: netLog.text.length
+                }
+//            }
+        }
+        Row {
+            id: fileAccTitleRow
+            anchors {
+                horizontalCenter: parent.horizontalCenter
             }
-            TextEdit {
-                id: netLog
-                text: i18n.tr('internet traffic will be logged here')
-                font.pointSize: 10
-                selectionColor: Colour.palette['Green']
-                wrapMode: TextEdit.WordWrap
-                cursorPosition: netLog.text.length
+
+            Text {
+                text: 'File Access'
+                font.pointSize: 16
             }
         }
+        Row {
+            id: fileAccRow
+            anchors {
+                horizontalCenter: parent.horizontalCenter
+            }
+//            Flickable {
+//                contentHeight: fileAccLog.contentHeight
+//                Layout.fillWidth: true
+//                  clip: true
+//                height: 150
+
+                TextEdit {
+                    id: fileAccLog
+                    font.pointSize: 10
+                    selectionColor: Colour.palette['Green']
+                    wrapMode: TextEdit.WordWrap
+                    cursorPosition: fileAccLog.text.length
+                    text: ''
+                }
+//            }
+        }
+
     }
 
 
