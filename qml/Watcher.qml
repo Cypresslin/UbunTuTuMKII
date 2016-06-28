@@ -36,13 +36,13 @@ Item {
     Process {
         id: cmd_netLog
         onReadyRead: {
-            netLog.text = readAll();
-            console.log(netLog.text)
+            netLog.text += readAll();
+//            console.log(netLog.text)
         }
     }
 
     Column {
-        spacing: units.gu(1)
+        spacing: units.gu(2)
         anchors {
             top: parent.top
             horizontalCenter: parent.horizontalCenter
@@ -60,9 +60,17 @@ Item {
             }
         }
         Row {
-            id: internetRow
+            id: tcpRow
             spacing: units.gu(1)
+
+            Text {
+                id: tcpdumpLabel
+                text: "TCP dump:"
+            }
             Switch {
+                anchors {
+                    verticalCenter: tcpdumpLabel.verticalCenter
+                }
                 id: tcpdumpSwitch
                 checked: false
                 onClicked: toggle()
@@ -76,15 +84,11 @@ Item {
                 function toggle(){
                     if (tcpdumpSwitch.checked){
                         var filename = timestamp() + '.pcap' 
-                        tcpdumpStat.text = "Started"
                         tcpfnText.text = filename
                         var filename = timestamp() + '.pcap'
                         cmd_tcpGo.start(applicationDirPath + '/utils/adb', ['shell', 'sudo', './tcpdump', '-n', '-w', filename])
                     } else {
-                        tcpdumpStat.text = "Stopped"
                         cmd_tcpStop.start(applicationDirPath + '/utils/adb', ['shell', 'sudo', 'pkill', '-f', 'tcpdump'])
-                     // File size will mismatch here, caused by the stop-time difference
-                        cmd_tcpPull.start(applicationDirPath + '/utils/adb', ['pull', tcpfnText.text])
                     }
                 }
             }
@@ -106,17 +110,43 @@ Item {
                     console.log(readAll())
                 }
             }
-            Text {
-                id: tcpdumpLabel
-                text: "TCP dump:"
-            }
-            Text {
-                id: tcpdumpStat
-                text: "Stopped"
+            Button {
+                id: tcpcpButton
+                text: "Copy file"
+                anchors {
+                    verticalCenter: tcpdumpLabel.verticalCenter
+                }
+                onClicked: {
+                     cmd_tcpPull.start(applicationDirPath + '/utils/adb', ['pull', tcpfnText.text])
+                }
             }
             Text {
                 id: tcpfnText
                 text: ""
+            }
+        }
+        Row {
+            id: netTitleRow
+            Text {
+                text: 'Internet Traffic Monitor'
+                font.pointSize: 16
+            }
+        }
+        Row {
+            id: netRow
+            Flickable {
+                id: netLogFlickable
+                contentHeight: netLog.contentHeight
+                clip: true
+                height: 150
+            }
+            TextEdit {
+                id: netLog
+                text: 'internet traffic will be logged here'
+                font.pointSize: 10
+                selectionColor: Colour.palette['Green']
+                wrapMode: TextEdit.WordWrap
+                cursorPosition: netLog.text.length
             }
         }
     }
@@ -206,37 +236,6 @@ Item {
             selectionColor: Colour.palette['Green']
             wrapMode: TextEdit.WordWrap
             cursorPosition: fileOpenFlickable.text.length
-        }
-    }
-
-    Text {
-        id: netTitle
-        anchors {
-            top: title.bottom
-            horizontalCenter: parent.horizontalCenter
-            margins: 30
-        }
-        text: 'Internet Traffic Monitor'
-        font.pointSize: 16
-    }
-    Flickable {
-        id: netLogFlickable
-        contentHeight: netLog.contentHeight
-        clip: true
-        height: 150
-        anchors {
-            top: netTitle.bottom
-            left: parent.left
-            right: parent.right
-            margins: 30
-        }
-        TextEdit {
-            id: netLog
-            text: 'internet traffic will be logged here'
-            font.pointSize: 10
-            selectionColor: Colour.palette['Green']
-            wrapMode: TextEdit.WordWrap
-            cursorPosition: fileOpenLog.text.length
         }
     }
 */
