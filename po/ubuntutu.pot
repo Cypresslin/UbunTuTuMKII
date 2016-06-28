@@ -1,0 +1,166 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-06-28 17:46+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: qml/Home.qml:26
+msgid "System Information"
+msgstr ""
+
+#: qml/CheckConfig.qml:82
+msgid "App Config Check"
+msgstr ""
+
+#: qml/CheckConfig.qml:87
+msgid "Checking: "
+msgstr ""
+
+#: qml/CheckConfig.qml:92
+msgid "App Name"
+msgstr ""
+
+#: qml/CheckConfig.qml:101
+msgid "AppArmor Profile: "
+msgstr ""
+
+#: qml/CheckConfig.qml:109 qml/CheckConfig.qml:126
+msgid "Result"
+msgstr ""
+
+#: qml/CheckConfig.qml:117
+msgid "Process is Confined: "
+msgstr ""
+
+#: qml/CheckConfig.qml:134
+msgid "AppArmor Policy:"
+msgstr ""
+
+#: qml/CheckConfig.qml:163
+msgid "AppArmor Final Rules:"
+msgstr ""
+
+#: qml/CheckConfig.qml:196
+msgid "Reset Permissions:"
+msgstr ""
+
+#: qml/CheckConfig.qml:201
+msgid "CameraService"
+msgstr ""
+
+#: qml/CheckConfig.qml:206
+msgid "PulseAudio"
+msgstr ""
+
+#: qml/CheckConfig.qml:211
+msgid "UbuntuLocationService"
+msgstr ""
+
+#: qml/CheckConfig.qml:216 qml/AppLauncher.qml:132
+msgid "Start!"
+msgstr ""
+
+#: qml/CheckConfig.qml:230
+msgid "Permission resetted"
+msgstr ""
+
+#: qml/CheckConfig.qml:233
+msgid "No target selected"
+msgstr ""
+
+#: qml/CheckConfig.qml:250
+msgid "Ready"
+msgstr ""
+
+#: qml/Setting.qml:74
+msgid "Please choose a contact file"
+msgstr ""
+
+#: qml/Setting.qml:93
+msgid "Please choose a directory"
+msgstr ""
+
+#: qml/Setting.qml:123
+msgid "Import & export contacts"
+msgstr ""
+
+#: qml/main.qml:9
+msgid "UbunTuTuMKII - App monitoring tool"
+msgstr ""
+
+#: qml/main.qml:21
+msgid "Connected"
+msgstr ""
+
+#: qml/main.qml:61
+msgid "Not Connected"
+msgstr ""
+
+#: qml/AppLauncher.qml:59
+msgid "App Launcher"
+msgstr ""
+
+#: qml/AppLauncher.qml:91
+msgid "Maintainers: "
+msgstr ""
+
+#: qml/AppLauncher.qml:96 qml/AppLauncher.qml:120
+msgid "(Please select an App)"
+msgstr ""
+
+#: qml/AppLauncher.qml:117
+msgid "Select App..."
+msgstr ""
+
+#: qml/AppLauncher.qml:137
+msgid "App monitoring started"
+msgstr ""
+
+#: qml/AppLauncher.qml:141
+msgid "Please select an app to start"
+msgstr ""
+
+#: qml/AppLauncher.qml:159
+msgid "Status: "
+msgstr ""
+
+#: qml/AppLauncher.qml:168
+msgid "Loading app list..."
+msgstr ""
+
+#: qml/Install.qml:37
+msgid "Please choose a file"
+msgstr ""
+
+#: qml/Install.qml:66
+msgid "Choose a Package to Install"
+msgstr ""
+
+#: qml/Log.qml:25
+msgid "System Log"
+msgstr ""
+
+#: qml/Watcher.qml:55
+msgid "Mighty App Watcher"
+msgstr ""
+
+#: qml/Watcher.qml:68
+msgid "TCP dump:"
+msgstr ""
+
+#: qml/Watcher.qml:115
+msgid "Copy file"
+msgstr ""

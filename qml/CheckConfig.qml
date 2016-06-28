@@ -79,17 +79,17 @@ Item {
             anchors {
                 horizontalCenter: parent.horizontalCenter
             }
-            text: "App Config Check"
+            text: i18n.tr("App Config Check")
             font.pointSize: 16
         }
         Text {
             id: appLabel
-            text: "Checking: "
+            text: i18n.tr("Checking: ")
             font.bold: true
         }
         Text {
             id: appText
-            text: "App Name"
+            text: i18n.tr("App Name")
             color: "green"
             anchors {
                 left: appLabel.right
@@ -98,7 +98,7 @@ Item {
         }
         Text {
             id: modeLabel
-            text: "AppArmor Profile: "
+            text: i18n.tr("AppArmor Profile: ")
             font.bold: true
             anchors {
                 top: appLabel.bottom
@@ -106,7 +106,7 @@ Item {
         }
         Text {
             id: modeText
-            text: "Result"
+            text: i18n.tr("Result")
             anchors {
                 left: modeLabel.right
                 top: modeLabel.top 
@@ -114,7 +114,7 @@ Item {
         }
         Text {
             id: procLabel
-            text: "Process is Confined: "
+            text: i18n.tr("Process is Confined: ")
             font.bold: true
             anchors {
                 left: parent.horizontalCenter
@@ -123,7 +123,7 @@ Item {
         }
         Text {
             id: procText
-            text: "Result"
+            text: i18n.tr("Result")
             anchors {
                 left: procLabel.right
                 top: modeLabel.top
@@ -131,7 +131,7 @@ Item {
         }
         Text {
             id: policyLabel
-            text: "AppArmor Policy:"
+            text: i18n.tr("AppArmor Policy:")
             font.bold: true
             anchors {
                 left: parent.left
@@ -151,7 +151,7 @@ Item {
             contentHeight: policyLog.contentHeight
             TextEdit {
                 id: policyLog
-                text: 'Running Checker...'
+                text: i18n.tr('Running Checker...')
                 font.pointSize: 10
                 selectionColor: Colour.palette['Green']
                 wrapMode: TextEdit.WordWrap
@@ -160,7 +160,7 @@ Item {
         }
         Text {
             id: rulesLabel
-            text: "AppArmor Final Rules:"
+            text: i18n.tr("AppArmor Final Rules:")
             font.bold: true
             anchors {
                 top: policyFlick.bottom
@@ -178,7 +178,7 @@ Item {
             contentHeight: rulesLog.contentHeight
             TextEdit {
                 id: rulesLog
-                text: 'Running Checker...'
+                text: i18n.tr('Running Checker...')
                 font.pointSize: 10
                 selectionColor: Colour.palette['Green']
                 wrapMode: TextEdit.WordWrap
@@ -193,27 +193,27 @@ Item {
         }
         Text{
             id: resetLabel
-            text: "Reset Permissions:"
+            text: i18n.tr("Reset Permissions:")
             font.bold: true
         }
         CheckBox {
             id: cameraCb
-            text: "CameraService"
+            text: i18n.tr("CameraService")
             checked: true
         }
         CheckBox {
             id: audioCb
-            text: "PulseAudio"
+            text: i18n.tr("PulseAudio")
             checked: true
         }
         CheckBox {
             id: locationCb
-            text: "UbuntuLocationService"
+            text: i18n.tr("UbuntuLocationService")
             checked: true
         }
         Button {
             id: runButton
-            text: "Start!"
+            text: i18n.tr("Start!")
             onClicked: {
                 var permissions = []
                 if (cameraCb.checked) {
@@ -227,10 +227,10 @@ Item {
                 }
                 if (permissions.length > 0){
                     cmd_reset.start(applicationDirPath + '/utils/reset_trust_store.sh', permissions)
-                    trustText.text = "Permission resetted"
+                    trustText.text = i18n.tr("Permission resetted")
                     trustText.color = "green"
                 } else {
-                    trustText.text = "No target selected"
+                    trustText.text = i18n.tr("No target selected")
                     trustText.color = "red"
                 }
             }
@@ -247,7 +247,7 @@ Item {
                 left: runButton.right
                 leftMargin: units.gu(2)
             }
-            text: "Ready"
+            text: i18n.tr("Ready")
             color: "green"
         }
     }

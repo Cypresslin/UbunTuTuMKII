@@ -6,7 +6,7 @@ import Process 1.0
 
 Window {
 
-    title: "UbunTuTuMKII - App monitoring tool"
+    title: i18n.tr("UbunTuTuMKII - App monitoring tool")
     visible: true
     width: 1280
     height: 720
@@ -18,13 +18,15 @@ Window {
             var connectStatus = readAll();
             if (connectStatus.toString().match(/\tdevice/)) {
                 connectIndicator.color = Colour.palette['Green']
-                connectText.text = "Connected"
+                connectText.text = i18n.tr("Connected")
             }
             loader.source = "Home.qml";
         }
     }
 
     Component.onCompleted: {
+        i18n.domain = 'ubuntutu'
+        i18n.bindtextdomain('ubuntutu','./share/locale')
         process.start(applicationDirPath + "/utils/adb", ["devices"]); 
 //        loader.source = "Home.qml";
     }
@@ -56,7 +58,7 @@ Window {
             }
             Text {
                 id: connectText
-                text: "Not Connected" 
+                text: i18n.tr("Not Connected")
                 font.pointSize: 16
             }
         }

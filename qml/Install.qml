@@ -21,7 +21,7 @@ Item {
         color: Colour.palette['Green']
         Text {
             anchors.centerIn: parent
-            text: 'Browse...'
+            text: i18n.tr('Browse...')
             color: 'white'
             font.bold: true
             font.pointSize: 14
@@ -34,7 +34,7 @@ Item {
 
     FileDialog {
         id: fileDialog
-        title: "Please choose a file"
+        title: i18n.tr("Please choose a file")
         folder: shortcuts.home
         selectMultiple: false
         selectFolder: false
@@ -63,7 +63,7 @@ Item {
             topMargin: 30
             horizontalCenter: parent.horizontalCenter
         }
-        text: "Choose a Package to Install"
+        text: i18n.tr("Choose a Package to Install")
         font.pointSize: 16
     }
 
