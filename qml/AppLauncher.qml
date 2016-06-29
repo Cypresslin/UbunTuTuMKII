@@ -114,7 +114,9 @@ Item {
                 }
                 model: ListModel{
                     id: app_list
-                    ListElement { text: "Select App..."; app: ''}
+                    Component.onCompleted: {
+                        append({'text': i18n.tr("Select App..."), 'app': ''})
+                    }
                 }
                 onCurrentIndexChanged: {
                     authorText.text = (app_list.get(currentIndex).maintainer) ? app_list.get(currentIndex).maintainer : i18n.tr("(Please select an App)")
