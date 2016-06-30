@@ -27,8 +27,8 @@ if args.access:
         proc_name = args.app
         proc_id = subprocess.check_output(['adb', 'shell', 'ubuntu-app-pid', proc_name]).decode('utf-8').rstrip()
         if proc_id.isnumeric():
-            # Kill the old strace task first
-            process = subprocess.check_output(['adb', 'shell', 'sudo', 'pkill', '-f', 'strace'])
+            # Kill the old strace task first, targeted on file watcher process
+            process = subprocess.check_output(['adb', 'shell', 'sudo', 'pkill', '-f', 'trace=file'])
             process = subprocess.Popen(['adb', 'shell', 'sudo', 'strace', '-e', 'trace=file', '-p', proc_id], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             while True:
                 output = process.stdout.readline().decode('utf-8').strip()
