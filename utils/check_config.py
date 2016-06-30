@@ -19,8 +19,8 @@ group.add_argument('--check-process', action='store_true',
                    help='Check if the process is confined by an AppArmor profile')
 group.add_argument('--check-policy', action='store_true',
                    help='Check the AppArmor policy for the app')
-group.add_argument('--check-rules', action='store_true',
-                   help='Check the Finale Rules for the app')
+group.add_argument('--copy-rules', action='store_true',
+                   help='Copy the AppArmor Final Rules for the app')
 parser.add_argument('--app', help='Target app', required=True)
 args = parser.parse_args()
 
@@ -51,9 +51,9 @@ try:
         output = json.loads(output)
         for key in output:
             print(key, ':',output[key])
-    elif args.check_rules:
+    elif args.copy_rules:
         path = '/var/lib/apparmor/profiles/click_{}'.format(proc_name)
-        output = subprocess.check_output(['adb', 'shell', 'cat', path]).decode('utf8')
-        print(output)
+        output = subprocess.check_output(['adb', 'pull', path]).decode('utf8')
+        print("Done: file copied")
 except:
     print("Error: please select an app first")
