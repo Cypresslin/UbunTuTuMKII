@@ -13,8 +13,6 @@ import subprocess
 
 parser = argparse.ArgumentParser(description='Check basic config for an App')
 group = parser.add_mutually_exclusive_group(required=True)
-group.add_argument('--app-name', action='store_true',
-                   help='Print the target App name')
 group.add_argument('--check-mode', action='store_true',
                    help='Check the AppArmor profile mode')
 group.add_argument('--check-process', action='store_true',
@@ -23,19 +21,16 @@ group.add_argument('--check-policy', action='store_true',
                    help='Check the AppArmor policy for the app')
 group.add_argument('--check-rules', action='store_true',
                    help='Check the Finale Rules for the app')
-
+parser.add_argument('--app', help='Target app', required=True)
 args = parser.parse_args()
 
 # Get the app name from the temperorary file
 try:
-    with open('/tmp/.app_name', 'r') as f:
-        app = f.readline().rstrip()
+    proc_name = args.app
 
-    if args.app_name:
-        print(app)
     if args.check_mode:
         output = subprocess.check_output(['adb', 'shell', 'cat',
-                     '/proc/*/attr/current', '|', 'grep', app]).decode('utf-8')
+                     '/proc/*/attr/current', '|', 'grep', proc_name]).decode('utf-8')
         if ' (enforce)' in output:
             print("Enforcement Mode")
         else:
@@ -45,20 +40,20 @@ try:
                 print("Complain Mode")
     elif args.check_process:
         output = subprocess.check_output(['adb', 'shell', 'ps', 'auxZ', '|',
-              'grep', '-v', 'unconfined', '|', 'grep', app]).strip().decode('utf8')
+              'grep', '-v', 'unconfined', '|', 'grep', proc_name]).strip().decode('utf8')
         if output:
             print("YES")
         else:
             print("Error: App is not running, or it's unconfined")
     elif args.check_policy:
-        path = '/var/lib/apparmor/clicks/{}.json'.format(app)
+        path = '/var/lib/apparmor/clicks/{}.json'.format(proc_name)
         output = subprocess.check_output(['adb', 'shell', 'cat', path]).decode('utf8')
         output = json.loads(output)
         for key in output:
             print(key, ':',output[key])
     elif args.check_rules:
-        path = '/var/lib/apparmor/profiles/click_{}'.format(app)
+        path = '/var/lib/apparmor/profiles/click_{}'.format(proc_name)
         output = subprocess.check_output(['adb', 'shell', 'cat', path]).decode('utf8')
         print(output)
 except:
-    print("Error: failed to open /tmp/.app_name, please launch an app first")
+    print("Error: please select an app first")
