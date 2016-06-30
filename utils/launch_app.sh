@@ -13,7 +13,7 @@ function errorMsg(){
 
 if [ ! -z $APP ]; then
     echo "$APP" > /tmp/.app_name
-    adb shell nohup ubuntu-app-launch $APP > /dev/null 
+    adb shell nohup ubuntu-app-launch $APP > /dev/null
     echo "$APP launched"
 else
     errorMsg "Error: No app name was given"
