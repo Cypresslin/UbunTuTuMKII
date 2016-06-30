@@ -31,6 +31,8 @@ With your Ubuntu Touch / Phone device connected:
 
 You will only need to run this once.
 
+Also, you might need to install WireShark to analyze the tcpdump output.
+
 ## Credits 
 
 * `utils/convert` is a statically linked ImageMagick version 6.8.9-9 built with `png` delegate 
