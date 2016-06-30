@@ -9,10 +9,10 @@ import QtQuick.Layouts 1.2
 Item {
     Component.onCompleted: {
         console.log('Check Config')
-        cmd_mode.start(applicationDirPath + '/utils/check_config.py', ['--check-mode'])
-        cmd_proc.start(applicationDirPath + '/utils/check_config.py', ['--check-process'])
-        cmd_policy.start(applicationDirPath + '/utils/check_config.py', ['--check-policy'])
-        cmd_rules.start(applicationDirPath + '/utils/check_config.py', ['--check-rules'])
+        cmd_mode.start(applicationDirPath + '/utils/check_config.py', ['--check-mode', '--app', appNameLabel.text])
+        cmd_proc.start(applicationDirPath + '/utils/check_config.py', ['--check-process', '--app', appNameLabel.text])
+        cmd_policy.start(applicationDirPath + '/utils/check_config.py', ['--check-policy', '--app', appNameLabel.text])
+        cmd_rules.start(applicationDirPath + '/utils/check_config.py', ['--check-rules', '--app', appNameLabel.text])
     }
     Process {
         id: cmd_mode
