@@ -2,7 +2,7 @@ import QtQuick 2.0
 import Process 1.0
 import "colour.js" as Colour
 import QtQuick.Controls 1.4
-//import QtQuick.Dialogs 1.2
+import QtQuick.Dialogs 1.2
 import QtQuick.Layouts 1.2
 
 
@@ -12,7 +12,6 @@ Item {
         cmd_mode.start(applicationDirPath + '/utils/check_config.py', ['--check-mode', '--app', appNameLabel.text])
         cmd_proc.start(applicationDirPath + '/utils/check_config.py', ['--check-process', '--app', appNameLabel.text])
         cmd_policy.start(applicationDirPath + '/utils/check_config.py', ['--check-policy', '--app', appNameLabel.text])
-        cmd_rules.start(applicationDirPath + '/utils/check_config.py', ['--check-rules', '--app', appNameLabel.text])
     }
     Process {
         id: cmd_mode
@@ -47,14 +46,6 @@ Item {
             console.log(policyLog.text)
         }
     }
-    Process {
-        id: cmd_rules
-        onReadyRead: {
-            rulesLog.text += readAll()
-            console.log(rulesLog.text)
-        }
-    }
-
 
     ColumnLayout {
         id: mainCol
@@ -158,24 +149,39 @@ Item {
                 top: policyFlick.bottom
             }
         }
-        Flickable {
-            id: rulesFlick
-//            Layout.fillHeight: true
-            Layout.fillWidth: true
-            clip: true
+        Button {
+            id: cpButton
+            text: i18n.tr("Copy")
             anchors {
-                top: rulesLabel.bottom
+                verticalCenter: rulesLabel.verticalCenter
+                top: policyFlick.bottom
+                left: rulesLabel.right
             }
-            height: units.gu(55)
-            contentHeight: rulesLog.contentHeight
-            TextEdit {
-                id: rulesLog
-                text: i18n.tr('Running Checker...')
-                font.pointSize: 10
-                selectionColor: Colour.palette['Green']
-                wrapMode: TextEdit.WordWrap
-                cursorPosition: rulesLog.text.length
+            onClicked: {
+                cmd_rules.start(applicationDirPath + '/utils/check_config.py', ['--copy-rules', '--app', appNameLabel.text])
             }
+        }
+        Process {
+            id: cmd_rules
+            onReadyRead: {
+                var result = readAll().toString().replace(/\n$/, "")
+                if (result.indexOf("Error:") >= 0){
+                    messageDialog.icon = StandardIcon.Critical
+                    messageDialog.text = "Failed to copy file"
+                    console.log(messageDialog.text)
+                    messageDialog.visible = true
+                } else {
+                    messageDialog.icon = StandardIcon.Information
+                    messageDialog.text = "File copied to:" + applicationDirPath + '/'
+                    console.log(messageDialog.text)
+                    messageDialog.visible = true
+                }
+            }
+        }   
+
+        MessageDialog {
+            id: messageDialog
+            title: "File copy"
         }
     }
     RowLayout {
