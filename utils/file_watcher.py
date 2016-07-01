@@ -7,6 +7,7 @@ Author: Po-Hsu Lin <po-hsu.lin@canonical.com>
 
 import argparse
 import datetime
+import re
 import subprocess
 import sys
 
@@ -27,19 +28,22 @@ if args.access:
         proc_name = args.app
         proc_id = subprocess.check_output(['adb', 'shell', 'ubuntu-app-pid', proc_name]).decode('utf-8').rstrip()
         if proc_id.isnumeric():
-            # Kill the old strace task first
-            process = subprocess.check_output(['adb', 'shell', 'sudo', 'pkill', '-f', 'strace'])
-            process = subprocess.Popen(['adb', 'shell', 'sudo', 'strace', '-e', 'trace=file', '-p', proc_id], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            # Supressor list, supress 'stat', 'lstat' and 'getcwd' command
+            supressor = ['stat(', 'stat64(', 'getcwd(']
+            # Kill the old strace task first, targeted on file watcher process
+            process = subprocess.check_output(['adb', 'shell', 'sudo', 'pkill', '-f', 'trace=file'])
+            # Track the child processes with -f
+            process = subprocess.Popen(['adb', 'shell', 'sudo', 'strace', '-f', '-e', 'trace=file', '-p', proc_id], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             while True:
                 output = process.stdout.readline().decode('utf-8').strip()
                 if output == '' and process.poll() is not None:
                     break
                 else:
-                    # Output suppressor
-                    # supress 'stat' and 'getcwd' command
-                    if not output.startswith('stat') and not output.startswith('getcwd'):
+                    # Reformat the output, get rid of the [pid #####]
+                    output = re.sub('^\[pid\s+\d+\] ', '', output)
+                    if not any(mute in output for mute in supressor):
                         # focus on file access in home directory
-                        if '/home/phablet/' in output: 
+                        if '/home/phablet/' in output:
                             timestamp='{:%Y%m%d %H:%M:%S}'.format(datetime.datetime.now())
                             print(timestamp, '-', output)
                             sys.stdout.flush()
