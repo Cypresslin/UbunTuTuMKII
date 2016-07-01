@@ -40,8 +40,8 @@ if args.list:
             # Map the click app list with the app name
             for i, executable in enumerate(exec_list):
                 if app['name'] in executable:
+                    app_dict[app['title']] = {'ver': [app['version']], 'info': app['maintainer'], 'exec': executable}
                     break
-            app_dict[app['title']] = {'ver': [app['version']], 'info': app['maintainer'], 'exec': executable}
         else:
             app_dict[app['title']]['ver'].append(app['version'])
 
