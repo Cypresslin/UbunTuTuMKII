@@ -10,19 +10,28 @@ Item {
     Component.onCompleted: {
         console.log('Watcher loaded')
           cmd_file_access.start(applicationDirPath + '/utils/file_watcher.py', ['--access', '--app', appNameLabel.text])
+          cmd_netLog.start(applicationDirPath + '/utils/internet_watcher.py',['--app', appNameLabel.text])
 //        cmd_aaLog.start(applicationDirPath + '/utils/adb', ['shell', 'tail', '-f', '/var/log/syslog'])
 //        cmd_file_changes.start(applicationDirPath + '/utils/file_watcher.py', ['--changes'])
 //        cmd_file_lsof.start(applicationDirPath + '/utils/file_watcher.py', ['--lsof'])
-//        cmd_netLog.start(applicationDirPath + '/utils/internet_watcher.py',[])
     }
     Process {
         id: cmd_file_access
         onReadyRead: {
             var string = readAll()
             fileAccLog.text += string
-            console.log(string)
+//            console.log(string)
         }
     }
+    Process {
+        id: cmd_netLog
+        onReadyRead: {
+            var string = readAll()
+            netLog.text += string
+            console.log(netLog.text)
+        }
+    }
+
     Process {
         id: cmd_aaLog
         onReadyRead: {
@@ -44,15 +53,9 @@ Item {
             console.log(fileOpenLog.text)
         }
     }
-    Process {
-        id: cmd_netLog
-        onReadyRead: {
-            netLog.text += readAll();
-//            console.log(netLog.text)
-        }
-    }
 
     Column {
+        id: mainCol
         anchors { 
             fill: parent
             margins: 30
@@ -152,20 +155,24 @@ Item {
         }
         Row {
             id: netRow
-//            Flickable {
-//                contentHeight: netLog.contentHeight
-//                clip: true
-//                height: 150
+
+            Flickable {
+                contentHeight: netLog.contentHeight
+                width: mainCol.width
+                height: 250
+                clip: true
 
                 TextEdit {
                     id: netLog
-                    text: i18n.tr('internet traffic will be logged here')
+                    anchors.fill: parent
+//                    height: parent.height
+//                    width: parent.width
                     font.pointSize: 10
                     selectionColor: Colour.palette['Green']
                     wrapMode: TextEdit.WordWrap
                     cursorPosition: netLog.text.length
                 }
-//            }
+            }
         }
         Row {
             id: fileAccTitleRow
@@ -183,23 +190,22 @@ Item {
             anchors {
                 horizontalCenter: parent.horizontalCenter
             }
-//            Flickable {
-//                contentHeight: fileAccLog.contentHeight
-//                Layout.fillWidth: true
-//                  clip: true
-//                height: 150
+            Flickable {
+                contentHeight: fileAccLog.contentHeight
+                width: mainCol.width
+                height: 250
+                clip: true
 
                 TextEdit {
                     id: fileAccLog
+                    anchors.fill: parent
                     font.pointSize: 10
                     selectionColor: Colour.palette['Green']
                     wrapMode: TextEdit.WordWrap
                     cursorPosition: fileAccLog.text.length
-                    text: ''
                 }
-//            }
+            }
         }
-
     }
 
 
