@@ -44,6 +44,7 @@ if args.access:
                     if not any(mute in output for mute in supressor):
                         # focus on file access in home directory
                         if '/home/phablet/' in output:
+                            output = output.replace('/home/phablet', '~')
                             timestamp='{:%Y%m%d %H:%M:%S}'.format(datetime.datetime.now())
                             print(timestamp, '-', output)
                             sys.stdout.flush()
