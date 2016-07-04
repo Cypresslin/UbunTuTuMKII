@@ -4,6 +4,7 @@ import "colour.js" as Colour
 import QtQuick.Controls 1.4
 import QtQuick.Dialogs 1.2
 import QtQuick.Layouts 1.2
+import Ubuntu.Components 1.3
 
 
 Item {
@@ -194,42 +195,73 @@ Item {
             font.bold: true
         }
         CheckBox {
-            id: cameraCb
+            id: cameraCB
+            checked: true
+        }
+        Label {
+            id: cameraCBText
             text: i18n.tr("CameraService")
-            checked: true
+            anchors.verticalCenter: parent.verticalCenter
+            MouseArea{
+                anchors.fill: parent
+                onClicked: {
+                    cameraCB.checked = !cameraCB.checked
+                }
+            }
         }
         CheckBox {
-            id: audioCb
+            id: audioCB
+            checked: true
+        }
+        Label {
+            id: audioCBText
             text: i18n.tr("PulseAudio")
-            checked: true
+            anchors.verticalCenter: parent.verticalCenter
+            MouseArea{
+                anchors.fill: parent
+                onClicked: {
+                    audioCB.checked = !audioCB.checked
+                }
+            }
         }
         CheckBox {
-            id: locationCb
-            text: i18n.tr("UbuntuLocationService")
+            id: locationCB
             checked: true
         }
+        Label {
+            id: locationCBText
+            text: i18n.tr("UbuntuLocationService")
+            anchors.verticalCenter: parent.verticalCenter
+            MouseArea{
+                anchors.fill: parent
+                onClicked: {
+                    locationCB.checked = !locationCB.checked
+                }
+            }
+        }
+
         Button {
             id: runButton
             text: i18n.tr("Start!")
             onClicked: {
                 var permissions = []
-                if (cameraCb.checked) {
-                    permissions.push(cameraCb.text)
+                if (cameraCB.checked) {
+                    permissions.push(cameraCBText.text)
                 }
-                if (audioCb.checked) {
-                    permissions.push(audioCb.text)
+                if (audioCB.checked) {
+                    permissions.push(audioCBText.text)
                 }
-                if (locationCb.checked) {
-                    permissions.push(locationCb.text)
+                if (locationCB.checked) {
+                    permissions.push(locationCBText.text)
                 }
                 messageDialog.title = i18n.tr("Reset Permissions")
-                if (permissions.length > 0){
+                if (permissions.length > 0 && appNameLabel.text != 'APP NAME'){
                     messageDialog.icon = StandardIcon.Information
                     messageDialog.text = i18n.tr("Permission restted for: ") + permissions
                     cmd_reset.start(applicationDirPath + '/utils/reset_trust_store.sh', permissions)
                 } else {
                     messageDialog.icon = StandardIcon.Critical
-                    messageDialog.text = i18n.tr("No target selected")
+                    messageDialog.text = i18n.tr("No target App / Permission selected")
                     console.log(messageDialog.text)
                 }
                 messageDialog.visible = true
