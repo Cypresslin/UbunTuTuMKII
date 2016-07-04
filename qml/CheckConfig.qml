@@ -165,23 +165,22 @@ Item {
             id: cmd_rules
             onReadyRead: {
                 var result = readAll().toString().replace(/\n$/, "")
+                messageDialog.title = i18n.tr("File copy")
                 if (result.indexOf("Error:") >= 0){
                     messageDialog.icon = StandardIcon.Critical
-                    messageDialog.text = "Failed to copy file"
+                    messageDialog.text = i18n.tr("Failed to copy file")
                     console.log(messageDialog.text)
-                    messageDialog.visible = true
                 } else {
                     messageDialog.icon = StandardIcon.Information
-                    messageDialog.text = "File copied to:" + applicationDirPath + '/'
+                    messageDialog.text = i18n.tr("File copied to: ") + applicationDirPath + '/'
                     console.log(messageDialog.text)
-                    messageDialog.visible = true
                 }
+                messageDialog.visible = true
             }
         }   
 
         MessageDialog {
             id: messageDialog
-            title: "File copy"
         }
     }
     RowLayout {
@@ -223,14 +222,17 @@ Item {
                 if (locationCb.checked) {
                     permissions.push(locationCb.text)
                 }
+                messageDialog.title = i18n.tr("Reset Permissions")
                 if (permissions.length > 0){
+                    messageDialog.icon = StandardIcon.Information
+                    messageDialog.text = i18n.tr("Permission restted for: ") + permissions
                     cmd_reset.start(applicationDirPath + '/utils/reset_trust_store.sh', permissions)
-                    trustText.text = i18n.tr("Permission resetted")
-                    trustText.color = "green"
                 } else {
-                    trustText.text = i18n.tr("No target selected")
-                    trustText.color = "red"
+                    messageDialog.icon = StandardIcon.Critical
+                    messageDialog.text = i18n.tr("No target selected")
+                    console.log(messageDialog.text)
                 }
+                messageDialog.visible = true
             }
         }
         Process {
@@ -238,15 +240,6 @@ Item {
             onReadyRead: {
                 console.log(readAll())
             }
-        }
-        Text {
-            id: trustText
-            anchors {
-                left: runButton.right
-                leftMargin: units.gu(2)
-            }
-            text: i18n.tr("Ready")
-            color: "green"
         }
     }
 }
