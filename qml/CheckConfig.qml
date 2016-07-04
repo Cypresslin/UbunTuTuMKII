@@ -165,14 +165,14 @@ Item {
             id: cmd_rules
             onReadyRead: {
                 var result = readAll().toString().replace(/\n$/, "")
-                messageDialog.title = "File copy"
+                messageDialog.title = i18n.tr("File copy")
                 if (result.indexOf("Error:") >= 0){
                     messageDialog.icon = StandardIcon.Critical
-                    messageDialog.text = "Failed to copy file"
+                    messageDialog.text = i18n.tr("Failed to copy file")
                     console.log(messageDialog.text)
                 } else {
                     messageDialog.icon = StandardIcon.Information
-                    messageDialog.text = "File copied to:" + applicationDirPath + '/'
+                    messageDialog.text = i18n.tr("File copied to: ") + applicationDirPath + '/'
                     console.log(messageDialog.text)
                 }
                 messageDialog.visible = true
@@ -222,14 +222,14 @@ Item {
                 if (locationCb.checked) {
                     permissions.push(locationCb.text)
                 }
-                messageDialog.title = "Reset Permissions"
+                messageDialog.title = i18n.tr("Reset Permissions")
                 if (permissions.length > 0){
                     messageDialog.icon = StandardIcon.Information
-                    messageDialog.text = "Permission rested for: " + permissions
+                    messageDialog.text = i18n.tr("Permission restted for: ") + permissions
                     cmd_reset.start(applicationDirPath + '/utils/reset_trust_store.sh', permissions)
                 } else {
                     messageDialog.icon = StandardIcon.Critical
-                    messageDialog.text = "No target selected"
+                    messageDialog.text = i18n.tr("No target selected")
                     console.log(messageDialog.text)
                 }
                 messageDialog.visible = true
