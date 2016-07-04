@@ -109,13 +109,25 @@ Item {
                     verticalCenter: tcpdumpLabel.verticalCenter
                 }
                 onClicked: {
-                    tcpfnText.color = 'green'
+                    if (tcpfnText.text == ""){
+                    messageDialog.icon = StandardIcon.Critical
+                    messageDialog.text = "Please start TCP dump first"
+                    messageDialog.visible = true;
+                    } else {
+                    messageDialog.icon = StandardIcon.Information
+                    messageDialog.text = "File copied to:" + applicationDirPath + '/'
                     cmd_tcpPull.start(applicationDirPath + '/utils/adb', ['pull', tcpfnText.text])
+                    messageDialog.visible = true;
+                    }
                 }
             }
             Text {
                 id: tcpfnText
                 text: ""
+            }
+            MessageDialog {
+                id: messageDialog
+                title: "File copy"
             }
         }
         Row {
