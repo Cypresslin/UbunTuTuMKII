@@ -112,6 +112,7 @@ Window {
             ListElement { name: "CheckConfig" }
             ListElement { name: "FileWatcher" }
             ListElement { name: "NetWatcher" }
+            ListElement { name: "LogWatcher" }
         }
 
         delegate: Component {
