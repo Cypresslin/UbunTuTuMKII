@@ -31,7 +31,7 @@ if args.access:
             # Supressor list, supress 'stat', 'lstat' and 'getcwd' command
             supressor = ['stat(', 'stat64(', 'getcwd(']
             # Kill the old strace task first, targeted on file watcher process
-            process = subprocess.check_output(['adb', 'shell', 'sudo', 'pkill', '-f', 'trace=file'])
+            process = subprocess.check_output(['adb', 'shell', 'sudo', 'pkill', '-f', 'strace'])
             # Track the child processes with -f
             process = subprocess.Popen(['adb', 'shell', 'sudo', 'strace', '-f', '-e', 'trace=file', '-p', proc_id], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             while True:

@@ -110,9 +110,8 @@ Window {
             ListElement { name: "Home" }
             ListElement { name: "AppLauncher" }
             ListElement { name: "CheckConfig" }
-            ListElement { name: "Watcher" }
-            //ListElement { name: "Log" }
-            //ListElement { name: "Setting" }
+            ListElement { name: "FileWatcher" }
+            ListElement { name: "NetWatcher" }
         }
 
         delegate: Component {

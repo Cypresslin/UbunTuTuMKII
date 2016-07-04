@@ -22,7 +22,7 @@ try:
         # Supressor list, get rid of 127.0.0.1 and 127.0.1.1 as well
         supressor = ['bind(', 'recv(', 'send(', 'socket(', 'getsockopt(', 'recvmsg(', 'setsockopt(', '127.0.0.1', '127.0.1.1']
         # Kill the old strace task first, targeted on internet watcher process
-        process = subprocess.check_output(['adb', 'shell', 'sudo', 'pkill', '-f', 'trace=network'])
+        process = subprocess.check_output(['adb', 'shell', 'sudo', 'pkill', '-f', 'strace'])
         process = subprocess.Popen(['adb', 'shell', 'sudo', 'strace', '-f', '-e', 'trace=network', '-p', proc_id], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         while True:
             output = process.stdout.readline().decode('utf-8').strip()
