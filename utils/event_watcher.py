@@ -2,7 +2,11 @@
 '''
 Script for monitoring sensitive events.
 
-Author: Po-Hsu Lin <po-hsu.lin@canonical.com>
+This file is part of the Ubuntu Phone pre-loaded app monitoring tool.
+
+Copyright 2016 Canonical Ltd.
+Authors:
+  Po-Hsu Lin <po-hsu.lin@canonical.com>
 '''
 
 import argparse

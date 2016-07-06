@@ -1,8 +1,12 @@
 #!/usr/bin/env python3
 '''
-A script for monitoring file access of certain app.
+Script for monitoring file access of a targeted app.
 
-Author: Po-Hsu Lin <po-hsu.lin@canonical.com>
+This file is part of the Ubuntu Phone pre-loaded app monitoring tool.
+
+Copyright 2016 Canonical Ltd.
+Authors:
+  Po-Hsu Lin <po-hsu.lin@canonical.com>
 '''
 
 import argparse

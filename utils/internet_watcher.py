@@ -1,8 +1,12 @@
 #!/usr/bin/env python3
 '''
-Script for monitoring network connections.
+Script for monitoring network connections of a targeted app.
 
-Author: Po-Hsu Lin <po-hsu.lin@canonical.com>
+This file is part of the Ubuntu Phone pre-loaded app monitoring tool.
+
+Copyright 2016 Canonical Ltd.
+Authors:
+  Po-Hsu Lin <po-hsu.lin@canonical.com>
 '''
 
 import argparse

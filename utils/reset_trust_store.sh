@@ -1,9 +1,13 @@
 #!/bin/bash
 #
-# A script to reset trust-store permission
-# Author: Po-Hsu Lin <po-hsu.lin@canonical.com>
-# 
-
+# A script to reset trust-store permissions.
+#
+# This file is part of the Ubuntu Phone pre-loaded app monitoring tool.
+#
+# Copyright 2016 Canonical Ltd.
+# Authors: 
+#   Po-Hsu Lin <po-hsu.lin@canonical.com>
+#
 function errorMsg(){
     echo "$@"
 }
