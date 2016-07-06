@@ -42,7 +42,7 @@ Item {
             Flickable {
                 contentHeight: eventLog.contentHeight
                 width: mainCol.width
-                height: 500
+                height: 600
                 clip: true
 
                 TextEdit {
@@ -53,6 +53,14 @@ Item {
                     wrapMode: TextEdit.WordWrap
                     cursorPosition: eventLog.text.length
                 }
+            }
+        }
+        Row {
+            anchors {
+                horizontalCenter: parent.horizontalCenter
+            }
+            Text {
+                text: i18n.tr('Note: Ubuntu Phone Location Service does not distinguish data from GPS/AGPS')
             }
         }
     }
