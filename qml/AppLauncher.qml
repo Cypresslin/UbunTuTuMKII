@@ -2,6 +2,7 @@ import QtQuick.Controls 1.4
 import QtQuick 2.0
 import Process 1.0
 import QtQuick.Layouts 1.2
+import Ubuntu.Components 1.3
 
 Item {
     Component.onCompleted: {
@@ -68,7 +69,7 @@ Item {
                 id: appList
                 text: i18n.tr('Current running apps:\n')
                 font.pointSize: 12
-                selectionColor: Colour.palette['Green']
+                selectionColor: 'green'
             }
         }
 
@@ -83,7 +84,7 @@ Item {
                 wrapMode: "WrapAtWordBoundaryOrAnywhere"
                 text: i18n.tr('Status change from ubuntu-app-watch:\n')
                 font.pointSize: 12
-                selectionColor: Colour.palette['Green']
+                selectionColor: 'green'
             }
         }
         Text {
@@ -115,11 +116,11 @@ Item {
                 model: ListModel{
                     id: app_list
                     Component.onCompleted: {
-                        append({'text': i18n.tr("Select App..."), 'app': ''})
+                        append({'text': i18n.tr("Select App..."), 'app': '', 'maintainer': i18n.tr("Please select an App...")})
                     }
                 }
                 onCurrentIndexChanged: {
-                    authorText.text = (app_list.get(currentIndex).maintainer) ? app_list.get(currentIndex).maintainer : i18n.tr("(Please select an App)")
+                    authorText.text = app_list.get(currentIndex).maintainer
                     console.debug(app_list.get(currentIndex).text + ", " + app_list.get(currentIndex).app)
                 }
             }
@@ -175,3 +176,4 @@ Item {
         }
     }
 }
+
