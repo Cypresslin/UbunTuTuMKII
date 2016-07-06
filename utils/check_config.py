@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 '''
-A script to check basic config for an app
-It will get the app name from /tmp/.app_name
+Script for checking basic config for a targeted app.
 
-Author: Po-Hsu Lin <po-hsu.lin@canonical.com>
+This file is part of the Ubuntu Phone pre-loaded app monitoring tool.
+
+Copyright 2016 Canonical Ltd.
+Authors:
+  Po-Hsu Lin <po-hsu.lin@canonical.com>
 '''
-
 
 import argparse
 import json

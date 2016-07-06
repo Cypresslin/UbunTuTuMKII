@@ -1,9 +1,13 @@
 #!/bin/bash
 #
-# App launcher for UbunTuTu App monitor tool
-# Author: Po-Hsu Lin <po-hsu.lin@canonical.com>
+# A script to launch apps on Ubuntu Phone.
 #
-
+# This file is part of the Ubuntu Phone pre-loaded app monitoring tool.
+#
+# Copyright 2016 Canonical Ltd.
+# Authors: 
+#   Po-Hsu Lin <po-hsu.lin@canonical.com>
+#
 APP=$1
 
 function errorMsg(){

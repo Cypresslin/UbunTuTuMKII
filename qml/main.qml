@@ -1,3 +1,12 @@
+/*
+ * This file is part of the Ubuntu Phone pre-loaded app monitoring tool.
+ *
+ * Copyright 2016 Canonical Ltd.
+ * Authors:
+ *   Maciej Kisielewski <maciej.kisielewski@canonical.com>
+ *   Ping-Hsun (penk) Chen <penkia@gmail.com>
+ *   Po-Hsu Lin <po-hsu.lin@canonical.com>
+ */
 import QtQuick 2.0
 import QtQuick.Window 2.0
 import "colour.js" as Colour

@@ -1,11 +1,15 @@
 #!/bin/bash
 #
-# Setup the environment for testing.
+# A script to setup testing environment on your Ubuntu Phone.
 ###########################################################
 ##  Use with caution, this script can brick your device  ##
 ###########################################################
 #
-# Author: Po-Hsu Lin <po-hsu.lin@canonical.com>
+# This file is part of the Ubuntu Phone pre-loaded app monitoring tool.
+#
+# Copyright 2016 Canonical Ltd.
+# Authors: 
+#   Po-Hsu Lin <po-hsu.lin@canonical.com>
 #
 adb start-server
 result=`adb devices | grep "device$"`

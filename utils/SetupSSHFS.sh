@@ -1,9 +1,13 @@
-#!/bin/sh
+#!/bin/bash
 #
-# Script to setup SSHFS
-# Author: Po-Hsu Lin <po-hsu.lin@canonical.com>
+# A script to setup SSH connection and SSH File System.
 #
-
+# This file is part of the Ubuntu Phone pre-loaded app monitoring tool.
+#
+# Copyright 2016 Canonical Ltd.
+# Authors: 
+#   Po-Hsu Lin <po-hsu.lin@canonical.com>
+#
 IP=""
 DIR="/tmp/phone"
 # enable ssh

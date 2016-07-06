@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
 '''
-A script to list all available apps, or watch the behavior of running app
-The list was generated from:
+Script for listing all installed apps, or list the running apps.
+The installed app list was generated from:
 1. /usr/share/applications/ for legacy apps
 2. ~/.local/share/applications/ for click apps
 
-Author: Po-Hsu Lin <po-hsu.lin@canonical.com>
+This file is part of the Ubuntu Phone pre-loaded app monitoring tool.
+
+Copyright 2016 Canonical Ltd.
+Authors:
+  Po-Hsu Lin <po-hsu.lin@canonical.com>
 '''
 
 import argparse

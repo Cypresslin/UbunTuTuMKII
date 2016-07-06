@@ -2,9 +2,12 @@
 '''
 Script for monitoring overall network TX/RX bandwidth.
 
-Author: Po-Hsu Lin <po-hsu.lin@canonical.com>
-'''
+This file is part of the Ubuntu Phone pre-loaded app monitoring tool.
 
+Copyright 2016 Canonical Ltd.
+Authors:
+  Po-Hsu Lin <po-hsu.lin@canonical.com>
+'''
 
 import re
 import subprocess
