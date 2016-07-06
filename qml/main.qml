@@ -20,7 +20,7 @@ Window {
                 connectIndicator.color = Colour.palette['Green']
                 connectText.text = i18n.tr("Connected")
             }
-            loader.source = "Home.qml";
+            loader.source = "AppLauncher.qml";
         }
     }
 
@@ -28,7 +28,6 @@ Window {
         i18n.domain = 'ubuntutu'
         i18n.bindtextdomain('ubuntutu','./share/locale')
         process.start(applicationDirPath + "/utils/adb", ["devices"]); 
-//        loader.source = "Home.qml";
     }
 
     Rectangle {
@@ -107,12 +106,12 @@ Window {
         width: 200
 
         model: ListModel {
-            ListElement { name: "Home" }
             ListElement { name: "AppLauncher" }
             ListElement { name: "CheckConfig" }
             ListElement { name: "FileWatcher" }
             ListElement { name: "NetWatcher" }
             ListElement { name: "LogWatcher" }
+            ListElement { name: "Info" }
         }
 
         delegate: Component {

@@ -5,7 +5,7 @@ import Ubuntu.Components 0.1
 
 Item {
     Component.onCompleted: {
-        console.log('Home loaded')
+        console.log('Info loaded')
         sic.start(applicationDirPath + '/utils/adb', ['shell', 'system-image-cli', '-i'])
     }
     Process {
