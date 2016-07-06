@@ -46,9 +46,11 @@ if args.access:
                     # Reformat the output, get rid of the [pid #####]
                     output = re.sub('^\[pid\s+\d+\] ', '', output)
                     if not any(mute in output for mute in supressor):
-                        # focus on file access in home directory
-                        if '/home/phablet/' in output:
+                        # focus on file access in home directory and ignore failed action
+                        if '/home/phablet/' in output and ' = -1 E' not in output:
                             output = output.replace('/home/phablet', '~')
+                            # Remove the return code
+                            output = re.sub('\s=\s\d+$', '', output)
                             timestamp='{:%Y%m%d %H:%M:%S}'.format(datetime.datetime.now())
                             print(timestamp, '-', output)
                             sys.stdout.flush()
