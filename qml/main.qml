@@ -111,6 +111,7 @@ Window {
             ListElement { name: "FileWatcher" }
             ListElement { name: "NetWatcher" }
             ListElement { name: "LogWatcher" }
+            ListElement { name: "EventWatcher" }
             ListElement { name: "Info" }
         }
 
