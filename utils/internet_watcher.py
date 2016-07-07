@@ -23,23 +23,24 @@ try:
     proc_name = args.app
     proc_id = subprocess.check_output(['adb', 'shell', 'ubuntu-app-pid', proc_name]).decode('utf-8').rstrip()
     if proc_id.isnumeric():
-        # Supressor list, get rid of 127.0.0.1 and 127.0.1.1 as well
-        supressor = ['bind(', 'recv(', 'send(', 'socket(', 'getsockopt(', 'recvmsg(', 'setsockopt(', '127.0.0.1', '127.0.1.1']
+        # Supressor list, get rid 127.0.0.1, 127.0.1.1 and error action
+        supressor = ['127.0.0.1', '127.0.1.1', ' = -1 E']
         # Kill the old strace task first, targeted on internet watcher process
         process = subprocess.check_output(['adb', 'shell', 'sudo', 'pkill', '-f', 'strace'])
+        # focus on connect action
         process = subprocess.Popen(['adb', 'shell', 'sudo', 'strace', '-f', '-e', 'trace=network', '-p', proc_id], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         while True:
             output = process.stdout.readline().decode('utf-8').strip()
             if output == '' and process.poll() is not None:
                 break
             else:
-                # Reformat the output, get rid of the [pid #####]
-                output = re.sub('^\[pid\s+\d+\] ', '', output)
+                # apply supressor
                 if not any(mute in output for mute in supressor):
-                    # focus on address
-                    if 'addr' in output:
-                        timestamp='{:%Y%m%d %H:%M:%S}'.format(datetime.datetime.now())
-                        print(timestamp, '-', output)
+                    # Extra port and ip
+                    output = re.search('sin_port\=htons\((?P<port>\d+)\).*sin_addr=inet_addr\("(?P<ip>.*)"', output)
+                    if output:
+                        timestamp='{:%m%d %H:%M:%S}'.format(datetime.datetime.now())
+                        print("{} <APPNAME>[KEYWORD][{}]:[connect] {}:{}".format(timestamp, proc_name, output.group("ip"),  output.group("port")))
                         sys.stdout.flush()
     else:
         print(proc_name, "is not running")
