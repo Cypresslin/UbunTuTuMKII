@@ -28,6 +28,7 @@ try:
         for item in data:
             if item.group('iface') in devices:
                 print(template.format(item.group('iface'), item.group('rx'), item.group('tx')))
+        print("Update every {} seconds".format(delay))
         sys.stdout.flush()
         time.sleep(delay)
 except KeyboardInterrupt:
