@@ -27,10 +27,10 @@ Item {
         onReadyRead: {
             var result = readAll().toString().replace(/\n$/, "")
             modeText.text = result
-            if (result.indexOf("Enforcement") >= 0){
-                modeText.color = "green"
-            } else {
+            if (result.indexOf("Error") >= 0){
                 modeText.color = "red"
+            } else {
+                modeText.color = "green"
             }
             console.log(modeText.text)
         }
@@ -40,10 +40,10 @@ Item {
         onReadyRead: {
             var result = readAll().toString().replace(/\n$/, "")
             procText.text = result
-            if (result.indexOf("YES") >= 0){
-                procText.color = "green"
-            } else {
+            if (result.indexOf("Error") >= 0){
                 procText.color = "red"
+            } else {
+                procText.color = "green"
             }
             console.log("Process is Confined: " + result)
         }

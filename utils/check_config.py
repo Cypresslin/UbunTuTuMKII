@@ -26,36 +26,50 @@ group.add_argument('--copy-rules', action='store_true',
 parser.add_argument('--app', help='Target app', required=True)
 args = parser.parse_args()
 
+
+def confine_check(process_name):
+    output = subprocess.check_output(['adb', 'shell', 'ps', 'auxZ', '|',
+                'grep', '-v', 'unconfined', '|', 'grep', proc_name]).strip().decode('utf8')
+    if output:
+        return True
+    else:
+        return False
+
+
 # Get the app name from the temperorary file
 try:
     proc_name = args.app
-
-    if args.check_mode:
-        output = subprocess.check_output(['adb', 'shell', 'cat',
-                     '/proc/*/attr/current', '|', 'grep', proc_name]).decode('utf-8')
-        if ' (enforce)' in output:
-            print("Enforcement Mode")
-        else:
-            if output == '':
-                print("Error: App is not running")
-            else:
+    # Check if the process is running, use ubuntu-app-list with grep
+    if subprocess.check_output(['adb', 'shell', 'ubuntu-app-list', '|', 'grep', proc_name]):
+        if args.check_mode:
+            output = subprocess.check_output(['adb', 'shell', 'grep', proc_name,
+                         '/proc/*/attr/current']).decode('utf-8')
+            if ' (enforce)' in output:
+                print("Enforcement Mode")
+            elif ' (complain)' in output:
                 print("Complain Mode")
-    elif args.check_process:
-        output = subprocess.check_output(['adb', 'shell', 'ps', 'auxZ', '|',
-              'grep', '-v', 'unconfined', '|', 'grep', proc_name]).strip().decode('utf8')
-        if output:
-            print("YES")
-        else:
-            print("Error: App is not running, or it's unconfined")
-    elif args.check_policy:
-        path = '/var/lib/apparmor/clicks/{}.json'.format(proc_name)
-        output = subprocess.check_output(['adb', 'shell', 'cat', path]).decode('utf8')
-        output = json.loads(output)
-        for key in output:
-            print(key, ':',output[key])
-    elif args.copy_rules:
-        path = '/var/lib/apparmor/profiles/click_{}'.format(proc_name)
-        output = subprocess.check_output(['adb', 'pull', path]).decode('utf8')
-        print("Done: file copied")
-except:
-    print("Error: please select an app first")
+            else:
+                print("Unconfined App")
+        elif args.check_process:
+            if confine_check(proc_name):
+                print("Yes")
+            else:
+                print("No")
+        elif args.check_policy:
+            if confine_check(proc_name):
+                path = '/var/lib/apparmor/clicks/{}.json'.format(proc_name)
+                output = subprocess.check_output(['adb', 'shell', 'cat', path]).decode('utf8')
+                output = json.loads(output)
+                for key in output:
+                    print(key, ':',output[key])
+            else:
+                print("Unconfined App, no policy file available")
+        elif args.copy_rules:
+            path = '/var/lib/apparmor/profiles/click_{}'.format(proc_name)
+            output = subprocess.check_output(['adb', 'pull', path]).decode('utf8')
+            import pdb; pdb.set_trace()
+            print("Done: file copied")
+    else:
+        print("Error: App is not running")
+except Exception as e:
+    print("Error: {}".format(e))
