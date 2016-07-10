@@ -38,18 +38,6 @@ Item {
         }
         spacing: units.gu(2)
         Row {
-            id: titleRow
-            spacing: units.gu(2)
-            anchors {
-                horizontalCenter: parent.horizontalCenter
-            }
-            Text {
-                id: title
-                text: i18n.tr("Internet Watcher")
-                font.pointSize: 16
-            }
-        }
-        Row {
             anchors {
                 horizontalCenter: parent.horizontalCenter
              }
