@@ -19,21 +19,12 @@ Item {
     Component.onCompleted: {
         console.log('Net Watcher loaded')
           cmd_bandwidth_all.start(applicationDirPath + '/utils/bandwidth-all.py', [''])
-          cmd_netLog.start(applicationDirPath + '/utils/internet_watcher.py',['--app', appNameLabel.text])
     }
     Process {
         id: cmd_bandwidth_all
         onReadyRead: {
             var string = readAll()
             bandwidthAll.text = string
-        }
-    }
-    Process {
-        id: cmd_netLog
-        onReadyRead: {
-            var string = readAll()
-            netLog.text += string
-            console.log(netLog.text)
         }
     }
 
@@ -77,32 +68,6 @@ Item {
                 selectionColor: Colour.palette['Green']
                 wrapMode: TextEdit.WordWrap
                 cursorPosition: bandwidthAll.text.length
-            }
-        }
-        Row {
-            anchors {
-                horizontalCenter: parent.horizontalCenter
-             }
-            Text {
-                text: i18n.tr('Connection Monitor')
-                font.pointSize: 16
-            }
-        }
-        Row {
-            Flickable {
-                contentHeight: netLog.contentHeight
-                width: mainCol.width
-                height: 500
-                clip: true
-
-                TextEdit {
-                    id: netLog
-                    anchors.fill: parent
-                    font.pointSize: 10
-                    selectionColor: Colour.palette['Green']
-                    wrapMode: TextEdit.WordWrap
-                    cursorPosition: netLog.text.length
-                }
             }
         }
     }

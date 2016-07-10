@@ -6,6 +6,7 @@ This is for:
 2. Calendar
 3. Location
 4. MobileNetwork switch
+5. Internet connections
 
 This file is part of the Ubuntu Phone pre-loaded app monitoring tool.
 
@@ -19,6 +20,19 @@ import datetime
 import re
 import subprocess
 import sys
+
+def printer(proc_name, func_name, act_name, item):
+    timestamp='{:%m%d %H:%M:%S}'.format(datetime.datetime.now())
+    print("{TIME} <{APP}>[{KEYWORD}][{PROC}]:[{FUNC}] {ACT} {PARM}".format(
+          TIME = timestamp,
+          APP = "APPNAME",
+          KEYWORD = "KEYWORD",
+          PROC = proc_name,
+          FUNC = func_name,
+          ACT = act_name,
+          PARM = item))
+    sys.stdout.flush()
+
 
 parser = argparse.ArgumentParser(description='Sensitive event monitor with strace')
 parser.add_argument('--app', help='Target app', required=True)
@@ -38,30 +52,28 @@ try:
         # Kill the old strace task first, targeted on internet watcher process
         process = subprocess.check_output(['adb', 'shell', 'sudo', 'pkill', '-f', 'strace'])
         # focus on sendmsg action
-        process = subprocess.Popen(['adb', 'shell', 'sudo', 'strace', '-f', '-s', '4096','-e', 'trace=sendmsg', '-p', proc_id], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        process = subprocess.Popen(['adb', 'shell', 'sudo', 'strace', '-f', '-s', '4096','-e', 'trace=sendmsg,connect', '-p', proc_id], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         while True:
             output = process.stdout.readline().decode('utf-8').strip()
             if output == '' and process.poll() is not None:
                 break
-            else:
-                # apply supressor
-                if not any(mute in output for mute in supressor):
-                    # Search for the corresponding event first
+            # apply supressor
+            elif not any(mute in output for mute in supressor):
+                # For internet watcher
+                if 'connect' in output:
+                    # Extract port and ip
+                    addr = re.search('sin_port\=htons\((?P<port>\d+)\).*sin_addr=inet_addr\("(?P<ip>.*)"', output)
+                    if addr:
+                        printer(proc_name, 'connect', addr.group("ip") + ':', addr.group("port"))
+
+                elif 'sendmsg' in output:
+                    # Search for the corresponding event
                     for item in events:
                         if item in output:
                             # Search for corresponding actions
                             for action in events[item]:
                                 if action in output:
-                                    timestamp='{:%m%d %H:%M:%S}'.format(datetime.datetime.now())
-                                    print("{TIME} <{APP}>[{KEYWORD}][{PROC}]:[{FUNC}] {ACT} {PARM}".format(
-                                        TIME = timestamp, 
-                                        APP = "APPNAME",
-                                        KEYWORD = "KEYWORD",
-                                        PROC = proc_name,
-                                        FUNC = 'sendmsg',
-                                        ACT = action,
-                                        PARM = item))
-                                    sys.stdout.flush()
+                                    printer(proc_name, 'sendmsg', action, item)
                                     break
     else:
         print(proc_name, "is not running")
