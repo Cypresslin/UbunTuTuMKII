@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 '''
-Script for monitoring sensitive events.
+Script for monitoring location events.
 
 This file is part of the Ubuntu Phone pre-loaded app monitoring tool.
 
@@ -15,7 +15,7 @@ import re
 import subprocess
 import sys
 
-parser = argparse.ArgumentParser(description='Sensitive event monitor')
+parser = argparse.ArgumentParser(description='location event monitor')
 group = parser.add_mutually_exclusive_group(required=True)
 group.add_argument('--app', help='Targeted app')
 args = parser.parse_args()
