@@ -7,6 +7,7 @@ This is for:
 3. Location
 4. MobileNetwork switch
 5. Internet connections
+6. File access to personal data
 
 This file is part of the Ubuntu Phone pre-loaded app monitoring tool.
 
@@ -17,6 +18,7 @@ Authors:
 
 import argparse
 import datetime
+import os
 import re
 import subprocess
 import sys
@@ -45,14 +47,17 @@ try:
         # Supressor list, get rid of error action, and local ip for connect event
         supressor = [' = -1 E', '127.0.0.1', '127.0.1.1']
         # Desired events
-        events = {'AddressBook': ['updateContacts', 'removeContacts', 'createContact', 'contactsDetails'],
-                  'Calendar': ['CreateObjects', 'RemoveObjects', 'ModifyObjects', 'GetObjectList'],
-                  'location': ['StartPositionUpdates', 'StopPositionUpdates'],
-                  'connectivity': ['MobileDataEnabled', 'DataRoamingEnabled']}
+        events = {'AddressBook': ('updateContacts', 'removeContacts', 'createContact', 'contactsDetails'),
+                  'Calendar': ('CreateObjects', 'RemoveObjects', 'ModifyObjects', 'GetObjectList'),
+                  'location': ('StartPositionUpdates', 'StopPositionUpdates'),
+                  'connectivity': ('MobileDataEnabled', 'DataRoamingEnabled')}
+        # Target directories, assume user name will be phablet
+        home = '/home/phablet/'
+        dirs = ('Documents', 'Music', 'Pictures', 'Videos')
         # Kill the old strace task first, targeted on internet watcher process
         process = subprocess.check_output(['adb', 'shell', 'sudo', 'pkill', '-f', 'strace'])
         # focus on sendmsg action
-        process = subprocess.Popen(['adb', 'shell', 'sudo', 'strace', '-f', '-s', '4096','-e', 'trace=sendmsg,connect', '-p', proc_id], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        process = subprocess.Popen(['adb', 'shell', 'sudo', 'strace', '-f', '-s', '4096','-e', 'trace=sendmsg,connect,open,unlink', '-p', proc_id], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         while True:
             output = process.stdout.readline().decode('utf-8').strip()
             if output == '' and process.poll() is not None:
@@ -65,7 +70,7 @@ try:
                     addr = re.search('sin_port\=htons\((?P<port>\d+)\).*sin_addr=inet_addr\("(?P<ip>.*)"', output)
                     if addr:
                         printer(proc_name, 'connect', addr.group("ip") + ':', addr.group("port"))
-
+                # For other events
                 elif 'sendmsg' in output:
                     # Search for the corresponding event
                     for item in events:
@@ -75,6 +80,20 @@ try:
                                 if action in output:
                                     printer(proc_name, 'sendmsg', action, item)
                                     break
+                # For file access, put it here to ignore sendmsg
+                elif home in output :
+                    for item in dirs:
+                        if item in output:
+                            # Get function name here
+                            func = re.search('\s(\w+)\(', output).group(1)
+                            # Get the filename here
+                            pattern = '{}(.+)\"'.format(item)
+                            path = re.search(pattern, output).group(0)
+                            # Remove the trailing '/', so we can get the name if it's a dir
+                            path = path.rstrip('/')
+                            root, filename = os.path.split(path)
+                            printer(proc_name, func, item, filename)
+                            break
     else:
         print(proc_name, "is not running")
 
