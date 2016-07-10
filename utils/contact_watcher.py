@@ -15,7 +15,7 @@ import re
 import subprocess
 import sys
 
-parser = argparse.ArgumentParser(description='Network connection monitor')
+parser = argparse.ArgumentParser(description='Contact activites monitor')
 parser.add_argument('--app', help='Target app', required=True)
 args = parser.parse_args()
 
