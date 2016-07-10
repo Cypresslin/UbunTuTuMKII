@@ -117,10 +117,8 @@ Window {
         model: ListModel {
             ListElement { name: "AppLauncher" }
             ListElement { name: "CheckConfig" }
-            ListElement { name: "FileWatcher" }
-            ListElement { name: "NetWatcher" }
+            ListElement { name: "NetTraffic" }
             ListElement { name: "LogWatcher" }
-            ListElement { name: "EventWatcher" }
             ListElement { name: "Info" }
         }
 
