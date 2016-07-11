@@ -71,6 +71,14 @@ try:
                     addr = re.search('sin_port\=htons\((?P<port>\d+)\).*sin_addr=inet_addr\("(?P<ip>.*)"', output)
                     if addr:
                         printer(proc_name, 'connect', addr.group("ip") + ':', addr.group("port"))
+                # For file import events (it's also a sendmsg event, put it here as we need to parse the output
+                elif 'CreateImportFromPeer' in output:
+                    pattern = '{}(.+)\"'.format(proc_name)
+                    source = re.search(pattern, output).group(1)
+                    # Filter message by parsing meaningful strings
+                    words = re.findall('[a-z][a-z]{2,}', source, re.I)
+                    source = ' '.join(words)
+                    printer(proc_name, 'sendmsg', 'CreateImportFromPeer', source)
                 # For other events
                 elif 'sendmsg' in output:
                     # Search for the corresponding event
