@@ -55,7 +55,7 @@ if args.list:
     data = subprocess.check_output(['adb', 'shell', 'click', 'list', '--manifest']).decode('utf8')
     data = json.loads(data)
     # Get the exectuable Click app list
-    app_click = subprocess.check_output(['adb', 'shell', 'grep', '-l', 'X-Ubuntu-Touch=true', '~/.local/share/applications/*.desktop']).decode('utf8')
+    app_click = subprocess.check_output(['adb', 'shell', 'grep', '-l', 'X-Ubuntu-Touch=true', '/home/phablet/.local/share/applications/*.desktop']).decode('utf8')
     app_click = app_click.replace('/home/phablet/.local/share/applications/', '')
     app_click = app_click.replace('.desktop', '').split()
     # Reorganize information and combine with current dictionary
