@@ -22,6 +22,7 @@ import os
 import re
 import subprocess
 import sys
+import kill_proc
 
 def printer(proc_name, func_name, act_name, item):
     timestamp='{:%m%d %H:%M:%S}'.format(datetime.datetime.now())
@@ -55,7 +56,7 @@ try:
         home = '/home/phablet/'
         dirs = ('Documents', 'Music', 'Pictures', 'Videos')
         # Kill the old strace task first, targeted on internet watcher process
-        process = subprocess.check_output(['adb', 'shell', 'sudo', 'pkill', '-f', 'strace'])
+        kill_proc.kill('strace')
         # focus on sendmsg action
         process = subprocess.Popen(['adb', 'shell', 'sudo', 'strace', '-f', '-s', '4096','-e', 'trace=sendmsg,connect,open,unlink', '-p', proc_id], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         while True:

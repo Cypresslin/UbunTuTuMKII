@@ -17,6 +17,7 @@ import datetime
 import re
 import subprocess
 import sys
+import kill_proc
 
 parser = argparse.ArgumentParser(description='Sensitive event monitor with pactl')
 group = parser.add_mutually_exclusive_group(required=True)
@@ -31,7 +32,7 @@ try:
     if proc_id.isnumeric():
         status = ['RUNNING', 'IDLE']
         # Kill the old pactl subscribe task first
-        process = subprocess.check_output(['adb', 'shell', 'pkill', '-f', 'pactl subscribe'])
+        kill_proc.kill('pactl')
         # Track the audio recording event with pactl
         process = subprocess.Popen(['adb', 'shell', 'pactl', 'subscribe', '|', 'grep', 'source #'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         while True:
