@@ -14,7 +14,7 @@ import datetime
 import re
 import subprocess
 import sys
-import kill_proc
+import common_tools
 
 parser = argparse.ArgumentParser(description='Syslog monitor')
 group = parser.add_mutually_exclusive_group(required=True)
@@ -31,7 +31,7 @@ try:
     proc_id = subprocess.check_output(['adb', 'shell', 'ubuntu-app-pid', proc_name]).decode('utf-8').rstrip()
     if proc_id.isnumeric() or args.denied:
         # Try to kill tailf process first
-        kill_proc.kill('tailf')
+        common_tools.kill('tailf')
         process = subprocess.Popen(['adb', 'shell', 'tailf', '/var/log/syslog', '|', 'grep', proc_name], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         while True:
             output = process.stdout.readline().decode('utf-8').strip()

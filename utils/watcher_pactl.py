@@ -13,11 +13,9 @@ Authors:
 '''
 
 import argparse
-import datetime
 import re
 import subprocess
-import sys
-import kill_proc
+import common_tools
 
 parser = argparse.ArgumentParser(description='Sensitive event monitor with pactl')
 parser.add_argument('--proc', help='Target app executable name', required=True)
@@ -33,7 +31,7 @@ try:
     if proc_id.isnumeric():
         status = ['RUNNING', 'IDLE']
         # Kill the old pactl subscribe task first
-        kill_proc.kill('pactl')
+        common_tools.kill('pactl')
         # Track the audio recording event with pactl
         process = subprocess.Popen(['adb', 'shell', 'pactl', 'subscribe', '|', 'grep', 'source #'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         while True:
@@ -49,16 +47,7 @@ try:
                     detail = re.search(pattern, detail, re.DOTALL).group('status')
                     for stat in status:
                         if stat in detail:
-                            timestamp='{:%m%d %H:%M:%S}'.format(datetime.datetime.now())
-                            print("{TIME} <{APP}>[{KEYWORD}][{PROC}]:[{FUNC}] {ACT} {PARM}".format(
-                                TIME = timestamp,
-                                APP = app_name,
-                                KEYWORD = "KEYWORD",
-                                PROC = proc_name,
-                                FUNC = 'source',
-                                ACT = 'local record',
-                                PARM = stat))
-                            sys.stdout.flush()
+                            common_tools.printer(app_name, proc_name, 'source', 'local record', stat)
     else:
         print(proc_name, "is not running")
 
