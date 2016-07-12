@@ -55,7 +55,7 @@ Window {
                 margins: units.gu(4)
             }
             Text {
-                text: i18n.tr("Checking:")
+                text: i18n.tr("Target: ")
                 font.pointSize: 9
             }
             Text {

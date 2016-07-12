@@ -1,178 +1,177 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# Chinese translations for PACKAGE package.
+# Copyright (C) 2016 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Ubuntu User <po-hsu.lin@canonical.com>, 2016.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-13 00:12+0800\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2016-07-12 22:45+0800\n"
+"Last-Translator: Po-Hsu Lin<po-hsu.lin@canonical.com>\n"
+"Language-Team: Chinese (simplified)\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: qml/AppLauncher.qml:43 qml/AppLauncher.qml:80
 msgid "Current running apps:\n"
-msgstr ""
+msgstr "当前执行中的应用程式：\n"
 
 #: qml/AppLauncher.qml:70
 msgid "App Launcher"
-msgstr ""
+msgstr "应用程式啟动器"
 
 #. TRANSLATORS: Please leave the ubuntu-app-watch command untranslated
 #: qml/AppLauncher.qml:96
 msgid "Status change from ubuntu-app-watch:\n"
-msgstr ""
+msgstr "来自 ubuntu-app-watch 指令的状态更新：\n"
 
 #: qml/AppLauncher.qml:103
 msgid "Maintainers: "
-msgstr ""
+msgstr "应用程式维护人员："
 
 #: qml/AppLauncher.qml:108 qml/AppLauncher.qml:130
 msgid "(Please select an App...)"
-msgstr ""
+msgstr "(请选择一个应用程式...)"
 
 #: qml/AppLauncher.qml:146 qml/CheckConfig.qml:256
 msgid "Start!"
-msgstr ""
+msgstr "开始！"
 
 #: qml/AppLauncher.qml:151
 msgid "App monitoring started"
-msgstr ""
+msgstr "已开始监测应用程式"
 
 #: qml/AppLauncher.qml:157
 msgid "Please select an app to start"
-msgstr ""
+msgstr "请选择一个应用程式来开始监测"
 
 #: qml/AppLauncher.qml:175
 msgid "Status: "
-msgstr ""
+msgstr "状态："
 
 #: qml/AppLauncher.qml:184
 msgid "Loading app list..."
-msgstr ""
+msgstr "读取应用程式列表..."
 
 #: qml/main.qml:18
 msgid "UbunTuTuMKII - App monitoring tool"
-msgstr ""
+msgstr "UbunTuTuMKII - 应用程式监测工具"
 
 #: qml/main.qml:30
 msgid "Connected"
-msgstr ""
+msgstr "手机已连线"
 
 #: qml/main.qml:58
 msgid "Target: "
-msgstr ""
+msgstr "监测目标："
 
 #: qml/main.qml:67
 msgid "Process:"
-msgstr ""
+msgstr "进程名称："
 
 #: qml/main.qml:95
 msgid "Not Connected"
-msgstr ""
+msgstr "手机未连线"
 
 #: qml/Info.qml:35
 msgid "System Information"
-msgstr ""
+msgstr "系统资讯"
 
 #: qml/LogWatcher.qml:81
 msgid "APP is not running"
-msgstr ""
+msgstr "应用程式尚未啟动"
 
 #: qml/LogWatcher.qml:114
 msgid "Save log"
-msgstr ""
+msgstr "储存纪录档"
 
 #: qml/LogWatcher.qml:119
 msgid "Please start TCP dump first"
-msgstr ""
+msgstr "请先啟动 TCP dump"
 
 #: qml/LogWatcher.qml:121 qml/CheckConfig.qml:180
 msgid "File copy"
-msgstr ""
+msgstr "档案复制"
 
 #: qml/LogWatcher.qml:123 qml/CheckConfig.qml:187
 msgid "File copied to: "
-msgstr ""
+msgstr "档案复制到："
 
 #: qml/LogWatcher.qml:139
 msgid "Event Monitor"
-msgstr ""
+msgstr "事件监视器"
 
 #: qml/CheckConfig.qml:74
 msgid "App Config Check"
-msgstr ""
+msgstr "应用程式设定检查"
 
 #: qml/CheckConfig.qml:79
 msgid "Checking: "
-msgstr ""
+msgstr "检查目标："
 
 #. TRANSLATORS: Please leave AppArmor untranslated
 #: qml/CheckConfig.qml:94
 msgid "AppArmor Profile: "
-msgstr ""
+msgstr "AppArmor 配置："
 
 #: qml/CheckConfig.qml:102 qml/CheckConfig.qml:119
 msgid "Result"
-msgstr ""
+msgstr "结果"
 
 #: qml/CheckConfig.qml:110
 msgid "Process is Confined: "
-msgstr ""
+msgstr "该进程是否受限制："
 
 #. TRANSLATORS: Please leave AppArmor untranslated
 #: qml/CheckConfig.qml:128
 msgid "AppArmor Policy:"
-msgstr ""
+msgstr "AppArmor 策略"
 
 #: qml/CheckConfig.qml:148
 msgid "Running Checker..."
-msgstr ""
+msgstr "执行检查中..."
 
 #. TRANSLATORS: Please leave AppArmor untranslated
 #: qml/CheckConfig.qml:158
 msgid "AppArmor Final Rules:"
-msgstr ""
+msgstr "AppArmor 最终规则："
 
 #: qml/CheckConfig.qml:166
 msgid "Copy"
-msgstr ""
+msgstr "复制"
 
 #: qml/CheckConfig.qml:183
 msgid "Failed to copy file"
-msgstr ""
+msgstr "档案复制失败"
 
 #: qml/CheckConfig.qml:205
 msgid "Reset Permissions:"
-msgstr ""
+msgstr "重设存许权："
 
 #: qml/CheckConfig.qml:214
 msgid "CameraService"
-msgstr ""
+msgstr "相机服务(CameraService)"
 
 #: qml/CheckConfig.qml:229
 msgid "PulseAudio"
-msgstr ""
+msgstr "录音服务(PulseAudio)"
 
 #: qml/CheckConfig.qml:244
 msgid "UbuntuLocationService"
-msgstr ""
+msgstr "位置服务(UbuntuLocationService)"
 
 #: qml/CheckConfig.qml:269
 msgid "Reset Permissions"
-msgstr ""
+msgstr "重设权限"
 
 #: qml/CheckConfig.qml:272
 msgid "Permission restted for: "
-msgstr ""
+msgstr "下列权限已重设"
 
 #: qml/CheckConfig.qml:276
 msgid "No target App / Permission selected"
-msgstr ""
+msgstr "没有选择欲重设的权限或没有目标应用程式"

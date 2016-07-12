@@ -90,6 +90,7 @@ Item {
         }
         Text {
             id: modeLabel
+            //TRANSLATORS: Please leave AppArmor untranslated
             text: i18n.tr("AppArmor Profile: ")
             font.bold: true
             anchors {
@@ -123,6 +124,7 @@ Item {
         }
         Text {
             id: policyLabel
+            //TRANSLATORS: Please leave AppArmor untranslated
             text: i18n.tr("AppArmor Policy:")
             font.bold: true
             anchors {
@@ -143,7 +145,7 @@ Item {
             contentHeight: policyLog.contentHeight
             TextEdit {
                 id: policyLog
-                text: i18n.tr('Running Checker...')
+                text: i18n.tr("Running Checker...")
                 font.pointSize: 10
                 selectionColor: Colour.palette['Green']
                 wrapMode: TextEdit.WordWrap
@@ -152,6 +154,7 @@ Item {
         }
         Text {
             id: rulesLabel
+            //TRANSLATORS: Please leave AppArmor untranslated
             text: i18n.tr("AppArmor Final Rules:")
             font.bold: true
             anchors {
@@ -253,14 +256,15 @@ Item {
             text: i18n.tr("Start!")
             onClicked: {
                 var permissions = []
+                // Do not use the CheckBox's label, as it will change after i18n
                 if (cameraCB.checked) {
-                    permissions.push(cameraCBText.text)
+                    permissions.push('CameraService')
                 }
                 if (audioCB.checked) {
-                    permissions.push(audioCBText.text)
+                    permissions.push('PulseAudio')
                 }
                 if (locationCB.checked) {
-                    permissions.push(locationCBText.text)
+                    permissions.push('UbuntuLocationService')
                 }
                 messageDialog.title = i18n.tr("Reset Permissions")
                 if (permissions.length > 0 && appProcLabel.text != 'APP NAME'){

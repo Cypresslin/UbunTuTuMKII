@@ -118,6 +118,7 @@ Item {
                         messageDialog.icon = StandardIcon.Critical
                         messageDialog.text = i18n.tr("Please start TCP dump first")
                     } else {
+                        messageDialog.title = i18n.tr("File copy")
                         messageDialog.icon = StandardIcon.Information
                         messageDialog.text = i18n.tr("File copied to: ") + applicationDirPath + '/'
                         cmd_tcpPull.start(applicationDirPath + '/utils/adb', ['pull', tcpfnText.text])
@@ -135,7 +136,7 @@ Item {
                 horizontalCenter: parent.horizontalCenter
              }
             Text {
-                text: i18n.tr('Event Monitor')
+                text: i18n.tr("Event Monitor")
                 font.pointSize: 16
             }
         }
