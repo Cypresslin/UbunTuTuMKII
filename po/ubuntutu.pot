@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-12 23:07+0800\n"
+"POT-Creation-Date: 2016-07-13 00:12+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -38,7 +38,7 @@ msgstr ""
 msgid "(Please select an App...)"
 msgstr ""
 
-#: qml/AppLauncher.qml:146 qml/CheckConfig.qml:253
+#: qml/AppLauncher.qml:146 qml/CheckConfig.qml:256
 msgid "Start!"
 msgstr ""
 
@@ -66,8 +66,8 @@ msgstr ""
 msgid "Connected"
 msgstr ""
 
-#: qml/main.qml:58 qml/CheckConfig.qml:79
-msgid "Checking: "
+#: qml/main.qml:58
+msgid "Target: "
 msgstr ""
 
 #: qml/main.qml:67
@@ -94,82 +94,85 @@ msgstr ""
 msgid "Please start TCP dump first"
 msgstr ""
 
-#: qml/LogWatcher.qml:122 qml/CheckConfig.qml:184
+#: qml/LogWatcher.qml:121 qml/CheckConfig.qml:180
+msgid "File copy"
+msgstr ""
+
+#: qml/LogWatcher.qml:123 qml/CheckConfig.qml:187
 msgid "File copied to: "
 msgstr ""
 
-#: qml/Install.qml:37
-msgid "Please choose a file"
-msgstr ""
-
-#: qml/Install.qml:66
-msgid "Choose a Package to Install"
+#: qml/LogWatcher.qml:139
+msgid "Event Monitor"
 msgstr ""
 
 #: qml/CheckConfig.qml:74
 msgid "App Config Check"
 msgstr ""
 
-#: qml/CheckConfig.qml:93
+#: qml/CheckConfig.qml:79
+msgid "Checking: "
+msgstr ""
+
+#. TRANSLATORS: Please leave AppArmor untranslated
+#: qml/CheckConfig.qml:94
 msgid "AppArmor Profile: "
 msgstr ""
 
-#: qml/CheckConfig.qml:101 qml/CheckConfig.qml:118
+#: qml/CheckConfig.qml:102 qml/CheckConfig.qml:119
 msgid "Result"
 msgstr ""
 
-#: qml/CheckConfig.qml:109
+#: qml/CheckConfig.qml:110
 msgid "Process is Confined: "
 msgstr ""
 
-#: qml/CheckConfig.qml:126
+#. TRANSLATORS: Please leave AppArmor untranslated
+#: qml/CheckConfig.qml:128
 msgid "AppArmor Policy:"
 msgstr ""
 
-#: qml/CheckConfig.qml:155
+#: qml/CheckConfig.qml:148
+msgid "Running Checker..."
+msgstr ""
+
+#. TRANSLATORS: Please leave AppArmor untranslated
+#: qml/CheckConfig.qml:158
 msgid "AppArmor Final Rules:"
 msgstr ""
 
-#: qml/CheckConfig.qml:163
+#: qml/CheckConfig.qml:166
 msgid "Copy"
 msgstr ""
 
-#: qml/CheckConfig.qml:177
-msgid "File copy"
-msgstr ""
-
-#: qml/CheckConfig.qml:180
+#: qml/CheckConfig.qml:183
 msgid "Failed to copy file"
 msgstr ""
 
-#: qml/CheckConfig.qml:202
+#: qml/CheckConfig.qml:205
 msgid "Reset Permissions:"
 msgstr ""
 
-#: qml/CheckConfig.qml:211
+#: qml/CheckConfig.qml:214
 msgid "CameraService"
 msgstr ""
 
-#: qml/CheckConfig.qml:226
+#: qml/CheckConfig.qml:229
 msgid "PulseAudio"
 msgstr ""
 
-#: qml/CheckConfig.qml:241
+#: qml/CheckConfig.qml:244
 msgid "UbuntuLocationService"
 msgstr ""
 
-#: qml/CheckConfig.qml:265
+#: qml/CheckConfig.qml:269
 msgid "Reset Permissions"
 msgstr ""
 
-#: qml/CheckConfig.qml:268
+#: qml/CheckConfig.qml:272
 msgid "Permission restted for: "
 msgstr ""
 
-#: qml/CheckConfig.qml:272
+#: qml/CheckConfig.qml:276
 msgid "No target App / Permission selected"
-msgstr ""
-
-#: qml/FileWatcher.qml:46
-msgid "File Access Watcher"
 msgstr ""
