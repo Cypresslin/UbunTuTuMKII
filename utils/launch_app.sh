@@ -11,12 +11,10 @@
 APP=$1
 
 function errorMsg(){
-    [ -f /tmp/.app_name ] && rm /tmp/.app_name
     echo "$@"
 }
 
 if [ ! -z $APP ]; then
-    echo "$APP" > /tmp/.app_name
     adb shell nohup ubuntu-app-launch $APP > /dev/null
     echo "$APP launched"
 else
