@@ -20,13 +20,14 @@ import sys
 import kill_proc
 
 parser = argparse.ArgumentParser(description='Sensitive event monitor with pactl')
-group = parser.add_mutually_exclusive_group(required=True)
-group.add_argument('--app', help='Target app')
+parser.add_argument('--proc', help='Target app executable name', required=True)
+parser.add_argument('--name', help='Target app human readable name')
 args = parser.parse_args()
 
 
 try:
-    proc_name = args.app
+    proc_name = args.proc
+    app_name = args.name if args.name else 'APPNAME'
     # It's no necessary to get PID here, but still check it
     proc_id = subprocess.check_output(['adb', 'shell', 'ubuntu-app-pid', proc_name]).decode('utf-8').rstrip()
     if proc_id.isnumeric():
@@ -51,7 +52,7 @@ try:
                             timestamp='{:%m%d %H:%M:%S}'.format(datetime.datetime.now())
                             print("{TIME} <{APP}>[{KEYWORD}][{PROC}]:[{FUNC}] {ACT} {PARM}".format(
                                 TIME = timestamp,
-                                APP = "APPNAME",
+                                APP = app_name,
                                 KEYWORD = "KEYWORD",
                                 PROC = proc_name,
                                 FUNC = 'source',

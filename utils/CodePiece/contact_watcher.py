@@ -16,11 +16,13 @@ import subprocess
 import sys
 
 parser = argparse.ArgumentParser(description='Contact activites monitor')
-parser.add_argument('--app', help='Target app', required=True)
+parser.add_argument('--proc', help='Target app executable name', required=True)
+parser.add_argument('--name', help='Target app human readable name')
 args = parser.parse_args()
 
 try:
-    proc_name = args.app
+    proc_name = args.proc
+    app_name = args.name if args.name else 'APPNAME'
     proc_id = subprocess.check_output(['adb', 'shell', 'ubuntu-app-pid', proc_name]).decode('utf-8').rstrip()
     if proc_id.isnumeric():
         # Supressor list, get rid of error action
@@ -42,7 +44,7 @@ try:
                     for event in events:
                         if event in output:
                             timestamp='{:%m%d %H:%M:%S}'.format(datetime.datetime.now())
-                            print("{} <APPNAME>[KEYWORD][{}]:[{}] {}".format(timestamp, proc_name, event, event))
+                            print("{} <{}>[KEYWORD][{}]:[{}] {}".format(timestamp, app_name, proc_name, event, event))
                             sys.stdout.flush()
     else:
         print(proc_name, "is not running")
