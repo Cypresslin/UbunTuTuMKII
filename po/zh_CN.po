@@ -1,20 +1,19 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# Chinese translations for PACKAGE package.
+# Copyright (C) 2016 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Ubuntu User <po-hsu.lin@canonical.com>, 2016.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-12 23:07+0800\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"POT-Creation-Date: 2016-07-12 22:56+0800\n"
+"PO-Revision-Date: 2016-07-12 22:45+0800\n"
+"Last-Translator: Po-Hsu Lin<po-hsu.lin@canonical.com>\n"
+"Language-Team: Chinese (simplified)\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=ASCII\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: qml/AppLauncher.qml:43 qml/AppLauncher.qml:80
@@ -25,7 +24,7 @@ msgstr ""
 msgid "App Launcher"
 msgstr ""
 
-#. TRANSLATORS: Please leave the ubuntu-app-watch command untranslated
+#. TRANSLATORS: Please leave ubuntu-app-watch untranslated, it's a command name
 #: qml/AppLauncher.qml:96
 msgid "Status change from ubuntu-app-watch:\n"
 msgstr ""
@@ -36,11 +35,11 @@ msgstr ""
 
 #: qml/AppLauncher.qml:108 qml/AppLauncher.qml:130
 msgid "(Please select an App...)"
-msgstr ""
+msgstr "(请选择一个应用程式...)"
 
 #: qml/AppLauncher.qml:146 qml/CheckConfig.qml:253
 msgid "Start!"
-msgstr ""
+msgstr "开始！"
 
 #: qml/AppLauncher.qml:151
 msgid "App monitoring started"
@@ -52,11 +51,11 @@ msgstr ""
 
 #: qml/AppLauncher.qml:175
 msgid "Status: "
-msgstr ""
+msgstr "状态："
 
 #: qml/AppLauncher.qml:184
 msgid "Loading app list..."
-msgstr ""
+msgstr "读取应用程式列表..."
 
 #: qml/main.qml:18
 msgid "UbunTuTuMKII - App monitoring tool"
@@ -64,7 +63,7 @@ msgstr ""
 
 #: qml/main.qml:30
 msgid "Connected"
-msgstr ""
+msgstr "已连线"
 
 #: qml/main.qml:58 qml/CheckConfig.qml:79
 msgid "Checking: "
@@ -72,14 +71,18 @@ msgstr ""
 
 #: qml/main.qml:67
 msgid "Process:"
-msgstr ""
+msgstr "进程名称："
 
 #: qml/main.qml:95
 msgid "Not Connected"
-msgstr ""
+msgstr "尚未连线"
 
 #: qml/Info.qml:35
 msgid "System Information"
+msgstr "系统资讯"
+
+#: qml/Log.qml:25
+msgid "System Log"
 msgstr ""
 
 #: qml/LogWatcher.qml:81

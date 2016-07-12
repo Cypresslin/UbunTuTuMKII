@@ -40,7 +40,7 @@ Item {
     Process {
         id: cmd_list
         onReadyRead: {
-            appList.text = i18n.tr('Current running apps:\n') + readAll();
+            appList.text = i18n.tr("Current running apps:\n") + readAll();
         }
     }
     function timestamp() {         
@@ -77,7 +77,7 @@ Item {
             contentHeight: appList.contentHeight
             TextEdit {
                 id: appList
-                text: i18n.tr('Current running apps:\n')
+                text: i18n.tr("Current running apps:\n")
                 font.pointSize: 12
                 selectionColor: 'green'
             }
@@ -92,7 +92,8 @@ Item {
                 id: appStatus
                 anchors.fill: parent
                 wrapMode: "WrapAtWordBoundaryOrAnywhere"
-                text: i18n.tr('Status change from ubuntu-app-watch:\n')
+                //TRANSLATORS: Please leave the ubuntu-app-watch command untranslated
+                text: i18n.tr("Status change from ubuntu-app-watch:\n")
                 font.pointSize: 12
                 selectionColor: 'green'
             }
@@ -104,7 +105,7 @@ Item {
         }
         Text {
             id: authorText
-            text: i18n.tr("(Please select an App)")
+            text: i18n.tr("(Please select an App...)")
             font.pointSize: 12
             anchors {
                 verticalCenter: authorLabel.verticalCenter
@@ -126,7 +127,7 @@ Item {
                 model: ListModel{
                     id: app_list
                     Component.onCompleted: {
-                        append({'text': i18n.tr("Select App..."), 'name': '', 'proc': '', 'maintainer': i18n.tr("Select App...")})
+                        append({'text': i18n.tr("(Please select an App...)"), 'name': '', 'proc': '', 'maintainer': i18n.tr("(Please select an App...)")})
                     }
                 }
                 onCurrentIndexChanged: {
