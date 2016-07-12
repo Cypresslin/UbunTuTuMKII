@@ -101,7 +101,7 @@ try:
                             # Remove the trailing '/', so we can get the name if it's a dir
                             path = path.rstrip('/')
                             root, filename = os.path.split(path)
-                            printer(proc_name, func, item, filename)
+                            printer(proc_name, func, '~/{}/'.format(item), filename)
                             break
     else:
         print(proc_name, "is not running")
