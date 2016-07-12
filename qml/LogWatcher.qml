@@ -59,7 +59,7 @@ Item {
             spacing: units.gu(2)
             Text {
                 id: tcpdumpLabel
-                text: "Internet Content Logger (TCP dump)"
+                text: i18n.tr("Internet Content Logger (TCP dump)")
                 font.pointSize: 14
             }
             Switch {

@@ -42,7 +42,7 @@ Item {
                 horizontalCenter: parent.horizontalCenter
              }
             Text {
-                text: i18n.tr('Overall Bandwidth Monitor')
+                text: i18n.tr("Overall Bandwidth Monitor")
                 font.pointSize: 16
             }
         }
