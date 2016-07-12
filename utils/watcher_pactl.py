@@ -21,12 +21,12 @@ import kill_proc
 
 parser = argparse.ArgumentParser(description='Sensitive event monitor with pactl')
 group = parser.add_mutually_exclusive_group(required=True)
-group.add_argument('--app', help='Target app')
+group.add_argument('--proc', help='Target app executable name')
 args = parser.parse_args()
 
 
 try:
-    proc_name = args.app
+    proc_name = args.proc
     # It's no necessary to get PID here, but still check it
     proc_id = subprocess.check_output(['adb', 'shell', 'ubuntu-app-pid', proc_name]).decode('utf-8').rstrip()
     if proc_id.isnumeric():

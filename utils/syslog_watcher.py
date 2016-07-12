@@ -20,14 +20,14 @@ parser = argparse.ArgumentParser(description='Syslog monitor')
 group = parser.add_mutually_exclusive_group(required=True)
 group.add_argument('--denied', action='store_true',
                    help='Monitor DENIED pattern in syslog')
-group.add_argument('--app', help='Targeted app')
+group.add_argument('--proc', help='Target app executable name')
 args = parser.parse_args()
 
 try:
     if args.denied:
         proc_name = 'DENIED'
     else:
-        proc_name = args.app
+        proc_name = args.proc
     proc_id = subprocess.check_output(['adb', 'shell', 'ubuntu-app-pid', proc_name]).decode('utf-8').rstrip()
     if proc_id.isnumeric() or args.denied:
         # Try to kill tailf process first

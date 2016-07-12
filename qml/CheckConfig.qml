@@ -18,9 +18,9 @@ import Ubuntu.Components 1.3
 Item {
     Component.onCompleted: {
         console.log('Check Config')
-        cmd_mode.start(applicationDirPath + '/utils/check_config.py', ['--check-mode', '--app', appNameLabel.text])
-        cmd_proc.start(applicationDirPath + '/utils/check_config.py', ['--check-process', '--app', appNameLabel.text])
-        cmd_policy.start(applicationDirPath + '/utils/check_config.py', ['--check-policy', '--app', appNameLabel.text])
+        cmd_mode.start(applicationDirPath + '/utils/check_config.py', ['--check-mode', '--proc', appNameLabel.text])
+        cmd_proc.start(applicationDirPath + '/utils/check_config.py', ['--check-process', '--proc', appNameLabel.text])
+        cmd_policy.start(applicationDirPath + '/utils/check_config.py', ['--check-policy', '--proc', appNameLabel.text])
     }
     Process {
         id: cmd_mode
@@ -167,7 +167,7 @@ Item {
                 left: rulesLabel.right
             }
             onClicked: {
-                cmd_rules.start(applicationDirPath + '/utils/check_config.py', ['--copy-rules', '--app', appNameLabel.text])
+                cmd_rules.start(applicationDirPath + '/utils/check_config.py', ['--copy-rules', '--proc', appNameLabel.text])
             }
         }
         Process {

@@ -38,11 +38,11 @@ def printer(proc_name, func_name, act_name, item):
 
 
 parser = argparse.ArgumentParser(description='Sensitive event monitor with strace')
-parser.add_argument('--app', help='Target app', required=True)
+parser.add_argument('--proc', help='Target app executable name', required=True)
 args = parser.parse_args()
 
 try:
-    proc_name = args.app
+    proc_name = args.proc
     proc_id = subprocess.check_output(['adb', 'shell', 'ubuntu-app-pid', proc_name]).decode('utf-8').rstrip()
     if proc_id.isnumeric():
         # Supressor list, get rid of error action, and local ip for connect event

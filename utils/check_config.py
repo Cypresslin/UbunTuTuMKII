@@ -23,7 +23,7 @@ group.add_argument('--check-policy', action='store_true',
                    help='Check the AppArmor policy for the app')
 group.add_argument('--copy-rules', action='store_true',
                    help='Copy the AppArmor Final Rules for the app')
-parser.add_argument('--app', help='Target app', required=True)
+parser.add_argument('--proc', help='Target app executable name', required=True)
 args = parser.parse_args()
 
 
@@ -38,7 +38,7 @@ def confine_check(process_name):
 
 # Get the app name from the temperorary file
 try:
-    proc_name = args.app
+    proc_name = args.proc
     # Check if the process is running, use ubuntu-app-list with grep
     if subprocess.check_output(['adb', 'shell', 'ubuntu-app-list', '|', 'grep', proc_name]):
         if args.check_mode:

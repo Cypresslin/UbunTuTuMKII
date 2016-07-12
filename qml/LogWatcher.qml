@@ -14,9 +14,9 @@ import QtQuick.Layouts 1.2
 Item {
     Component.onCompleted: {
         console.log('SysLog Watcher loaded')
-          //cmd_sysLog.start(applicationDirPath + '/utils/syslog_watcher.py', ['--app', appNameLabel.text])
-          cmd_strace.start(applicationDirPath + '/utils/watcher_strace.py', ['--app', appNameLabel.text])
-          cmd_pactl.start(applicationDirPath + '/utils/watcher_pactl.py', ['--app', appNameLabel.text])
+          //cmd_sysLog.start(applicationDirPath + '/utils/syslog_watcher.py', ['--proc', appNameLabel.text])
+          cmd_strace.start(applicationDirPath + '/utils/watcher_strace.py', ['--proc', appNameLabel.text])
+          cmd_pactl.start(applicationDirPath + '/utils/watcher_pactl.py', ['--proc', appNameLabel.text])
     }
     Process {
         id: cmd_sysLog

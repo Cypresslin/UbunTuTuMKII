@@ -16,7 +16,7 @@ import QtQuick.Layouts 1.2
 Item {
     Component.onCompleted: {
         console.log('Watcher loaded')
-          cmd_file_access.start(applicationDirPath + '/utils/file_watcher.py', ['--access', '--app', appNameLabel.text])
+          cmd_file_access.start(applicationDirPath + '/utils/file_watcher.py', ['--access', '--proc', appNameLabel.text])
     }
     Process {
         id: cmd_file_access
