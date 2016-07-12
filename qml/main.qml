@@ -47,27 +47,30 @@ Window {
             top: parent.top
             left: parent.left
         }
-        Row {
-            id: labelRow
-            anchors {
-                bottom: appRow.top
-                margins: 20
-            }
-            Text {
-                text: "Checking:"
-                font.pointSize: 10
-            }
-        }
-        Row {
-            id: appRow
+        Column {
+            id: appCol
+            spacing: units.gu(1)
             anchors {
                 bottom: adbRow.top
-                margins: 20
+                margins: units.gu(4)
+            }
+            Text {
+                text: i18n.tr("Checking:")
+                font.pointSize: 9
             }
             Text {
                 id: appNameLabel
                 text: "APP NAME"
-                font.pointSize: 10
+                font.pointSize: 9
+            }
+            Text {
+                text: i18n.tr("Process:")
+                font.pointSize: 9
+            }
+            Text {
+                id: appProcLabel
+                text: "PROC NAME"
+                font.pointSize: 9
             }
         }
         Row {
@@ -127,7 +130,6 @@ Window {
                 width: listView.width 
                 height: 80
                 color: listView.currentIndex == index ? UbuntuColors.orange : Colour.palette['Ash']
-                                   //Colour.palette['Blue'] : Colour.palette['Ash']
                 Text {
                     text: name
                     anchors.centerIn: parent
@@ -146,7 +148,6 @@ Window {
                     width: parent.height / Math.sqrt(2)
                     height: width
                     color: UbuntuColors.orange 
-                    // Colour.palette['Blue']
                     transform: Rotation { origin.x: 25; origin.y: 25; angle: 45}
                     anchors {
                         right: parent.right

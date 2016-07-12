@@ -25,11 +25,13 @@ group.add_argument('--lsof', action='store_true',
 group.add_argument('--changes', action='store_true',
                     help='Monitor changes in {}'.format(home_dir))
 parser.add_argument('--proc', help='Target app executable name', required=True)
+parser.add_argument('--name', help='Target app human readable name')
 args = parser.parse_args()
 
 if args.access:
     try:
         proc_name = args.proc
+        app_name = args.name if args.name else 'APPNAME'
         proc_id = subprocess.check_output(['adb', 'shell', 'ubuntu-app-pid', proc_name]).decode('utf-8').rstrip()
         if proc_id.isnumeric():
             # Supressor list, supress 'stat', 'lstat' and 'getcwd' command

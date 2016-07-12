@@ -18,9 +18,9 @@ import Ubuntu.Components 1.3
 Item {
     Component.onCompleted: {
         console.log('Check Config')
-        cmd_mode.start(applicationDirPath + '/utils/check_config.py', ['--check-mode', '--proc', appNameLabel.text])
-        cmd_proc.start(applicationDirPath + '/utils/check_config.py', ['--check-process', '--proc', appNameLabel.text])
-        cmd_policy.start(applicationDirPath + '/utils/check_config.py', ['--check-policy', '--proc', appNameLabel.text])
+        cmd_mode.start(applicationDirPath + '/utils/check_config.py', ['--check-mode', '--proc', appProcLabel.text])
+        cmd_proc.start(applicationDirPath + '/utils/check_config.py', ['--check-process', '--proc', appProcLabel.text])
+        cmd_policy.start(applicationDirPath + '/utils/check_config.py', ['--check-policy', '--proc', appProcLabel.text])
     }
     Process {
         id: cmd_mode
@@ -81,7 +81,7 @@ Item {
         }
         Text {
             id: appNameText
-            text: appNameLabel.text
+            text: appProcLabel.text
             color: "green"
             anchors {
                 left: appLabel.right
@@ -167,7 +167,7 @@ Item {
                 left: rulesLabel.right
             }
             onClicked: {
-                cmd_rules.start(applicationDirPath + '/utils/check_config.py', ['--copy-rules', '--proc', appNameLabel.text])
+                cmd_rules.start(applicationDirPath + '/utils/check_config.py', ['--copy-rules', '--proc', appProcLabel.text])
             }
         }
         Process {
@@ -263,7 +263,7 @@ Item {
                     permissions.push(locationCBText.text)
                 }
                 messageDialog.title = i18n.tr("Reset Permissions")
-                if (permissions.length > 0 && appNameLabel.text != 'APP NAME'){
+                if (permissions.length > 0 && appProcLabel.text != 'APP NAME'){
                     messageDialog.icon = StandardIcon.Information
                     messageDialog.text = i18n.tr("Permission restted for: ") + permissions
                     cmd_reset.start(applicationDirPath + '/utils/reset_trust_store.sh', permissions)

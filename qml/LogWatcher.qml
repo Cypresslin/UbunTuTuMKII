@@ -14,9 +14,9 @@ import QtQuick.Layouts 1.2
 Item {
     Component.onCompleted: {
         console.log('SysLog Watcher loaded')
-          //cmd_sysLog.start(applicationDirPath + '/utils/syslog_watcher.py', ['--proc', appNameLabel.text])
-          cmd_strace.start(applicationDirPath + '/utils/watcher_strace.py', ['--proc', appNameLabel.text])
-          cmd_pactl.start(applicationDirPath + '/utils/watcher_pactl.py', ['--proc', appNameLabel.text])
+          //cmd_sysLog.start(applicationDirPath + '/utils/syslog_watcher.py', ['--proc', appProcLabel.text])
+          cmd_strace.start(applicationDirPath + '/utils/watcher_strace.py', ['--proc', appProcLabel.text, '--name', appNameLabel.text])
+          cmd_pactl.start(applicationDirPath + '/utils/watcher_pactl.py', ['--proc', appProcLabel.text, '--name', appNameLabel.text])
     }
     Process {
         id: cmd_sysLog
@@ -76,7 +76,7 @@ Item {
 
                 function toggle(){
                     if (tcpdumpSwitch.checked){
-                        if (appNameLabel.text == "APP NAME"){
+                        if (appProcLabel.text == "APP NAME"){
                             messageDialog.icon = StandardIcon.Critical
                             messageDialog.text = i18n.tr("APP is not running")
                             messageDialog.visible = true

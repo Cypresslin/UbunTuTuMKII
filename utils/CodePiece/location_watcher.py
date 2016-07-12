@@ -16,12 +16,13 @@ import subprocess
 import sys
 
 parser = argparse.ArgumentParser(description='location event monitor')
-group = parser.add_mutually_exclusive_group(required=True)
-group.add_argument('--proc', help='Target app executable name')
+parser.add_argument('--proc', help='Target app executable name', required=True)
+parser.add_argument('--name', help='Target app human readable name')
 args = parser.parse_args()
 
 try:
     proc_name = args.proc
+    app_name = args.name if args.name else 'APPNAME'
     proc_id = subprocess.check_output(['adb', 'shell', 'ubuntu-app-pid', proc_name]).decode('utf-8').rstrip()
     if proc_id.isnumeric():
         # Try to kill strace process first

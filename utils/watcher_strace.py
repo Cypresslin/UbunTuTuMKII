@@ -24,11 +24,11 @@ import subprocess
 import sys
 import kill_proc
 
-def printer(proc_name, func_name, act_name, item):
+def printer(app_name, proc_name, func_name, act_name, item):
     timestamp='{:%m%d %H:%M:%S}'.format(datetime.datetime.now())
     print("{TIME} <{APP}>[{KEYWORD}][{PROC}]:[{FUNC}] {ACT} {PARM}".format(
           TIME = timestamp,
-          APP = "APPNAME",
+          APP = app_name,
           KEYWORD = "KEYWORD",
           PROC = proc_name,
           FUNC = func_name,
@@ -39,10 +39,12 @@ def printer(proc_name, func_name, act_name, item):
 
 parser = argparse.ArgumentParser(description='Sensitive event monitor with strace')
 parser.add_argument('--proc', help='Target app executable name', required=True)
+parser.add_argument('--name', help='Target app human readable name')
 args = parser.parse_args()
 
 try:
     proc_name = args.proc
+    app_name = args.name if args.name else 'APPNAME'
     proc_id = subprocess.check_output(['adb', 'shell', 'ubuntu-app-pid', proc_name]).decode('utf-8').rstrip()
     if proc_id.isnumeric():
         # Supressor list, get rid of error action, and local ip for connect event
@@ -70,7 +72,7 @@ try:
                     # Extract port and ip
                     addr = re.search('sin_port\=htons\((?P<port>\d+)\).*sin_addr=inet_addr\("(?P<ip>.*)"', output)
                     if addr:
-                        printer(proc_name, 'connect', addr.group("ip") + ':', addr.group("port"))
+                        printer(app_name, proc_name, 'connect', addr.group("ip") + ':', addr.group("port"))
                 # For file import events (it's also a sendmsg event, put it here as we need to parse the output
                 elif 'CreateImportFromPeer' in output:
                     pattern = '{}(.+)\"'.format(proc_name)
@@ -78,7 +80,7 @@ try:
                     # Filter message by parsing meaningful strings
                     words = re.findall('[a-z][a-z]{2,}', source, re.I)
                     source = ' '.join(words)
-                    printer(proc_name, 'sendmsg', 'CreateImportFromPeer', source)
+                    printer(app_name, proc_name, 'sendmsg', 'CreateImportFromPeer', source)
                 # For other events
                 elif 'sendmsg' in output:
                     # Search for the corresponding event
@@ -87,7 +89,7 @@ try:
                             # Search for corresponding actions
                             for action in events[item]:
                                 if action in output:
-                                    printer(proc_name, 'sendmsg', action, item)
+                                    printer(app_name, proc_name, 'sendmsg', action, item)
                                     break
                 # For file access, put it here to ignore sendmsg
                 elif home in output :
@@ -101,7 +103,7 @@ try:
                             # Remove the trailing '/', so we can get the name if it's a dir
                             path = path.rstrip('/')
                             root, filename = os.path.split(path)
-                            printer(proc_name, func, '~/{}/'.format(item), filename)
+                            printer(app_name, proc_name, func, '~/{}/'.format(item), filename)
                             break
     else:
         print(proc_name, "is not running")
