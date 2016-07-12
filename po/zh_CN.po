@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-13 00:12+0800\n"
+"POT-Creation-Date: 2016-07-13 01:10+0800\n"
 "PO-Revision-Date: 2016-07-12 22:45+0800\n"
 "Last-Translator: Po-Hsu Lin<po-hsu.lin@canonical.com>\n"
 "Language-Team: Chinese (simplified)\n"
@@ -77,9 +77,17 @@ msgstr "进程名称："
 msgid "Not Connected"
 msgstr "手机未连线"
 
+#: qml/NetTraffic.qml:45
+msgid "Overall Bandwidth Monitor"
+msgstr "总体网路流量监视器"
+
 #: qml/Info.qml:35
 msgid "System Information"
 msgstr "系统资讯"
+
+#: qml/LogWatcher.qml:62
+msgid "Internet Content Logger (TCP dump)"
+msgstr "互连网连线封包记录器 (TCP dump)"
 
 #: qml/LogWatcher.qml:81
 msgid "APP is not running"
