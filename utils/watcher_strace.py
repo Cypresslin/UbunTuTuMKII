@@ -17,25 +17,10 @@ Authors:
 '''
 
 import argparse
-import datetime
 import os
 import re
 import subprocess
-import sys
-import kill_proc
-
-def printer(app_name, proc_name, func_name, act_name, item):
-    timestamp='{:%m%d %H:%M:%S}'.format(datetime.datetime.now())
-    print("{TIME} <{APP}>[{KEYWORD}][{PROC}]:[{FUNC}] {ACT} {PARM}".format(
-          TIME = timestamp,
-          APP = app_name,
-          KEYWORD = "KEYWORD",
-          PROC = proc_name,
-          FUNC = func_name,
-          ACT = act_name,
-          PARM = item))
-    sys.stdout.flush()
-
+import common_tools
 
 parser = argparse.ArgumentParser(description='Sensitive event monitor with strace')
 parser.add_argument('--proc', help='Target app executable name', required=True)
@@ -58,7 +43,7 @@ try:
         home = '/home/phablet/'
         dirs = ('Documents', 'Music', 'Pictures', 'Videos')
         # Kill the old strace task first, targeted on internet watcher process
-        kill_proc.kill('strace')
+        common_tools.kill('strace')
         # focus on sendmsg action
         process = subprocess.Popen(['adb', 'shell', 'sudo', 'strace', '-f', '-s', '4096','-e', 'trace=sendmsg,connect,open,unlink', '-p', proc_id], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         while True:
@@ -72,7 +57,7 @@ try:
                     # Extract port and ip
                     addr = re.search('sin_port\=htons\((?P<port>\d+)\).*sin_addr=inet_addr\("(?P<ip>.*)"', output)
                     if addr:
-                        printer(app_name, proc_name, 'connect', addr.group("ip") + ':', addr.group("port"))
+                        common_tools.printer(app_name, proc_name, 'connect', addr.group("ip") + ':', addr.group("port"))
                 # For file import events (it's also a sendmsg event, put it here as we need to parse the output
                 elif 'CreateImportFromPeer' in output:
                     pattern = '{}(.+)\"'.format(proc_name)
@@ -80,7 +65,7 @@ try:
                     # Filter message by parsing meaningful strings
                     words = re.findall('[a-z][a-z]{2,}', source, re.I)
                     source = ' '.join(words)
-                    printer(app_name, proc_name, 'sendmsg', 'CreateImportFromPeer', source)
+                    common_tools.printer(app_name, proc_name, 'sendmsg', 'CreateImportFromPeer', source)
                 # For other events
                 elif 'sendmsg' in output:
                     # Search for the corresponding event
@@ -89,7 +74,7 @@ try:
                             # Search for corresponding actions
                             for action in events[item]:
                                 if action in output:
-                                    printer(app_name, proc_name, 'sendmsg', action, item)
+                                    common_tools.printer(app_name, proc_name, 'sendmsg', action, item)
                                     break
                 # For file access, put it here to ignore sendmsg
                 elif home in output :
@@ -103,7 +88,7 @@ try:
                             # Remove the trailing '/', so we can get the name if it's a dir
                             path = path.rstrip('/')
                             root, filename = os.path.split(path)
-                            printer(app_name, proc_name, func, '~/{}/'.format(item), filename)
+                            common_tools.printer(app_name, proc_name, func, '~/{}/'.format(item), filename)
                             break
     else:
         print(proc_name, "is not running")
