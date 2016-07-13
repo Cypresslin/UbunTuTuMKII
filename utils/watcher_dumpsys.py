@@ -46,7 +46,7 @@ try:
                     if cameras[item.group('id')] != item.group('stat'):
                         cameras[item.group('id')] = item.group('stat')
                         camera_id = 'Camera #{}'.format(item.group('id'))
-                        common_tools.printer(app_name, proc_name, 'NO_FUNC', camera_id, item.group('stat'))
+                        common_tools.printer(app_name, proc_name, 'camera', camera_id, item.group('stat'))
             time.sleep(1)
     else:
         print(proc_name, "is not running")
