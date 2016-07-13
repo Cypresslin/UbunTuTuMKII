@@ -37,6 +37,9 @@ if [ $? -eq 0 ]; then
     echo "Pushing tcpdump to the device..."
     adb push tcpdump /home/phablet/
 
+    echo "Pushing dumpsys to the device..."
+    adb push dumpsys /home/phablet/
+
     echo "Job DONE!"    
 else
     echo "Oops, please make sure adb works and device connected"
