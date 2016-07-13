@@ -14,12 +14,12 @@ import QtQuick.Layouts 1.2
 Item {
     Component.onCompleted: {
         console.log('SysLog Watcher loaded')
-          //cmd_sysLog.start(applicationDirPath + '/utils/syslog_watcher.py', ['--proc', appProcLabel.text])
+          cmd_dumpsys.start(applicationDirPath + '/utils/watcher_dumpsys.py', ['--proc', appProcLabel.text, '--name', appNameLabel.text])
           cmd_strace.start(applicationDirPath + '/utils/watcher_strace.py', ['--proc', appProcLabel.text, '--name', appNameLabel.text])
           cmd_pactl.start(applicationDirPath + '/utils/watcher_pactl.py', ['--proc', appProcLabel.text, '--name', appNameLabel.text])
     }
     Process {
-        id: cmd_sysLog
+        id: cmd_dumpsys
         onReadyRead: {
             var string = readAll()
             sysLog.text += string
