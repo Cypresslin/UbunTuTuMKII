@@ -22,6 +22,8 @@ import re
 import subprocess
 import common_tools
 
+# Flag for connection events
+connected = False
 parser = argparse.ArgumentParser(description='Sensitive event monitor with strace')
 parser.add_argument('--proc', help='Target app executable name', required=True)
 parser.add_argument('--name', help='Target app human readable name')
@@ -53,11 +55,12 @@ try:
             # apply supressor
             elif not any(mute in output for mute in supressor):
                 # For internet watcher
-                if 'connect' in output:
+                if not connected and 'connect' in output:
                     # Extract port and ip
                     addr = re.search('sin_port\=htons\((?P<port>\d+)\).*sin_addr=inet_addr\("(?P<ip>.*)"', output)
                     if addr:
                         common_tools.printer(app_name, proc_name, 'connect', addr.group("ip") + ':', addr.group("port"))
+                        connected = True
                 # For file import events (it's also a sendmsg event, put it here as we need to parse the output
                 elif 'CreateImportFromPeer' in output:
                     pattern = '{}(.+)\"'.format(proc_name)
