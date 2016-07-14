@@ -9,6 +9,7 @@ Authors:
   Po-Hsu Lin <po-hsu.lin@canonical.com>
 '''
 
+from gettext import gettext as _
 import argparse
 import json
 import subprocess
@@ -45,16 +46,16 @@ try:
             output = subprocess.check_output(['adb', 'shell', 'grep', proc_name,
                          '/proc/*/attr/current']).decode('utf-8')
             if ' (enforce)' in output:
-                print("Enforcement Mode")
+                print(_("Enforcement Mode"))
             elif ' (complain)' in output:
-                print("Complain Mode")
+                print(_("Complain Mode"))
             else:
-                print("Unconfined App")
+                print(_("Unconfined App"))
         elif args.check_process:
             if confine_check(proc_name):
-                print("Yes")
+                print(_("Yes"))
             else:
-                print("No")
+                print(_("No"))
         elif args.check_policy:
             if confine_check(proc_name):
                 path = '/var/lib/apparmor/clicks/{}.json'.format(proc_name)
@@ -63,13 +64,13 @@ try:
                 for key in output:
                     print(key, ':',output[key])
             else:
-                print("Unconfined App, no policy file available")
+                print(_("Unconfined App, no policy file available."))
         elif args.copy_rules:
             path = '/var/lib/apparmor/profiles/click_{}'.format(proc_name)
             output = subprocess.check_output(['adb', 'pull', path]).decode('utf8')
             import pdb; pdb.set_trace()
-            print("Done: file copied")
+            print(_("Done: file copied"))
     else:
-        print("Error: App is not running")
+        print(_("Error: App is not running"))
 except Exception as e:
-    print("Error: {}".format(e))
+    print(_("Exception occurred - {}").format(e))

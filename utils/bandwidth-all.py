@@ -9,6 +9,7 @@ Authors:
   Po-Hsu Lin <po-hsu.lin@canonical.com>
 '''
 
+from gettext import gettext as _
 import re
 import subprocess
 import sys
@@ -24,14 +25,14 @@ try:
         # Get the statistic here
         output = subprocess.check_output(['adb', 'shell', 'cat', '/proc/net/dev', '|', 'sed', '-n', '1,2!p']).decode('utf8')
         data = re.finditer('(?P<iface>\w+):\s+(?P<rx>\d+)\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+(?P<tx>\d+)', output)
-        print(template.format("Interface", "RX Bytes", "TX Bytes"))
+        print(template.format(_("Interface"), _("RX Bytes"), _("TX Bytes")))
         for item in data:
             if item.group('iface') in devices:
                 print(template.format(item.group('iface'), item.group('rx'), item.group('tx')))
-        print("Update every {} seconds".format(delay))
+        print(_("Update every {} seconds").format(delay))
         sys.stdout.flush()
         time.sleep(delay)
 except KeyboardInterrupt:
-    print("Process Terminated by user")
+    print(_('Process Terminated by user'))
 except Exception as e:
-    print("Exception occurred - {}".format(e))
+    print(_("Exception occurred - {}").format(e))

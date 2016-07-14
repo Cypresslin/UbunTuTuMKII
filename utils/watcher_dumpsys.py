@@ -10,6 +10,7 @@ Authors:
   Po-Hsu Lin <po-hsu.lin@canonical.com>
 '''
 
+from gettext import gettext as _
 import argparse
 import re
 import subprocess
@@ -45,14 +46,14 @@ try:
                 for item in stat:
                     if cameras[item.group('id')] != item.group('stat'):
                         cameras[item.group('id')] = item.group('stat')
-                        camera_id = 'Camera #{}'.format(item.group('id'))
-                        common_tools.printer(app_name, proc_name, 'camera', camera_id, item.group('stat'))
+                        camera_id = _('Camera #{}').format(item.group('id'))
+                        common_tools.printer(app_name, proc_name, 'NO_FUNC', camera_id, item.group('stat'))
             time.sleep(1)
     else:
-        print(proc_name, "is not running")
+        print(_("{} is not running").format(proc_name))
 
 except KeyboardInterrupt:
-    print("Process Terminated by user")
+    print(_("Process Terminated by user"))
 except Exception as e:
-    print("Exception occurred - {}".format(e))
+    print(_("Exception occurred - {}").format(e))
 

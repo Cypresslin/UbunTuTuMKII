@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-18 00:03+0800\n"
+"POT-Creation-Date: 2016-07-19 16:49+0800\n"
 "PO-Revision-Date: 2016-07-12 22:45+0800\n"
 "Last-Translator: Po-Hsu Lin<po-hsu.lin@canonical.com>\n"
 "Language-Team: Chinese (simplified)\n"
@@ -15,6 +15,10 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: qml/AppLauncher.qml:36
+msgid "Ready"
+msgstr "就绪"
 
 #: qml/AppLauncher.qml:43 qml/AppLauncher.qml:80
 msgid "Current running apps:\n"
@@ -235,3 +239,79 @@ msgstr "工作完成！"
 #: utils/SetupEnv.sh:51
 msgid "Oops, please make sure adb works and device connected"
 msgstr "噢，请确定 adb 运作正常并已连接装置"
+
+#: ../utils/bandwidth-all.py:28
+msgid "Interface"
+msgstr "介面"
+
+#: ../utils/bandwidth-all.py:28
+msgid "RX Bytes"
+msgstr "已接收位元组"
+
+#: ../utils/bandwidth-all.py:28
+msgid "TX Bytes"
+msgstr "已传送位元组"
+
+#: ../utils/bandwidth-all.py:32
+msgid "Update every {} seconds"
+msgstr "每 {} 秒刷新一次"
+
+#: ../utils/bandwidth-all.py:36 ../utils/list_app.py:104
+#: ../utils/watcher_dumpsys.py:56 ../utils/watcher_pactl.py:56
+#: ../utils/watcher_strace.py:102
+msgid "Process Terminated by user"
+msgstr "进程遭使用者中止"
+
+#: ../utils/bandwidth-all.py:38 ../utils/check_config.py:76
+#: ../utils/list_app.py:106 ../utils/watcher_dumpsys.py:58
+#: ../utils/watcher_pactl.py:58 ../utils/watcher_strace.py:104
+msgid "Exception occurred - {}"
+msgstr "例外发生 - {}"
+
+#: ../utils/check_config.py:49
+msgid "Enforcement Mode"
+msgstr "Enforcement 模式"
+
+#: ../utils/check_config.py:51
+msgid "Complain Mode"
+msgstr "Complain 模式"
+
+#: ../utils/check_config.py:53
+msgid "Unconfined App"
+msgstr "未受限的应用程式"
+
+#: ../utils/check_config.py:56
+msgid "Yes"
+msgstr "是"
+
+#: ../utils/check_config.py:58
+msgid "No"
+msgstr "否"
+
+#: ../utils/check_config.py:67
+msgid "Unconfined App, no policy file available."
+msgstr "未受限的应用程式，无可用的策略配置档"
+
+#: ../utils/check_config.py:72
+msgid "Done: file copied"
+msgstr "完成：档案已复制"
+
+#: ../utils/check_config.py:74
+msgid "Error: App is not running"
+msgstr "错误：应用程式尚未啟动"
+
+#: ../utils/watcher_dumpsys.py:49
+msgid "Camera #{}"
+msgstr "相机 #{}"
+
+#: ../utils/watcher_dumpsys.py:53 ../utils/watcher_pactl.py:53
+msgid "{} is not running"
+msgstr "{} 尚未啟动"
+
+#: ../utils/watcher_pactl.py:51
+msgid "local recording"
+msgstr "本地录音"
+
+#: ../utils/watcher_strace.py:73
+msgid "CreateImportFromPeer"
+msgstr "建立汇入事件"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-18 00:12+0800\n"
+"POT-Creation-Date: 2016-07-19 16:49+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,10 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: qml/AppLauncher.qml:36
+msgid "Ready"
+msgstr ""
 
 #: qml/AppLauncher.qml:43 qml/AppLauncher.qml:80
 msgid "Current running apps:\n"
@@ -235,4 +239,80 @@ msgstr ""
 
 #: utils/SetupEnv.sh:51
 msgid "Oops, please make sure adb works and device connected"
+msgstr ""
+
+#: ../utils/bandwidth-all.py:28
+msgid "Interface"
+msgstr ""
+
+#: ../utils/bandwidth-all.py:28
+msgid "RX Bytes"
+msgstr ""
+
+#: ../utils/bandwidth-all.py:28
+msgid "TX Bytes"
+msgstr ""
+
+#: ../utils/bandwidth-all.py:32
+msgid "Update every {} seconds"
+msgstr ""
+
+#: ../utils/bandwidth-all.py:36 ../utils/list_app.py:104
+#: ../utils/watcher_dumpsys.py:56 ../utils/watcher_pactl.py:56
+#: ../utils/watcher_strace.py:102
+msgid "Process Terminated by user"
+msgstr ""
+
+#: ../utils/bandwidth-all.py:38 ../utils/check_config.py:76
+#: ../utils/list_app.py:106 ../utils/watcher_dumpsys.py:58
+#: ../utils/watcher_pactl.py:58 ../utils/watcher_strace.py:104
+msgid "Exception occurred - {}"
+msgstr ""
+
+#: ../utils/check_config.py:49
+msgid "Enforcement Mode"
+msgstr ""
+
+#: ../utils/check_config.py:51
+msgid "Complain Mode"
+msgstr ""
+
+#: ../utils/check_config.py:53
+msgid "Unconfined App"
+msgstr ""
+
+#: ../utils/check_config.py:56
+msgid "Yes"
+msgstr ""
+
+#: ../utils/check_config.py:58
+msgid "No"
+msgstr ""
+
+#: ../utils/check_config.py:67
+msgid "Unconfined App, no policy file available."
+msgstr ""
+
+#: ../utils/check_config.py:72
+msgid "Done: file copied"
+msgstr ""
+
+#: ../utils/check_config.py:74
+msgid "Error: App is not running"
+msgstr ""
+
+#: ../utils/watcher_dumpsys.py:49
+msgid "Camera #{}"
+msgstr ""
+
+#: ../utils/watcher_dumpsys.py:53 ../utils/watcher_pactl.py:53
+msgid "{} is not running"
+msgstr ""
+
+#: ../utils/watcher_pactl.py:51
+msgid "local recording"
+msgstr ""
+
+#: ../utils/watcher_strace.py:73
+msgid "CreateImportFromPeer"
 msgstr ""

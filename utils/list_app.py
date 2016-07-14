@@ -12,6 +12,7 @@ Authors:
   Po-Hsu Lin <po-hsu.lin@canonical.com>
 '''
 
+from gettext import gettext as _
 import argparse
 import json
 import subprocess
@@ -100,6 +101,6 @@ if args.watch:
             sys.stdout.flush()
             time.sleep(delay)
     except KeyboardInterrupt:
-        print("Process Terminated by user")
+        print(_("Process Terminated by user"))
     except Exception as e:
-        print("Exception occurred - {}".format(e))
+        print(_("Exception occurred - {}").format(e))
