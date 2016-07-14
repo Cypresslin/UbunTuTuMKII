@@ -37,8 +37,11 @@ if [ $? -eq 0 ]; then
     echo "Pushing tcpdump to the device..."
     adb push tcpdump /home/phablet/
 
-    echo "Pushing dumpsys to the device..."
-    adb push dumpsys /home/phablet/
+    device=`adb shell system-image-cli -i | grep 'device name' | awk -F': ' '{print$2}' | tr -d '\n\r'`
+    echo "Pushing dumpsys for $device to the device..."
+    filename="dumpsys-$device"
+    adb push $filename /home/phablet/dumpsys
+    adb shell chmod u+x /home/phablet/dumpsys
 
     echo "Job DONE!"    
 else
