@@ -8,6 +8,9 @@
 # Authors: 
 #   Po-Hsu Lin <po-hsu.lin@canonical.com>
 #
+export TEXTDOMAIN='ubuntutu'
+export TEXTDOMAINDIR='../share/locale/'
+
 function errorMsg(){
     echo "$@"
 }
@@ -19,9 +22,9 @@ do
     # Make sure the $dbPath exist
     if [ `adb shell "if [ -e $dbPath ]; then echo 1; fi"` ]; then
         adb shell sqlite3 $dbPath "delete from requests"
-        echo "Reset trust-store permission for $name"
+        echo $"Reset trust-store permission for $name"
     else
-        errorMsg "Error: $name Not found, typo?"
+        errorMsg $"Error: $name Not found, typo?"
     fi
 done
 

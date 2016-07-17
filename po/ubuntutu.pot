@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-13 01:12+0800\n"
+"POT-Creation-Date: 2016-07-18 00:12+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -183,4 +183,56 @@ msgstr ""
 
 #: qml/CheckConfig.qml:276
 msgid "No target App / Permission selected"
+msgstr ""
+
+#: utils/launch_app.sh:22
+msgid "$APP launched"
+msgstr ""
+
+#: utils/launch_app.sh:24
+msgid "Error: No app name was given"
+msgstr ""
+
+#: utils/reset_trust_store.sh:25
+msgid "Reset trust-store permission for $name"
+msgstr ""
+
+#: utils/reset_trust_store.sh:27
+msgid "Error: $name Not found, typo?"
+msgstr ""
+
+#: utils/SetupEnv.sh:22
+msgid "User: $username"
+msgstr ""
+
+#: utils/SetupEnv.sh:23
+msgid "Password: "
+msgstr ""
+
+#: utils/SetupEnv.sh:25
+msgid "Re-mount root file-system as writable..."
+msgstr ""
+
+#: utils/SetupEnv.sh:28
+msgid "Setting AppArmor audit level to 'all'..."
+msgstr ""
+
+#: utils/SetupEnv.sh:37
+msgid "Re-mount root file-system as read-only..."
+msgstr ""
+
+#: utils/SetupEnv.sh:40
+msgid "Pushing tcpdump to the device..."
+msgstr ""
+
+#: utils/SetupEnv.sh:44
+msgid "Pushing dumpsys for $device to the device..."
+msgstr ""
+
+#: utils/SetupEnv.sh:49
+msgid "Job DONE!"
+msgstr ""
+
+#: utils/SetupEnv.sh:51
+msgid "Oops, please make sure adb works and device connected"
 msgstr ""

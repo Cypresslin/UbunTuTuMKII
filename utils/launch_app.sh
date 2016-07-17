@@ -10,13 +10,16 @@
 #
 APP=$1
 
+export TEXTDOMAIN='ubuntutu'
+export TEXTDOMAINDIR='../share/locale/'
+
 function errorMsg(){
     echo "$@"
 }
 
 if [ ! -z $APP ]; then
     adb shell nohup ubuntu-app-launch $APP > /dev/null
-    echo "$APP launched"
+    echo $"$APP launched"
 else
-    errorMsg "Error: No app name was given"
+    errorMsg $"Error: No app name was given"
 fi

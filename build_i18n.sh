@@ -6,6 +6,14 @@ mkdir -p po
 
 echo "Updating po/ubuntutu.pot"
 xgettext -o po/ubuntutu.pot --qt --c++ --add-comments=TRANSLATORS --keyword=tr --keyword=tr:1,2 $QMLJS_FILES --from-code=UTF-8
+[ -f po/bash.pot ] && rm po/bash.pot
+bash_files=`ls ./utils/*.sh`
+for script in $bash_files
+do
+    bash --dump-po-strings $script >> po/bash.pot
+done
+msgcat po/ubuntutu.pot po/bash.pot > po/tmp.pot
+mv po/tmp.pot po/ubuntutu.pot
 
 TARGET_LANGS="zh_CN pl_PL"
 
