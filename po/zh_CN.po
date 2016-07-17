@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-13 01:10+0800\n"
+"POT-Creation-Date: 2016-07-18 00:03+0800\n"
 "PO-Revision-Date: 2016-07-12 22:45+0800\n"
 "Last-Translator: Po-Hsu Lin<po-hsu.lin@canonical.com>\n"
 "Language-Team: Chinese (simplified)\n"
@@ -183,3 +183,55 @@ msgstr "下列权限已重设"
 #: qml/CheckConfig.qml:276
 msgid "No target App / Permission selected"
 msgstr "没有选择欲重设的权限或没有目标应用程式"
+
+#: utils/launch_app.sh:22
+msgid "$APP launched"
+msgstr "应用程式 $APP 已啟动"
+
+#: utils/launch_app.sh:24
+msgid "Error: No app name was given"
+msgstr "错误：没有指定应用程式"
+
+#: utils/reset_trust_store.sh:25
+msgid "Reset trust-store permission for $name"
+msgstr "重设对 $name 的存取权限"
+
+#: utils/reset_trust_store.sh:27
+msgid "Error: $name Not found, typo?"
+msgstr "错误：没有找到 $name，打错字了吗？"
+
+#: utils/SetupEnv.sh:22
+msgid "User: $username"
+msgstr "使用者：$username"
+
+#: utils/SetupEnv.sh:23
+msgid "Password: "
+msgstr "密码："
+
+#: utils/SetupEnv.sh:25
+msgid "Re-mount root file-system as writable..."
+msgstr "将根档案系统重新挂载為可写入..."
+
+#: utils/SetupEnv.sh:28
+msgid "Setting AppArmor audit level to 'all'..."
+msgstr "将 AppArmor 纪录输出等级设定為'all'..."
+
+#: utils/SetupEnv.sh:37
+msgid "Re-mount root file-system as read-only..."
+msgstr "将根档案系统重新挂载為仅可读取..."
+
+#: utils/SetupEnv.sh:40
+msgid "Pushing tcpdump to the device..."
+msgstr "将 tcpdump 工具传送至装置上..."
+
+#: utils/SetupEnv.sh:44
+msgid "Pushing dumpsys for $device to the device..."
+msgstr "将供$device 用的 dumpsys 传送至装置上..."
+
+#: utils/SetupEnv.sh:49
+msgid "Job DONE!"
+msgstr "工作完成！"
+
+#: utils/SetupEnv.sh:51
+msgid "Oops, please make sure adb works and device connected"
+msgstr "噢，请确定 adb 运作正常并已连接装置"
