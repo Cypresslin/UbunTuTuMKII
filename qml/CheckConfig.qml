@@ -170,7 +170,13 @@ Item {
                 left: rulesLabel.right
             }
             onClicked: {
-                cmd_rules.start(applicationDirPath + '/utils/check_config.py', ['--copy-rules', '--proc', appProcLabel.text])
+                if (appProcLabel.text == "PROC NAME") {
+                    messageDialog.icon = StandardIcon.Critical
+                    messageDialog.text = i18n.tr("Error: App is not running")
+                    messageDialog.visible = true
+                } else {
+                    fileDialog.visible = true
+                }
             }
         }
         Process {
@@ -182,10 +188,6 @@ Item {
                     messageDialog.icon = StandardIcon.Critical
                     messageDialog.text = i18n.tr("Failed to copy file")
                     console.log(messageDialog.text)
-                } else {
-                    messageDialog.icon = StandardIcon.Information
-                    messageDialog.text = i18n.tr("File copied to: ") + applicationDirPath + '/'
-                    console.log(messageDialog.text)
                 }
                 messageDialog.visible = true
             }
@@ -194,6 +196,28 @@ Item {
         MessageDialog {
             id: messageDialog
         }
+        FileDialog {
+            id: fileDialog
+            title: i18n.tr("Please choose a directory for the log")
+            folder: shortcuts.documents
+            selectMultiple: false
+            selectFolder: true
+            onAccepted: {
+                var local_dir = fileDialog.folder.toString().replace(/file:\/\//, "")
+                cmd_rules.start(applicationDirPath + '/utils/check_config.py', ['--copy-rules', '--proc', appProcLabel.text, '--path', local_dir])
+                messageDialog.icon = StandardIcon.Information
+                messageDialog.title = i18n.tr("File copy")
+                messageDialog.text = i18n.tr("File copied to: ") + local_dir
+                messageDialog.visible = true
+            }
+            onRejected: {
+                messageDialog.title = i18n.tr("File copy")
+                messageDialog.icon = StandardIcon.Warning
+                messageDialog.text = i18n.tr("Operation cancelled")
+                messageDialog.visible = true
+            }
+    }
+
     }
     RowLayout {
         anchors {
