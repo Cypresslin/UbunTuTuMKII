@@ -40,7 +40,8 @@ try:
         events = {'AddressBook': ('updateContacts', 'removeContacts', 'createContact', 'contactsDetails'),
                   'Calendar': ('CreateObjects', 'RemoveObjects', 'ModifyObjects', 'GetObjectList'),
                   'location': ('StartPositionUpdates', 'StopPositionUpdates'),
-                  'connectivity': ('MobileDataEnabled', 'DataRoamingEnabled')}
+                  'connectivity': ('MobileDataEnabled', 'DataRoamingEnabled'),
+                  'HistoryService': ('QueryEvents', 'RemoveEvents')}
         # Target directories, assume user name will be phablet
         home = '/home/phablet/'
         dirs = ('Documents', 'Music', 'Pictures', 'Videos')
