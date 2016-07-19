@@ -11,6 +11,7 @@ Authors:
 
 import argparse
 import json
+import os
 import subprocess
 
 parser = argparse.ArgumentParser(description='Check basic config for an App')
@@ -24,6 +25,7 @@ group.add_argument('--check-policy', action='store_true',
 group.add_argument('--copy-rules', action='store_true',
                    help='Copy the AppArmor Final Rules for the app')
 parser.add_argument('--proc', help='Target app executable name', required=True)
+parser.add_argument('--path', help='Target directory for saving the log')
 args = parser.parse_args()
 
 
@@ -57,17 +59,17 @@ try:
                 print("No")
         elif args.check_policy:
             if confine_check(proc_name):
-                path = '/var/lib/apparmor/clicks/{}.json'.format(proc_name)
-                output = subprocess.check_output(['adb', 'shell', 'cat', path]).decode('utf8')
+                remote_path = '/var/lib/apparmor/clicks/{}.json'.format(proc_name)
+                output = subprocess.check_output(['adb', 'shell', 'cat', remote_path]).decode('utf8')
                 output = json.loads(output)
                 for key in output:
                     print(key, ':',output[key])
             else:
                 print("Unconfined App, no policy file available")
         elif args.copy_rules:
-            path = '/var/lib/apparmor/profiles/click_{}'.format(proc_name)
-            output = subprocess.check_output(['adb', 'pull', path]).decode('utf8')
-            import pdb; pdb.set_trace()
+            local_path = args.path if args.path else os.getcwd()
+            remote_path = '/var/lib/apparmor/profiles/click_{}'.format(proc_name)
+            output = subprocess.check_output(['adb', 'pull', remote_path, local_path]).decode('utf8')
             print("Done: file copied")
     else:
         print("Error: App is not running")

@@ -76,7 +76,7 @@ Item {
 
                 function toggle(){
                     if (tcpdumpSwitch.checked){
-                        if (appProcLabel.text == "APP NAME"){
+                        if (appProcLabel.text == "PROC NAME"){
                             messageDialog.icon = StandardIcon.Critical
                             messageDialog.text = i18n.tr("APP is not running")
                             messageDialog.visible = true
@@ -117,15 +117,33 @@ Item {
                     if (tcpfnText.text == ""){
                         messageDialog.icon = StandardIcon.Critical
                         messageDialog.text = i18n.tr("Please start TCP dump first")
+                        messageDialog.visible = true
                     } else {
-                        messageDialog.title = i18n.tr("File copy")
-                        messageDialog.icon = StandardIcon.Information
-                        messageDialog.text = i18n.tr("File copied to: ") + applicationDirPath + '/'
-                        cmd_tcpPull.start(applicationDirPath + '/utils/adb', ['pull', tcpfnText.text])
+                        fileDialog.visible = true
                     }
-                    messageDialog.visible = true;
                 }
             } 
+            FileDialog {
+                id: fileDialog
+                title: i18n.tr("Please choose a directory for the log")
+                folder: shortcuts.documents
+                selectMultiple: false
+                selectFolder: true
+                onAccepted: {
+                    var local_path = fileDialog.folder.toString().replace(/file:\/\//, "")
+                    cmd_tcpPull.start(applicationDirPath + '/utils/adb', ['pull', tcpfnText.text, local_path])
+                    messageDialog.title = i18n.tr("File copy")
+                    messageDialog.icon = StandardIcon.Information
+                    messageDialog.text = i18n.tr("File copied to: ") + local_path
+                    messageDialog.visible = true
+                }
+                onRejected: {
+                    messageDialog.title = i18n.tr("File copy")
+                    messageDialog.icon = StandardIcon.Warning
+                    messageDialog.text = i18n.tr("Operation cancelled")
+                    messageDialog.visible = true
+                }
+            }
             Text {
                 id: tcpfnText
                 text: ""
