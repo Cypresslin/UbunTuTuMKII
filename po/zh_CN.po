@@ -242,17 +242,17 @@ msgstr "噢，请确定 adb 运作正常并已连接装置"
 
 #: ../utils/bandwidth-all.py:28
 msgid "Interface"
-msgstr "介面"
+msgstr "接口"
 
-#: ../utils/bandwidth-all.py:28
+#: ../utils/bandwidth-all.py:32
 msgid "RX Bytes"
 msgstr "已接收位元组"
 
-#: ../utils/bandwidth-all.py:28
+#: ../utils/bandwidth-all.py:32
 msgid "TX Bytes"
 msgstr "已传送位元组"
 
-#: ../utils/bandwidth-all.py:32
+#: ../utils/bandwidth-all.py:36
 msgid "Update every {} seconds"
 msgstr "每 {} 秒刷新一次"
 
@@ -268,47 +268,47 @@ msgstr "进程遭使用者中止"
 msgid "Exception occurred - {}"
 msgstr "例外发生 - {}"
 
-#: ../utils/check_config.py:49
+#: ../utils/check_config.py:58
 msgid "Enforcement Mode"
 msgstr "Enforcement 模式"
 
-#: ../utils/check_config.py:51
+#: ../utils/check_config.py:60
 msgid "Complain Mode"
 msgstr "Complain 模式"
 
-#: ../utils/check_config.py:53
+#: ../utils/check_config.py:62
 msgid "Unconfined App"
 msgstr "未受限的应用程式"
 
-#: ../utils/check_config.py:56
+#: ../utils/check_config.py:65
 msgid "Yes"
 msgstr "是"
 
-#: ../utils/check_config.py:58
+#: ../utils/check_config.py:67
 msgid "No"
 msgstr "否"
 
-#: ../utils/check_config.py:67
+#: ../utils/check_config.py:76
 msgid "Unconfined App, no policy file available."
 msgstr "未受限的应用程式，无可用的策略配置档"
 
-#: ../utils/check_config.py:72
+#: ../utils/check_config.py:81
 msgid "Done: file copied"
-msgstr "完成：档案已复制"
+msgstr "已完成：档案已复制"
 
-#: ../utils/check_config.py:74
+#: ../utils/check_config.py:83
 msgid "Error: App is not running"
 msgstr "错误：应用程式尚未啟动"
 
-#: ../utils/watcher_dumpsys.py:49
+#: ../utils/watcher_dumpsys.py:52
 msgid "Camera #{}"
 msgstr "相机 #{}"
 
-#: ../utils/watcher_dumpsys.py:53 ../utils/watcher_pactl.py:53
+#: ../utils/watcher_dumpsys.py:56 ../utils/watcher_pactl.py:56
 msgid "{} is not running"
 msgstr "{} 尚未啟动"
 
-#: ../utils/watcher_pactl.py:51
+#: ../utils/watcher_pactl.py:54
 msgid "local recording"
 msgstr "本地录音"
 

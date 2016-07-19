@@ -7,10 +7,19 @@ Copyright 2016 Canonical Ltd.
 Authors:
   Po-Hsu Lin <po-hsu.lin@canonical.com>
 '''
-
 import datetime
+import gettext
+import os
 import subprocess
 import sys
+
+locale_path = os.getcwd()
+if locale_path.split('/')[-1] == 'utils':
+    locale_path += '/../share/locale'
+else:
+    locale_path += '/share/locale'
+gettext.bindtextdomain('ubuntutu', locale_path)
+gettext.textdomain('ubuntutu')
 
 def kill(proc):
     '''Function to kill all targeted process on Ubuntu Phone.

@@ -10,10 +10,13 @@ Authors:
 '''
 
 from gettext import gettext as _
+import gettext
 import re
 import subprocess
 import sys
 import time
+import common_tools
+
 
 delay = 2
 template = "{0:15}|{1:15}|{2:15}"

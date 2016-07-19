@@ -96,7 +96,7 @@ try:
                             common_tools.printer(app_name, proc_name, func, '~/{}/'.format(item), filename)
                             break
     else:
-        print(proc_name, "is not running")
+        print(_("{} is not running").format(proc_name))
 
 except KeyboardInterrupt:
     print(_("Process Terminated by user"))

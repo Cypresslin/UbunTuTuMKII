@@ -245,15 +245,15 @@ msgstr ""
 msgid "Interface"
 msgstr ""
 
-#: ../utils/bandwidth-all.py:28
+#: ../utils/bandwidth-all.py:32
 msgid "RX Bytes"
 msgstr ""
 
-#: ../utils/bandwidth-all.py:28
+#: ../utils/bandwidth-all.py:32
 msgid "TX Bytes"
 msgstr ""
 
-#: ../utils/bandwidth-all.py:32
+#: ../utils/bandwidth-all.py:36
 msgid "Update every {} seconds"
 msgstr ""
 
@@ -269,47 +269,47 @@ msgstr ""
 msgid "Exception occurred - {}"
 msgstr ""
 
-#: ../utils/check_config.py:49
+#: ../utils/check_config.py:58
 msgid "Enforcement Mode"
 msgstr ""
 
-#: ../utils/check_config.py:51
+#: ../utils/check_config.py:60
 msgid "Complain Mode"
 msgstr ""
 
-#: ../utils/check_config.py:53
+#: ../utils/check_config.py:62
 msgid "Unconfined App"
 msgstr ""
 
-#: ../utils/check_config.py:56
+#: ../utils/check_config.py:65
 msgid "Yes"
 msgstr ""
 
-#: ../utils/check_config.py:58
+#: ../utils/check_config.py:67
 msgid "No"
 msgstr ""
 
-#: ../utils/check_config.py:67
+#: ../utils/check_config.py:76
 msgid "Unconfined App, no policy file available."
 msgstr ""
 
-#: ../utils/check_config.py:72
+#: ../utils/check_config.py:81
 msgid "Done: file copied"
 msgstr ""
 
-#: ../utils/check_config.py:74
+#: ../utils/check_config.py:83
 msgid "Error: App is not running"
 msgstr ""
 
-#: ../utils/watcher_dumpsys.py:49
+#: ../utils/watcher_dumpsys.py:52
 msgid "Camera #{}"
 msgstr ""
 
-#: ../utils/watcher_dumpsys.py:53 ../utils/watcher_pactl.py:53
+#: ../utils/watcher_dumpsys.py:56 ../utils/watcher_pactl.py:56
 msgid "{} is not running"
 msgstr ""
 
-#: ../utils/watcher_pactl.py:51
+#: ../utils/watcher_pactl.py:54
 msgid "local recording"
 msgstr ""
 

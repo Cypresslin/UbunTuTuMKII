@@ -13,6 +13,7 @@ from gettext import gettext as _
 import argparse
 import json
 import subprocess
+import common_tools
 
 parser = argparse.ArgumentParser(description='Check basic config for an App')
 group = parser.add_mutually_exclusive_group(required=True)
