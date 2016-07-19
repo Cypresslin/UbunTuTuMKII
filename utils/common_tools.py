@@ -35,7 +35,7 @@ def kill(proc):
             subprocess.check_output(['adb', 'shell', 'sudo', 'kill', '-9', pid])
 
 
-def printer(app_name, proc_name, func_name, act_name, item):
+def printer(app_name, app_keyword, proc_name, func_name, act_name, item):
     '''
     Function to print required format output.
     '''
@@ -43,7 +43,7 @@ def printer(app_name, proc_name, func_name, act_name, item):
     print("{TIME} <{APP}>[{KEYWORD}][{PROC}]:[{FUNC}] {ACT} {PARM}".format(
         TIME=timestamp,
         APP=app_name,
-        KEYWORD="KEYWORD",
+        KEYWORD=app_keyword,
         PROC=proc_name,
         FUNC=func_name,
         ACT=act_name,

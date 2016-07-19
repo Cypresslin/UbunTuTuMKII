@@ -24,11 +24,13 @@ cameras = {}
 parser = argparse.ArgumentParser(description='dumpsys monitor')
 parser.add_argument('--proc', help='Target app executable name', required=True)
 parser.add_argument('--name', help='Target app human readable name')
+parser.add_argument('--keyword', help='Target app keyword')
 args = parser.parse_args()
 
 try:
     proc_name = args.proc
     app_name = args.name if args.name else 'APPNAME'
+    app_keyword = args.keyword if args.keyword else 'KEYWORD'
     prev_cmd = ['adb', 'shell', 'ubuntu-app-pid', proc_name]
     proc_id = subprocess.check_output(prev_cmd).decode('utf-8').rstrip()
     if proc_id.isnumeric():
@@ -51,6 +53,7 @@ try:
                         camera_id = _('Camera #{}').format(item.group('id'))
                         common_tools.printer(
                             app_name,
+                            app_keyword,
                             proc_name,
                             'NO_FUNC',
                             camera_id,

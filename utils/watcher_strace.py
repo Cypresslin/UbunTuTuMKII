@@ -28,11 +28,13 @@ connected = False
 parser = argparse.ArgumentParser(description='Sensitive event monitor with strace')
 parser.add_argument('--proc', help='Target app executable name', required=True)
 parser.add_argument('--name', help='Target app human readable name')
+parser.add_argument('--keyword', help='Target app keyword')
 args = parser.parse_args()
 
 try:
     proc_name = args.proc
     app_name = args.name if args.name else 'APPNAME'
+    app_keyword = args.keyword if args.keyword else 'KEYWORD'
     cmd = ['adb', 'shell', 'ubuntu-app-pid', proc_name]
     proc_id = subprocess.check_output(cmd).decode('utf-8').rstrip()
     if proc_id.isnumeric():
@@ -67,6 +69,7 @@ try:
                     if addr:
                         common_tools.printer(
                             app_name,
+                            app_keyword,
                             proc_name,
                             'connect',
                             addr.group("ip") + ':',
@@ -82,6 +85,7 @@ try:
                     source = ' '.join(words)
                     common_tools.printer(
                         app_name,
+                        app_keyword,
                         proc_name,
                         'sendmsg',
                         _('CreateImportFromPeer'),
@@ -96,6 +100,7 @@ try:
                                 if action in output:
                                     common_tools.printer(
                                         app_name,
+                                        app_keyword,
                                         proc_name,
                                         'sendmsg',
                                         action,
@@ -115,6 +120,7 @@ try:
                             root, filename = os.path.split(path)
                             common_tools.printer(
                                 app_name,
+                                app_keyword,
                                 proc_name,
                                 func,
                                 '~/{}/'.format(item),

@@ -21,12 +21,14 @@ import common_tools
 parser = argparse.ArgumentParser(description='Sensitive event monitor with pactl')
 parser.add_argument('--proc', help='Target app executable name', required=True)
 parser.add_argument('--name', help='Target app human readable name')
+parser.add_argument('--keyword', help='Target app keyword')
 args = parser.parse_args()
 
 
 try:
     proc_name = args.proc
     app_name = args.name if args.name else 'APPNAME'
+    app_keyword = args.keyword if args.keyword else 'KEYWORD'
     # It's no necessary to get PID here, but still check it
     cmd = ['adb', 'shell', 'ubuntu-app-pid', proc_name]
     proc_id = subprocess.check_output(cmd).decode('utf-8').rstrip()
@@ -53,6 +55,7 @@ try:
                         if stat in detail:
                             common_tools.printer(
                                 app_name,
+                                app_keyword,
                                 proc_name,
                                 'audio',
                                 _('local recording'),
