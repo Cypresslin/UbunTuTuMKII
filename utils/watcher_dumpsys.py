@@ -17,8 +17,9 @@ import subprocess
 import time
 import common_tools
 
-cmd = ['adb', 'shell', './dumpsys', 'media.camera', '|', 'grep', '-e', 'Device is', '-e', 'Camera [0-9]']
-pattern = 'Camera\s(?P<id>\d+).+\W+Device\sis\s(?P<stat>\w+)'
+cmd = ['adb', 'shell', './dumpsys', 'media.camera', '|', 'grep',
+       '-e', 'Device is', '-e', 'Camera [0-9]']
+pattern = r'Camera\s(?P<id>\d+).+\W+Device\sis\s(?P<stat>\w+)'
 cameras = {}
 parser = argparse.ArgumentParser(description='dumpsys monitor')
 parser.add_argument('--proc', help='Target app executable name', required=True)
@@ -28,7 +29,8 @@ args = parser.parse_args()
 try:
     proc_name = args.proc
     app_name = args.name if args.name else 'APPNAME'
-    proc_id = subprocess.check_output(['adb', 'shell', 'ubuntu-app-pid', proc_name]).decode('utf-8').rstrip()
+    prev_cmd = ['adb', 'shell', 'ubuntu-app-pid', proc_name]
+    proc_id = subprocess.check_output(prev_cmd).decode('utf-8').rstrip()
     if proc_id.isnumeric():
         # Try to kill dumpsys process first
         common_tools.kill('dumpsys')
@@ -37,7 +39,7 @@ try:
         stat = re.finditer(pattern, prev_result)
         for item in stat:
             cameras[item.group('id')] = item.group('stat')
-        
+
         while True:
             result = subprocess.check_output(cmd).decode('utf8')
             if prev_result != result:
@@ -47,7 +49,12 @@ try:
                     if cameras[item.group('id')] != item.group('stat'):
                         cameras[item.group('id')] = item.group('stat')
                         camera_id = _('Camera #{}').format(item.group('id'))
-                        common_tools.printer(app_name, proc_name, 'NO_FUNC', camera_id, item.group('stat'))
+                        common_tools.printer(
+                            app_name,
+                            proc_name,
+                            'NO_FUNC',
+                            camera_id,
+                            item.group('stat'))
             time.sleep(1)
     else:
         print(_("{} is not running").format(proc_name))

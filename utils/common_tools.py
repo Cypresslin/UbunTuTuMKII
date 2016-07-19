@@ -25,23 +25,27 @@ def kill(proc):
     '''Function to kill all targeted process on Ubuntu Phone.
        Using subprocess but not psutil, as we will need root privilege.
     '''
-    output = subprocess.check_output(['adb', 'shell', 'ps' ,'aux', '|', 'grep', proc, '|', 'grep', '-v', 'grep']).decode('utf8')
+    cmd = ['adb', 'shell', 'ps', 'aux', '|', 'grep', proc, '|',
+           'grep', '-v', 'grep']
+    output = subprocess.check_output(cmd).decode('utf8')
     if output:
         output = output.rstrip().split('\n')
         for line in output:
             pid = line.split()[1]
-            process = subprocess.check_output(['adb', 'shell', 'sudo', 'kill', '-9', pid])
+            subprocess.check_output(['adb', 'shell', 'sudo', 'kill', '-9', pid])
 
 
 def printer(app_name, proc_name, func_name, act_name, item):
-    timestamp='{:%m%d %H:%M:%S}'.format(datetime.datetime.now())
+    '''
+    Function to print required format output.
+    '''
+    timestamp = '{:%m%d %H:%M:%S}'.format(datetime.datetime.now())
     print("{TIME} <{APP}>[{KEYWORD}][{PROC}]:[{FUNC}] {ACT} {PARM}".format(
-          TIME = timestamp,
-          APP = app_name,
-          KEYWORD = "KEYWORD",
-          PROC = proc_name,
-          FUNC = func_name,
-          ACT = act_name,
-          PARM = item))
+        TIME=timestamp,
+        APP=app_name,
+        KEYWORD="KEYWORD",
+        PROC=proc_name,
+        FUNC=func_name,
+        ACT=act_name,
+        PARM=item))
     sys.stdout.flush()
-

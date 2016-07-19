@@ -10,7 +10,6 @@ Authors:
 '''
 
 from gettext import gettext as _
-import gettext
 import re
 import subprocess
 import sys
@@ -23,11 +22,14 @@ template = "{0:15}|{1:15}|{2:15}"
 try:
     while True:
         # Get the up-and-running device interfaces, mute lo here
-        output = subprocess.check_output(['adb', 'shell', 'ip', 'link', 'show', 'up', '|', 'sed', '/lo:/d']).decode('utf8')
-        devices = re.findall('\d+:\s(?P<interface>\w+)', output)
+        cmd = ['adb', 'shell', 'ip', 'link', 'show', 'up', '|', 'sed', '/lo:/d']
+        output = subprocess.check_output(cmd).decode('utf8')
+        devices = re.findall(r'\d+:\s(?P<interface>\w+)', output)
         # Get the statistic here
-        output = subprocess.check_output(['adb', 'shell', 'cat', '/proc/net/dev', '|', 'sed', '-n', '1,2!p']).decode('utf8')
-        data = re.finditer('(?P<iface>\w+):\s+(?P<rx>\d+)\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+(?P<tx>\d+)', output)
+        cmd = ['adb', 'shell', 'cat', '/proc/net/dev', '|', 'sed', '-n', '1,2!p']
+        output = subprocess.check_output(cmd).decode('utf8')
+        pattern = r'(?P<iface>\w+):\s+(?P<rx>\d+)\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+(?P<tx>\d+)'
+        data = re.finditer(pattern, output)
         print(template.format(_("Interface"), _("RX Bytes"), _("TX Bytes")))
         for item in data:
             if item.group('iface') in devices:
