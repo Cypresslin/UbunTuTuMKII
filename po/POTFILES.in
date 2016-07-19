@@ -1,0 +1,7 @@
+[encoding: UTF-8]
+utils/bandwidth-all.py
+utils/check_config.py
+utils/list_app.py
+utils/watcher_dumpsys.py
+utils/watcher_pactl.py
+utils/watcher_strace.py

@@ -12,11 +12,13 @@ Authors:
   Po-Hsu Lin <po-hsu.lin@canonical.com>
 '''
 
+from gettext import gettext as _
 import argparse
 import json
 import subprocess
 import sys
 import time
+import common_tools
 
 delay = 2
 parser = argparse.ArgumentParser(description='List / Check Apps')
@@ -28,78 +30,79 @@ group.add_argument('--list', action='store_true',
 
 args = parser.parse_args()
 
-if args.list:
-    app_dict = {}
+try:
+    if args.list:
+        app_dict = {}
 
-    # Get the exectuable Legacy app list (it's the title as well)
-    fn_legacy = subprocess.check_output(['adb', 'shell', 'grep', '-l', 'X-Ubuntu-Touch=true', '/usr/share/applications/*.desktop']).decode('utf8')
-    fn_legacy = fn_legacy.split()
-    # Exclude file that with "OnlyShowIn=Old" and "NoDisplay=true" key
-    excludes = subprocess.check_output(['adb', 'shell', 'grep', '-l', 'OnlyShowIn=Old', '/usr/share/applications/*']).decode('utf8')
-    excludes += subprocess.check_output(['adb', 'shell', 'grep', '-l', 'NoDisplay=true', '/usr/share/applications/*']).decode('utf8')
-    excludes = excludes.split()
-    for exc in excludes:
-        if exc in fn_legacy:
-            fn_legacy.remove(exc)
-    # Get info for legacy apps and put them into a dictionary
-    for fn in fn_legacy:
-        # Reformat the executable name
-        app_exec = fn.replace('/usr/share/applications/', '')
-        app_exec = app_exec.replace('.desktop', '')
-        # Get the name in Name[zh_CN] first, if not available, use the Name instead
-        app_name = subprocess.check_output(['adb', 'shell', 'grep', '^Name\[zh_CN\]=', fn]).decode('utf8').rstrip()
-        if app_name:
-            app = app_name.split('=')[1]
-        else:
-            app_name = subprocess.check_output(['adb', 'shell', 'grep', '^Name=', fn]).decode('utf8').rstrip()
-            app = app_name.split('=')[1]
-        info = subprocess.check_output(['adb', 'shell', 'dpkg', '-s', app_exec, '|', 'grep', '-e', 'Version', '-e', 'Maintainer']).decode('utf8').rstrip()
-        contact, ver = info.split('\r\n')
-        contact = contact.split(': ')[1]
-        ver = ver.split(': ')[1].split('+')[0]
-        app_dict[app] = {'ver': ver, 'info': contact, 'exec': app_exec}
+        # Get the exectuable Legacy app list (it's the title as well)
+        fn_legacy = subprocess.check_output(['adb', 'shell', 'grep', '-l', 'X-Ubuntu-Touch=true', '/usr/share/applications/*.desktop']).decode('utf8')
+        fn_legacy = fn_legacy.split()
+        # Exclude file that with "OnlyShowIn=Old" and "NoDisplay=true" key
+        excludes = subprocess.check_output(['adb', 'shell', 'grep', '-l', 'OnlyShowIn=Old', '/usr/share/applications/*']).decode('utf8')
+        excludes += subprocess.check_output(['adb', 'shell', 'grep', '-l', 'NoDisplay=true', '/usr/share/applications/*']).decode('utf8')
+        excludes = excludes.split()
+        for exc in excludes:
+            if exc in fn_legacy:
+                fn_legacy.remove(exc)
+        # Get info for legacy apps and put them into a dictionary
+        for fn in fn_legacy:
+            # Reformat the executable name
+            app_exec = fn.replace('/usr/share/applications/', '')
+            app_exec = app_exec.replace('.desktop', '')
+            # Get the name in Name[zh_CN] first, if not available, use the Name instead
+            app_name = subprocess.check_output(['adb', 'shell', 'grep', '^Name\[zh_CN\]=', fn]).decode('utf8').rstrip()
+            if app_name:
+                app = app_name.split('=')[1]
+            else:
+                app_name = subprocess.check_output(['adb', 'shell', 'grep', '^Name=', fn]).decode('utf8').rstrip()
+                app = app_name.split('=')[1]
+            info = subprocess.check_output(['adb', 'shell', 'dpkg', '-s', app_exec, '|', 'grep', '-e', 'Version', '-e', 'Maintainer']).decode('utf8').rstrip()
+            contact, ver = info.split('\r\n')
+            contact = contact.split(': ')[1]
+            ver = ver.split(': ')[1].split('+')[0]
+            app_dict[app] = {'ver': ver, 'info': contact, 'exec': app_exec}
 
-    # Get the complete info of Click app from manifest
-    data = subprocess.check_output(['adb', 'shell', 'click', 'list', '--manifest']).decode('utf8')
-    data = json.loads(data)
-    # Get the exectuable Click app list
-    fn_click = subprocess.check_output(['adb', 'shell', 'grep', '-l', 'X-Ubuntu-Touch=true', '/home/phablet/.local/share/applications/*.desktop']).decode('utf8')
-    fn_click = fn_click.split()
+        # Get the complete info of Click app from manifest
+        data = subprocess.check_output(['adb', 'shell', 'click', 'list', '--manifest']).decode('utf8')
+        data = json.loads(data)
+        # Get the exectuable Click app list
+        fn_click = subprocess.check_output(['adb', 'shell', 'grep', '-l', 'X-Ubuntu-Touch=true', '/home/phablet/.local/share/applications/*.desktop']).decode('utf8')
+        fn_click = fn_click.split()
 
-    # Put app name into a dictionary for later query
-    app_click = {}
-    for fn in fn_click:
-        # Reformat the executable name
-        app_exec = fn.replace('/home/phablet/.local/share/applications/', '')
-        app_exec = app_exec.replace('.desktop', '')
-        # Get the name in Name[zh_CN] first, if not available, use the Name instead
-        app_name = subprocess.check_output(['adb', 'shell', 'grep', '^Name\[zh_CN\]=', fn]).decode('utf8').rstrip()
-        if app_name:
-            app = app_name.split('=')[1]
-        else:
-            app_name = subprocess.check_output(['adb', 'shell', 'grep', '^Name=', fn]).decode('utf8').rstrip()
-            app = app_name.split('=')[1]
-        app_click[app_exec] = app
-    # Reorganize information and combine with current dictionary
-    for item in data:
-        if any(item['name'] in app for app in app_click):
-            for i, executable in enumerate(app_click):
-                if item['name'] in executable:
-                    app_dict[app_click[executable]] = {'ver': item['version'], 'info': item['maintainer'], 'exec': executable}
-                    break
+        # Put app name into a dictionary for later query
+        app_click = {}
+        for fn in fn_click:
+            # Reformat the executable name
+            app_exec = fn.replace('/home/phablet/.local/share/applications/', '')
+            app_exec = app_exec.replace('.desktop', '')
+            # Get the name in Name[zh_CN] first, if not available, use the Name instead
+            app_name = subprocess.check_output(['adb', 'shell', 'grep', '^Name\[zh_CN\]=', fn]).decode('utf8').rstrip()
+            if app_name:
+                app = app_name.split('=')[1]
+            else:
+                app_name = subprocess.check_output(['adb', 'shell', 'grep', '^Name=', fn]).decode('utf8').rstrip()
+                app = app_name.split('=')[1]
+            app_click[app_exec] = app
+        # Reorganize information and combine with current dictionary
+        for item in data:
+            if any(item['name'] in app for app in app_click):
+                for i, executable in enumerate(app_click):
+                    if item['name'] in executable:
+                        app_dict[app_click[executable]] = {'ver': item['version'], 'info': item['maintainer'], 'exec': executable}
+                        break
 
-    # Return app titles and version here for QML combobox
-    for app in app_dict:
-        print('{}, ({}), {}, {}'.format(app, app_dict[app]['ver'], app_dict[app]['exec'], app_dict[app]['info']))
+        # Return app titles and version here for QML combobox
+        for app in app_dict:
+            print('{}, ({}), {}, {}'.format(app, app_dict[app]['ver'], app_dict[app]['exec'], app_dict[app]['info']))
 
-if args.watch:
-    try:
+    if args.watch:
         while True:
             print(subprocess.check_output(['adb', 'shell', 'ubuntu-app-list']).decode('utf-8'))
             # Flush the stdout, invoke the onReadyRead event in QML
             sys.stdout.flush()
             time.sleep(delay)
-    except KeyboardInterrupt:
-        print("Process Terminated by user")
-    except Exception as e:
-        print("Exception occurred - {}".format(e))
+
+except KeyboardInterrupt:
+    print(_("Process Terminated by user"))
+except Exception as e:
+    print(_("Exception occurred - {}").format(e))

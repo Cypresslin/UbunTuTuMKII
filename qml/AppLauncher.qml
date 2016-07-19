@@ -33,7 +33,7 @@ Item {
                 console.log(name, vers, '-', exec)
                 app_list.append( {'text': name + vers, 'name': name, 'proc': exec, 'maintainer': info} )
             }
-            hintText.text = "Ready"
+            hintText.text = i18n.tr("Ready")
             hintText.color = "lime"
         }
     }

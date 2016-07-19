@@ -16,6 +16,7 @@ Authors:
   Po-Hsu Lin <po-hsu.lin@canonical.com>
 '''
 
+from gettext import gettext as _
 import argparse
 import os
 import re
@@ -69,7 +70,7 @@ try:
                     # Filter message by parsing meaningful strings
                     words = re.findall('[a-z][a-z]{2,}', source, re.I)
                     source = ' '.join(words)
-                    common_tools.printer(app_name, proc_name, 'sendmsg', 'CreateImportFromPeer', source)
+                    common_tools.printer(app_name, proc_name, 'sendmsg', _('CreateImportFromPeer'), source)
                 # For other events
                 elif 'sendmsg' in output:
                     # Search for the corresponding event
@@ -95,9 +96,9 @@ try:
                             common_tools.printer(app_name, proc_name, func, '~/{}/'.format(item), filename)
                             break
     else:
-        print(proc_name, "is not running")
+        print(_("{} is not running").format(proc_name))
 
 except KeyboardInterrupt:
-    print("Process Terminated by user")
+    print(_("Process Terminated by user"))
 except Exception as e:
-    print("Exception occurred - {}".format(e))
+    print(_("Exception occurred - {}").format(e))
