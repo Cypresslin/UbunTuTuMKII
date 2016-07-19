@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-19 16:49+0800\n"
+"POT-Creation-Date: 2016-07-20 03:22+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,48 +17,48 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: qml/AppLauncher.qml:36
+#: qml/AppLauncher.qml:37
 msgid "Ready"
 msgstr ""
 
-#: qml/AppLauncher.qml:43 qml/AppLauncher.qml:80
+#: qml/AppLauncher.qml:44 qml/AppLauncher.qml:81
 msgid "Current running apps:\n"
 msgstr ""
 
-#: qml/AppLauncher.qml:70
+#: qml/AppLauncher.qml:71
 msgid "App Launcher"
 msgstr ""
 
 #. TRANSLATORS: Please leave the ubuntu-app-watch command untranslated
-#: qml/AppLauncher.qml:96
+#: qml/AppLauncher.qml:97
 msgid "Status change from ubuntu-app-watch:\n"
 msgstr ""
 
-#: qml/AppLauncher.qml:103
+#: qml/AppLauncher.qml:104
 msgid "Maintainers: "
 msgstr ""
 
-#: qml/AppLauncher.qml:108 qml/AppLauncher.qml:130
+#: qml/AppLauncher.qml:109 qml/AppLauncher.qml:131
 msgid "(Please select an App...)"
 msgstr ""
 
-#: qml/AppLauncher.qml:146 qml/CheckConfig.qml:256
+#: qml/AppLauncher.qml:147 qml/CheckConfig.qml:280
 msgid "Start!"
 msgstr ""
 
-#: qml/AppLauncher.qml:151
+#: qml/AppLauncher.qml:152
 msgid "App monitoring started"
 msgstr ""
 
-#: qml/AppLauncher.qml:157
+#: qml/AppLauncher.qml:159
 msgid "Please select an app to start"
 msgstr ""
 
-#: qml/AppLauncher.qml:175
+#: qml/AppLauncher.qml:177
 msgid "Status: "
 msgstr ""
 
-#: qml/AppLauncher.qml:184
+#: qml/AppLauncher.qml:186
 msgid "Loading app list..."
 msgstr ""
 
@@ -75,10 +75,14 @@ msgid "Target: "
 msgstr ""
 
 #: qml/main.qml:67
+msgid "Keyword: "
+msgstr ""
+
+#: qml/main.qml:76
 msgid "Process:"
 msgstr ""
 
-#: qml/main.qml:95
+#: qml/main.qml:104
 msgid "Not Connected"
 msgstr ""
 
@@ -106,15 +110,24 @@ msgstr ""
 msgid "Please start TCP dump first"
 msgstr ""
 
-#: qml/LogWatcher.qml:121 qml/CheckConfig.qml:180
+#: qml/LogWatcher.qml:128 qml/CheckConfig.qml:201
+msgid "Please choose a directory for the log"
+msgstr ""
+
+#: qml/LogWatcher.qml:135 qml/LogWatcher.qml:141 qml/CheckConfig.qml:186
+#: qml/CheckConfig.qml:209 qml/CheckConfig.qml:214
 msgid "File copy"
 msgstr ""
 
-#: qml/LogWatcher.qml:123 qml/CheckConfig.qml:187
+#: qml/LogWatcher.qml:137 qml/CheckConfig.qml:210
 msgid "File copied to: "
 msgstr ""
 
-#: qml/LogWatcher.qml:139
+#: qml/LogWatcher.qml:143 qml/CheckConfig.qml:216
+msgid "Operation cancelled"
+msgstr ""
+
+#: qml/LogWatcher.qml:157
 msgid "Event Monitor"
 msgstr ""
 
@@ -157,35 +170,39 @@ msgstr ""
 msgid "Copy"
 msgstr ""
 
-#: qml/CheckConfig.qml:183
+#: qml/CheckConfig.qml:175 ../utils/check_config.py:81
+msgid "Error: App is not running"
+msgstr ""
+
+#: qml/CheckConfig.qml:189
 msgid "Failed to copy file"
 msgstr ""
 
-#: qml/CheckConfig.qml:205
+#: qml/CheckConfig.qml:229
 msgid "Reset Permissions:"
 msgstr ""
 
-#: qml/CheckConfig.qml:214
+#: qml/CheckConfig.qml:238
 msgid "CameraService"
 msgstr ""
 
-#: qml/CheckConfig.qml:229
+#: qml/CheckConfig.qml:253
 msgid "PulseAudio"
 msgstr ""
 
-#: qml/CheckConfig.qml:244
+#: qml/CheckConfig.qml:268
 msgid "UbuntuLocationService"
 msgstr ""
 
-#: qml/CheckConfig.qml:269
+#: qml/CheckConfig.qml:293
 msgid "Reset Permissions"
 msgstr ""
 
-#: qml/CheckConfig.qml:272
+#: qml/CheckConfig.qml:296
 msgid "Permission restted for: "
 msgstr ""
 
-#: qml/CheckConfig.qml:276
+#: qml/CheckConfig.qml:300
 msgid "No target App / Permission selected"
 msgstr ""
 
@@ -241,78 +258,75 @@ msgstr ""
 msgid "Oops, please make sure adb works and device connected"
 msgstr ""
 
-#: ../utils/bandwidth-all.py:28
+#: ../utils/bandwidth-all.py:33
 msgid "Interface"
 msgstr ""
 
-#: ../utils/bandwidth-all.py:32
+#: ../utils/bandwidth-all.py:33
 msgid "RX Bytes"
 msgstr ""
 
-#: ../utils/bandwidth-all.py:32
+#: ../utils/bandwidth-all.py:33
 msgid "TX Bytes"
 msgstr ""
 
-#: ../utils/bandwidth-all.py:36
+#: ../utils/bandwidth-all.py:37
 msgid "Update every {} seconds"
 msgstr ""
 
-#: ../utils/bandwidth-all.py:36 ../utils/list_app.py:104
-#: ../utils/watcher_dumpsys.py:56 ../utils/watcher_pactl.py:56
-#: ../utils/watcher_strace.py:102
+#: ../utils/bandwidth-all.py:41 ../utils/list_app.py:131
+#: ../utils/watcher_dumpsys.py:66 ../utils/watcher_pactl.py:67
+#: ../utils/watcher_strace.py:133
 msgid "Process Terminated by user"
 msgstr ""
 
-#: ../utils/bandwidth-all.py:38 ../utils/check_config.py:76
-#: ../utils/list_app.py:106 ../utils/watcher_dumpsys.py:58
-#: ../utils/watcher_pactl.py:58 ../utils/watcher_strace.py:104
+#: ../utils/bandwidth-all.py:43 ../utils/check_config.py:83
+#: ../utils/list_app.py:133 ../utils/watcher_dumpsys.py:68
+#: ../utils/watcher_pactl.py:69 ../utils/watcher_strace.py:135
 msgid "Exception occurred - {}"
 msgstr ""
 
-#: ../utils/check_config.py:58
+#: ../utils/check_config.py:54
 msgid "Enforcement Mode"
 msgstr ""
 
-#: ../utils/check_config.py:60
+#: ../utils/check_config.py:56
 msgid "Complain Mode"
 msgstr ""
 
-#: ../utils/check_config.py:62
+#: ../utils/check_config.py:58
 msgid "Unconfined App"
 msgstr ""
 
-#: ../utils/check_config.py:65
+#: ../utils/check_config.py:61
 msgid "Yes"
 msgstr ""
 
-#: ../utils/check_config.py:67
+#: ../utils/check_config.py:63
 msgid "No"
 msgstr ""
 
-#: ../utils/check_config.py:76
+#: ../utils/check_config.py:73
 msgid "Unconfined App, no policy file available."
 msgstr ""
 
-#: ../utils/check_config.py:81
+#: ../utils/check_config.py:79
 msgid "Done: file copied"
 msgstr ""
 
-#: ../utils/check_config.py:83
-msgid "Error: App is not running"
-msgstr ""
-
-#: ../utils/watcher_dumpsys.py:52
+#: ../utils/watcher_dumpsys.py:53
 msgid "Camera #{}"
 msgstr ""
 
-#: ../utils/watcher_dumpsys.py:56 ../utils/watcher_pactl.py:56
+#: ../utils/watcher_dumpsys.py:63 ../utils/watcher_pactl.py:64
+#: ../utils/watcher_strace.py:130
 msgid "{} is not running"
 msgstr ""
 
-#: ../utils/watcher_pactl.py:54
+#: ../utils/watcher_pactl.py:61
 msgid "local recording"
 msgstr ""
 
-#: ../utils/watcher_strace.py:73
+#: ../utils/watcher_strace.py:91
 msgid "CreateImportFromPeer"
 msgstr ""

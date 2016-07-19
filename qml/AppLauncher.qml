@@ -27,11 +27,12 @@ Item {
             var items = readAll().toString().replace(/\n$/, "").split('\n')
             for (var i in items) {
                 var name = items[i].split(',')[0].trim()
-                var vers = items[i].split(',')[1].trim()
-                var exec = items[i].split(',')[2].trim()
-                var info = items[i].split(',')[3].trim()
+                var keyw = items[i].split(',')[1].trim()
+                var vers = items[i].split(',')[2].trim()
+                var exec = items[i].split(',')[3].trim()
+                var info = items[i].split(',')[4].trim()
                 console.log(name, vers, '-', exec)
-                app_list.append( {'text': name + vers, 'name': name, 'proc': exec, 'maintainer': info} )
+                app_list.append( {'text': name + vers, 'keyword': keyw, 'name': name, 'proc': exec, 'maintainer': info} )
             }
             hintText.text = i18n.tr("Ready")
             hintText.color = "lime"
@@ -127,7 +128,7 @@ Item {
                 model: ListModel{
                     id: app_list
                     Component.onCompleted: {
-                        append({'text': i18n.tr("(Please select an App...)"), 'name': '', 'proc': '', 'maintainer': i18n.tr("(Please select an App...)")})
+                        append({'text': i18n.tr("(Please select an App...)"), 'keyword': '', 'name': '', 'proc': '', 'maintainer': i18n.tr("(Please select an App...)")})
                     }
                 }
                 onCurrentIndexChanged: {
@@ -151,6 +152,7 @@ Item {
                         hintText.text = i18n.tr("App monitoring started")
                         hintText.color = ""
                         appNameLabel.text = app_list.get(app_cb.currentIndex).name
+                        appKeyLabel.text = app_list.get(app_cb.currentIndex).keyword
                         appProcLabel.text = app_list.get(app_cb.currentIndex).proc
                     } else {
                         console.log("Please select an app to start")

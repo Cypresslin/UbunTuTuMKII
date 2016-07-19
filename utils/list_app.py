@@ -56,6 +56,12 @@ try:
                     else:
                         regex = 'Name=(?P<app_name>.+)'
                     app_name = re.search(regex, item).group('app_name').strip('\r')
+                    # Get the keyword in English, if not available, use the Name instead
+                    if 'Keywords=' in item:
+                        regex = r'Keywords=(?P<app_keyword>\w+)'
+                    else:
+                        regex = 'Name=(?P<app_keyword>.+)'
+                    app_keyword = re.search(regex, item).group('app_keyword').strip('\r')
                     # Get the version, maintainer information here from dpkg
                     cmd = ['adb', 'shell', 'dpkg', '-s', app_exec, '|', 'grep',
                            '-e', 'Version', '-e', 'Maintainer']
@@ -63,7 +69,10 @@ try:
                     contact, ver = info.split('\r\n')
                     contact = contact.split(': ')[1]
                     ver = ver.split(': ')[1].split('+')[0]
-                    app_dict[app_name] = {'ver': ver, 'info': contact, 'exec': app_exec}
+                    app_dict[app_name] = {'keyword': app_keyword,
+                                          'ver': ver,
+                                          'info': contact,
+                                          'exec': app_exec}
 
         # Get the complete info of Click app from manifest
         cmd = ['adb', 'shell', 'click', 'list', '--manifest']
@@ -86,10 +95,17 @@ try:
                 else:
                     regex = 'Name=(?P<app_name>.+)'
                 app_name = re.search(regex, item).group('app_name').strip('\r')
+                # Get the keyword in English, if not available, use the Name instead
+                if 'Keywords=' in item:
+                    regex = r'Keywords=(?P<app_keyword>\w+)'
+                else:
+                    regex = 'Name=(?P<app_keyword>.+)'
+                app_keyword = re.search(regex, item).group('app_keyword').strip('\r')
                 # Get the version, maintainer information here from manifest
                 for entry in data:
                     if entry['name'] in app_exec:
                         app_dict[app_name] = {
+                            'keyword': app_keyword,
                             'ver': entry['version'],
                             'info': entry['maintainer'],
                             'exec': app_exec}
@@ -97,8 +113,9 @@ try:
 
         # Return app titles and version here for QML combobox
         for app in app_dict:
-            print('{}, ({}), {}, {}'.format(
+            print('{}, {}, ({}), {}, {}'.format(
                 app,
+                app_dict[app]['keyword'],
                 app_dict[app]['ver'],
                 app_dict[app]['exec'],
                 app_dict[app]['info']))

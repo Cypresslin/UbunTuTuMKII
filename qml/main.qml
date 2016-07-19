@@ -64,6 +64,15 @@ Window {
                 font.pointSize: 9
             }
             Text {
+                text: i18n.tr("Keyword: ")
+                font.pointSize: 9
+            }
+            Text {
+                id: appKeyLabel
+                text: "KEYWORD"
+                font.pointSize: 9
+            }
+            Text {
                 text: i18n.tr("Process:")
                 font.pointSize: 9
             }

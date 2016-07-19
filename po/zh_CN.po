@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-19 16:49+0800\n"
+"POT-Creation-Date: 2016-07-20 03:22+0800\n"
 "PO-Revision-Date: 2016-07-12 22:45+0800\n"
 "Last-Translator: Po-Hsu Lin<po-hsu.lin@canonical.com>\n"
 "Language-Team: Chinese (simplified)\n"
@@ -16,48 +16,48 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: qml/AppLauncher.qml:36
+#: qml/AppLauncher.qml:37
 msgid "Ready"
 msgstr "就绪"
 
-#: qml/AppLauncher.qml:43 qml/AppLauncher.qml:80
+#: qml/AppLauncher.qml:44 qml/AppLauncher.qml:81
 msgid "Current running apps:\n"
 msgstr "当前执行中的应用程式：\n"
 
-#: qml/AppLauncher.qml:70
+#: qml/AppLauncher.qml:71
 msgid "App Launcher"
 msgstr "应用程式啟动器"
 
 #. TRANSLATORS: Please leave the ubuntu-app-watch command untranslated
-#: qml/AppLauncher.qml:96
+#: qml/AppLauncher.qml:97
 msgid "Status change from ubuntu-app-watch:\n"
 msgstr "来自 ubuntu-app-watch 指令的状态更新：\n"
 
-#: qml/AppLauncher.qml:103
+#: qml/AppLauncher.qml:104
 msgid "Maintainers: "
 msgstr "应用程式维护人员："
 
-#: qml/AppLauncher.qml:108 qml/AppLauncher.qml:130
+#: qml/AppLauncher.qml:109 qml/AppLauncher.qml:131
 msgid "(Please select an App...)"
 msgstr "(请选择一个应用程式...)"
 
-#: qml/AppLauncher.qml:146 qml/CheckConfig.qml:256
+#: qml/AppLauncher.qml:147 qml/CheckConfig.qml:280
 msgid "Start!"
 msgstr "开始！"
 
-#: qml/AppLauncher.qml:151
+#: qml/AppLauncher.qml:152
 msgid "App monitoring started"
 msgstr "已开始监测应用程式"
 
-#: qml/AppLauncher.qml:157
+#: qml/AppLauncher.qml:159
 msgid "Please select an app to start"
 msgstr "请选择一个应用程式来开始监测"
 
-#: qml/AppLauncher.qml:175
+#: qml/AppLauncher.qml:177
 msgid "Status: "
 msgstr "状态："
 
-#: qml/AppLauncher.qml:184
+#: qml/AppLauncher.qml:186
 msgid "Loading app list..."
 msgstr "读取应用程式列表..."
 
@@ -74,10 +74,14 @@ msgid "Target: "
 msgstr "监测目标："
 
 #: qml/main.qml:67
+msgid "Keyword: "
+msgstr "关键字："
+
+#: qml/main.qml:76
 msgid "Process:"
 msgstr "进程名称："
 
-#: qml/main.qml:95
+#: qml/main.qml:104
 msgid "Not Connected"
 msgstr "手机未连线"
 
@@ -105,15 +109,24 @@ msgstr "储存纪录档"
 msgid "Please start TCP dump first"
 msgstr "请先啟动 TCP dump"
 
-#: qml/LogWatcher.qml:121 qml/CheckConfig.qml:180
+#: qml/LogWatcher.qml:128 qml/CheckConfig.qml:201
+msgid "Please choose a directory for the log"
+msgstr "请选择要储存纪录档的资料夹"
+
+#: qml/LogWatcher.qml:135 qml/LogWatcher.qml:141 qml/CheckConfig.qml:186
+#: qml/CheckConfig.qml:209 qml/CheckConfig.qml:214
 msgid "File copy"
 msgstr "档案复制"
 
-#: qml/LogWatcher.qml:123 qml/CheckConfig.qml:187
+#: qml/LogWatcher.qml:137 qml/CheckConfig.qml:210
 msgid "File copied to: "
 msgstr "档案复制到："
 
-#: qml/LogWatcher.qml:139
+#: qml/LogWatcher.qml:143 qml/CheckConfig.qml:216
+msgid "Operation cancelled"
+msgstr "操作已取消"
+
+#: qml/LogWatcher.qml:157
 msgid "Event Monitor"
 msgstr "事件监视器"
 
@@ -156,35 +169,39 @@ msgstr "AppArmor 最终规则："
 msgid "Copy"
 msgstr "复制"
 
-#: qml/CheckConfig.qml:183
+#: qml/CheckConfig.qml:175 ../utils/check_config.py:81
+msgid "Error: App is not running"
+msgstr "错误：应用程式尚未啟动"
+
+#: qml/CheckConfig.qml:189
 msgid "Failed to copy file"
 msgstr "档案复制失败"
 
-#: qml/CheckConfig.qml:205
+#: qml/CheckConfig.qml:229
 msgid "Reset Permissions:"
 msgstr "重设存许权："
 
-#: qml/CheckConfig.qml:214
+#: qml/CheckConfig.qml:238
 msgid "CameraService"
 msgstr "相机服务(CameraService)"
 
-#: qml/CheckConfig.qml:229
+#: qml/CheckConfig.qml:253
 msgid "PulseAudio"
 msgstr "录音服务(PulseAudio)"
 
-#: qml/CheckConfig.qml:244
+#: qml/CheckConfig.qml:268
 msgid "UbuntuLocationService"
 msgstr "位置服务(UbuntuLocationService)"
 
-#: qml/CheckConfig.qml:269
+#: qml/CheckConfig.qml:293
 msgid "Reset Permissions"
 msgstr "重设权限"
 
-#: qml/CheckConfig.qml:272
+#: qml/CheckConfig.qml:296
 msgid "Permission restted for: "
 msgstr "下列权限已重设"
 
-#: qml/CheckConfig.qml:276
+#: qml/CheckConfig.qml:300
 msgid "No target App / Permission selected"
 msgstr "没有选择欲重设的权限或没有目标应用程式"
 
@@ -240,78 +257,75 @@ msgstr "工作完成！"
 msgid "Oops, please make sure adb works and device connected"
 msgstr "噢，请确定 adb 运作正常并已连接装置"
 
-#: ../utils/bandwidth-all.py:28
+#: ../utils/bandwidth-all.py:33
 msgid "Interface"
 msgstr "接口"
 
-#: ../utils/bandwidth-all.py:32
+#: ../utils/bandwidth-all.py:33
 msgid "RX Bytes"
 msgstr "已接收位元组"
 
-#: ../utils/bandwidth-all.py:32
+#: ../utils/bandwidth-all.py:33
 msgid "TX Bytes"
 msgstr "已传送位元组"
 
-#: ../utils/bandwidth-all.py:36
+#: ../utils/bandwidth-all.py:37
 msgid "Update every {} seconds"
 msgstr "每 {} 秒刷新一次"
 
-#: ../utils/bandwidth-all.py:36 ../utils/list_app.py:104
-#: ../utils/watcher_dumpsys.py:56 ../utils/watcher_pactl.py:56
-#: ../utils/watcher_strace.py:102
+#: ../utils/bandwidth-all.py:41 ../utils/list_app.py:131
+#: ../utils/watcher_dumpsys.py:66 ../utils/watcher_pactl.py:67
+#: ../utils/watcher_strace.py:133
 msgid "Process Terminated by user"
 msgstr "进程遭使用者中止"
 
-#: ../utils/bandwidth-all.py:38 ../utils/check_config.py:76
-#: ../utils/list_app.py:106 ../utils/watcher_dumpsys.py:58
-#: ../utils/watcher_pactl.py:58 ../utils/watcher_strace.py:104
+#: ../utils/bandwidth-all.py:43 ../utils/check_config.py:83
+#: ../utils/list_app.py:133 ../utils/watcher_dumpsys.py:68
+#: ../utils/watcher_pactl.py:69 ../utils/watcher_strace.py:135
 msgid "Exception occurred - {}"
 msgstr "例外发生 - {}"
 
-#: ../utils/check_config.py:58
+#: ../utils/check_config.py:54
 msgid "Enforcement Mode"
 msgstr "Enforcement 模式"
 
-#: ../utils/check_config.py:60
+#: ../utils/check_config.py:56
 msgid "Complain Mode"
 msgstr "Complain 模式"
 
-#: ../utils/check_config.py:62
+#: ../utils/check_config.py:58
 msgid "Unconfined App"
 msgstr "未受限的应用程式"
 
-#: ../utils/check_config.py:65
+#: ../utils/check_config.py:61
 msgid "Yes"
 msgstr "是"
 
-#: ../utils/check_config.py:67
+#: ../utils/check_config.py:63
 msgid "No"
 msgstr "否"
 
-#: ../utils/check_config.py:76
+#: ../utils/check_config.py:73
 msgid "Unconfined App, no policy file available."
 msgstr "未受限的应用程式，无可用的策略配置档"
 
-#: ../utils/check_config.py:81
+#: ../utils/check_config.py:79
 msgid "Done: file copied"
 msgstr "已完成：档案已复制"
 
-#: ../utils/check_config.py:83
-msgid "Error: App is not running"
-msgstr "错误：应用程式尚未啟动"
-
-#: ../utils/watcher_dumpsys.py:52
+#: ../utils/watcher_dumpsys.py:53
 msgid "Camera #{}"
 msgstr "相机 #{}"
 
-#: ../utils/watcher_dumpsys.py:56 ../utils/watcher_pactl.py:56
+#: ../utils/watcher_dumpsys.py:63 ../utils/watcher_pactl.py:64
+#: ../utils/watcher_strace.py:130
 msgid "{} is not running"
 msgstr "{} 尚未啟动"
 
-#: ../utils/watcher_pactl.py:54
+#: ../utils/watcher_pactl.py:61
 msgid "local recording"
 msgstr "本地录音"
 
-#: ../utils/watcher_strace.py:73
+#: ../utils/watcher_strace.py:91
 msgid "CreateImportFromPeer"
 msgstr "建立汇入事件"
