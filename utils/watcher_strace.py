@@ -33,7 +33,8 @@ args = parser.parse_args()
 try:
     proc_name = args.proc
     app_name = args.name if args.name else 'APPNAME'
-    proc_id = subprocess.check_output(['adb', 'shell', 'ubuntu-app-pid', proc_name]).decode('utf-8').rstrip()
+    cmd = ['adb', 'shell', 'ubuntu-app-pid', proc_name]
+    proc_id = subprocess.check_output(cmd).decode('utf-8').rstrip()
     if proc_id.isnumeric():
         # Supressor list, get rid of error action, and local ip for connect event
         supressor = [' = -1 E', '127.0.0.1', '127.0.1.1']
@@ -49,7 +50,9 @@ try:
         # Kill the old strace task first, targeted on internet watcher process
         common_tools.kill('strace')
         # focus on sendmsg action
-        process = subprocess.Popen(['adb', 'shell', 'sudo', 'strace', '-f', '-s', '4096','-e', 'trace=sendmsg,connect,open,unlink', '-p', proc_id], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        cmd = ['adb', 'shell', 'sudo', 'strace', '-f', '-s', '4096', '-e',
+               'trace=sendmsg,connect,open,unlink', '-p', proc_id]
+        process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         while True:
             output = process.stdout.readline().decode('utf-8').strip()
             if output == '' and process.poll() is not None:
@@ -59,18 +62,30 @@ try:
                 # For internet watcher
                 if not connected and 'connect' in output:
                     # Extract port and ip
-                    addr = re.search('sin_port\=htons\((?P<port>\d+)\).*sin_addr=inet_addr\("(?P<ip>.*)"', output)
+                    pattern = r'sin_port\=htons\((?P<port>\d+)\).*sin_addr=inet_addr\("(?P<ip>.*)"'
+                    addr = re.search(pattern, output)
                     if addr:
-                        common_tools.printer(app_name, proc_name, 'connect', addr.group("ip") + ':', addr.group("port"))
+                        common_tools.printer(
+                            app_name,
+                            proc_name,
+                            'connect',
+                            addr.group("ip") + ':',
+                            addr.group("port"))
                         connected = True
-                # For file import events (it's also a sendmsg event, put it here as we need to parse the output
+                # For file import events
+                # (it's also a sendmsg event, put it here as we need to parse the output)
                 elif 'CreateImportFromPeer' in output:
                     pattern = '{}(.+)\"'.format(proc_name)
                     source = re.search(pattern, output).group(1)
                     # Filter message by parsing meaningful strings
                     words = re.findall('[a-z][a-z]{2,}', source, re.I)
                     source = ' '.join(words)
-                    common_tools.printer(app_name, proc_name, 'sendmsg', _('CreateImportFromPeer'), source)
+                    common_tools.printer(
+                        app_name,
+                        proc_name,
+                        'sendmsg',
+                        _('CreateImportFromPeer'),
+                        source)
                 # For other events
                 elif 'sendmsg' in output:
                     # Search for the corresponding event
@@ -79,21 +94,31 @@ try:
                             # Search for corresponding actions
                             for action in events[item]:
                                 if action in output:
-                                    common_tools.printer(app_name, proc_name, 'sendmsg', action, item)
+                                    common_tools.printer(
+                                        app_name,
+                                        proc_name,
+                                        'sendmsg',
+                                        action,
+                                        item)
                                     break
                 # For file access, put it here to ignore sendmsg
-                elif home in output :
+                elif home in output:
                     for item in dirs:
                         if item in output:
                             # Get function name here
-                            func = re.search('\s(\w+)\(', output).group(1)
+                            func = re.search(r'\s(\w+)\(', output).group(1)
                             # Get the filename here
                             pattern = '{}(.+)\"'.format(item)
                             path = re.search(pattern, output).group(0)
                             # Remove the trailing '/', so we can get the name if it's a dir
                             path = path.rstrip('/')
                             root, filename = os.path.split(path)
-                            common_tools.printer(app_name, proc_name, func, '~/{}/'.format(item), filename)
+                            common_tools.printer(
+                                app_name,
+                                proc_name,
+                                func,
+                                '~/{}/'.format(item),
+                                filename)
                             break
     else:
         print(_("{} is not running").format(proc_name))
