@@ -112,7 +112,7 @@ try:
                         break
 
         # Return app titles and version here for QML combobox
-        for app in app_dict:
+        for app in sorted(app_dict):
             print('{}, {}, ({}), {}, {}'.format(
                 app,
                 app_dict[app]['keyword'],
