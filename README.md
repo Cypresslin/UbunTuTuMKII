@@ -38,16 +38,15 @@ Also, you might need to install WireShark to analyze the tcpdump output.
 * `utils/convert` is a statically linked ImageMagick version 6.8.9-9 built with `png` delegate 
 * `utils/adb` is ADB version 1.0.32 from Android SDK platform tool 
 * `utils/nethogs` is nethogs version 0.8.1 built with ARM architecture, please push it to your device in advance.
-* `utils/tcpdump` is tcpdump version 4.7.4 built with ATM architecture, please push it to your device in advcane.
+* `utils/tcpdump` is tcpdump version 4.7.4 built with ARM architecture, please push it to your device in advcane.
 
 ## Notes
 
-The name of the executed app will be stored in /tmp/.app_name.
-Whenever you need to call certain app name, just read that file
-
-Before using all of its feature, you will need to allow your device to run command as root, without asking passwords.
+Before using all of its feature, you will need to allow your device to run command as root, without asking passwords, the SetupEnv.sh script can help you with that.
 
 ## License 
+
+Copyright @ 2016 Gavin Lin <<gavin.lin@canonical.com>>
 
 Copyright © 2016 Maciej Kisielewski <<maciej.kisielewski@canonical.com>>
 
@@ -55,4 +54,4 @@ Copyright © 2016 Ping-Hsun (penk) Chen <<penkia@gmail.com>>
 
 Copyright © 2016 Po-Hsu Lin <<po-hsu.lin@canonical.com>>
 
-The source code is, unless otherwise specified, distributed under the terms of the MIT License.
+The source code is distributed under the terms of the GNU GPLv3.
