@@ -8,6 +8,8 @@ This is for:
 4. MobileNetwork switch
 5. Internet connections
 6. File access to personal data
+7. Call history
+8. Music file being set to play
 
 This file is part of the Ubuntu Phone pre-loaded app monitoring tool.
 
@@ -53,7 +55,7 @@ try:
         common_tools.kill('strace')
         # focus on sendmsg action
         cmd = ['adb', 'shell', 'sudo', 'strace', '-f', '-s', '4096', '-e',
-               'trace=sendmsg,connect,open,unlink', '-p', proc_id]
+               'trace=sendmsg,connect,open,unlink,write', '-p', proc_id]
         process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         while True:
             output = process.stdout.readline().decode('utf-8').strip()
@@ -61,6 +63,10 @@ try:
                 break
             # apply supressor
             elif not any(mute in output for mute in supressor):
+                # Filter out all write event without setMedia()
+                if '] write(' in output:
+                    if 'setMedia()' not in output:
+                        continue
                 # For internet watcher
                 if not connected and 'connect' in output:
                     # Extract port and ip
@@ -107,6 +113,20 @@ try:
                                         item)
                                     break
                 # For file access, put it here to ignore sendmsg
+                # For music file being set to play
+                elif 'setMedia()' in output:
+                    for item in output.split('\\"'):
+                        if 'file' in item:
+                            filename = item
+                            break
+                    common_tools.printer(
+                            app_name,
+                            app_keyword,
+                            proc_name,
+                            'write',
+                            'Set to play: ',
+                            filename.replace('file://', ''))
+                # For other personal data
                 elif home in output:
                     for item in dirs:
                         if item in output:
