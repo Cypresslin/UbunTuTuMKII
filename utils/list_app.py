@@ -41,8 +41,9 @@ try:
         output = output.split('[Desktop Entry]')
         # Exclude app that contains 'OnlyShowIn=Old' and 'NoDisplay=true'
         exclude = ['OnlyShowIn=Old', 'NoDisplay=true']
-        # Include app that contains 'X-Ubuntu-Touch=true'
+        tmp_dict = {}
         for item in output:
+            # Include app that contains 'X-Ubuntu-Touch=true'
             if 'X-Ubuntu-Touch=true' in item:
                 if all(pattern not in item for pattern in exclude):
                     # Get info for legacy apps and put them into a dictionary
@@ -50,36 +51,43 @@ try:
                     fn = re.search(regex, item).group('file_name')
                     app_exec = fn.replace('/usr/share/applications/', '')
                     app_exec = app_exec.replace('.desktop', '')
-                    # Get the name in Name[zh_CN] first, if not available, use the Name instead
+                    # Get the name in Name[zh_CN] first, if not available, use 'Name' instead
                     if 'Name[zh_CN]=' in item:
                         regex = r'Name\[zh_CN\]=(?P<app_name>.+)'
                     else:
                         regex = 'Name=(?P<app_name>.+)'
                     app_name = re.search(regex, item).group('app_name').strip('\r')
-                    # Get the keyword in English, if not available, use the Name instead
+                    tmp_dict[app_exec] = app_name
+                    # Get the keyword in English, if not available, use 'Name' instead
                     if 'Keywords=' in item:
                         regex = r'Keywords=(?P<app_keyword>\w+)'
                     else:
                         regex = 'Name=(?P<app_keyword>.+)'
                     app_keyword = re.search(regex, item).group('app_keyword').strip('\r')
-                    # Get the version, maintainer information here from dpkg
-                    cmd = ['adb', 'shell', 'dpkg', '-s', app_exec, '|', 'grep',
-                           '-e', 'Version', '-e', 'Maintainer']
-                    info = subprocess.check_output(cmd).decode('utf8').rstrip()
-                    contact, ver = info.split('\r\n')
-                    contact = contact.split(': ')[1]
-                    ver = ver.split(': ')[1].split('+')[0]
                     app_dict[app_name] = {'keyword': app_keyword,
-                                          'ver': ver,
-                                          'info': contact,
                                           'exec': app_exec}
+        # Get the version, maintainer information here from dpkg, not doing this in the loop
+        # to avoid extensive adb calls
+        cmd = ['adb', 'shell', 'dpkg', '-s'] + list(tmp_dict) + ['|', 'grep',
+               '-e', 'Package', '-e', 'Version', '-e', 'Maintainer']
+        info = subprocess.check_output(cmd).decode('utf8').rstrip()
+        info = info.split('\r\n')
+        for item in tmp_dict:
+            # Assume the version and maintainer info will be printed in the desired order
+            idx = info.index('Package: ' + item)
+            contact = info[idx + 1].split(': ')[1]
+            ver = info[idx + 2].split(': ')[1].split('+')[0]
+            # Keys are the pretty name of the app, assign the new keys instead of new key sets
+            app_dict[tmp_dict[item]]['ver'] = ver
+            app_dict[tmp_dict[item]]['info'] = contact
 
         # Get the complete info of Click app from manifest
         cmd = ['adb', 'shell', 'click', 'list', '--manifest']
         data = subprocess.check_output(cmd).decode('utf8')
         data = json.loads(data)
         # Get all Click app desktop file content
-        cmd = ['adb', 'shell', 'grep', '', '/home/phablet/.local/share/applications/*.desktop']
+        cmd = ['adb', 'shell', 'grep', '',
+               '/home/phablet/.local/share/applications/*.desktop']
         output = subprocess.check_output(cmd).decode('utf8')
         output = output.split('[Desktop Entry]')
         # Include app that contains 'X-Ubuntu-Touch=true'
