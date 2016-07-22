@@ -28,7 +28,8 @@ group.add_argument('--watch', action='store_true',
                    help='watch current running apps')
 group.add_argument('--list', action='store_true',
                    help='list all available click apps')
-
+parser.add_argument('--save', action='store_true',
+                    help='Save output for --list to /tmp/app_list')
 args = parser.parse_args()
 
 
@@ -68,8 +69,8 @@ try:
                                           'exec': app_exec}
         # Get the version, maintainer information here from dpkg, not doing this in the loop
         # to avoid extensive adb calls
-        cmd = ['adb', 'shell', 'dpkg', '-s'] + list(tmp_dict) + ['|', 'grep',
-               '-e', 'Package', '-e', 'Version', '-e', 'Maintainer']
+        cmd = ['adb', 'shell', 'dpkg', '-s'] + list(tmp_dict)
+        cmd += ['|', 'grep', '-e', 'Package', '-e', 'Version', '-e', 'Maintainer']
         info = subprocess.check_output(cmd).decode('utf8').rstrip()
         info = info.split('\r\n')
         for item in tmp_dict:
@@ -120,13 +121,23 @@ try:
                         break
 
         # Return app titles and version here for QML combobox
+        output = ''
         for app in sorted(app_dict):
-            print('{}, {}, ({}), {}, {}'.format(
+            output += ('{}, {}, ({}), {}, {}\n'.format(
                 app,
                 app_dict[app]['keyword'],
                 app_dict[app]['ver'],
                 app_dict[app]['exec'],
                 app_dict[app]['info']))
+        output = output.rstrip()
+        if args.save:
+            with open('/tmp/app_list', 'w') as f:
+                f.write(output)
+        else:
+            print(output)
+        # Print is needed here to allow the onReadyRead in qml to continue
+        print('Done')
+        sys.stdout.flush()
 
     if args.watch:
         while True:
