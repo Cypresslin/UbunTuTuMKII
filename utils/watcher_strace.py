@@ -126,23 +126,26 @@ try:
                             'write',
                             'Set to play: ',
                             filename.replace('file://', ''))
-                # For other personal data
+                # For other personal data access events
                 elif home in output:
                     for item in dirs:
                         if item in output:
                             # Get function name here
                             func = re.search(r'\s(\w+)\(', output).group(1)
                             # Get the filename here
-                            pattern = '{}(.+)\"'.format(item)
-                            path = re.search(pattern, output).group(0)
+                            pattern = '{}(?P<path>.+)\"'.format(item)
+                            path = re.search(pattern, output).group('path')
                             # Remove the trailing '/', so we can get the name if it's a dir
                             path = path.rstrip('/')
                             root, filename = os.path.split(path)
+                            # Get the file access action here
+                            pattern = '",\s(?P<action>\w+)'
+                            act = re.search(pattern, output).group('action')
                             common_tools.printer(
                                 app_name,
                                 app_keyword,
                                 proc_name,
-                                func,
+                                '{}({})'.format(func, act),
                                 '~/{}/'.format(item),
                                 filename)
                             break
