@@ -15,6 +15,7 @@ Authors:
 from gettext import gettext as _
 import argparse
 import json
+import os
 import re
 import subprocess
 import sys
@@ -22,6 +23,7 @@ import time
 import common_tools
 
 delay = 2
+fn_list = '/tmp/app_list'
 parser = argparse.ArgumentParser(description='List / Check Apps')
 group = parser.add_mutually_exclusive_group(required=True)
 group.add_argument('--watch', action='store_true',
@@ -36,6 +38,9 @@ args = parser.parse_args()
 try:
     if args.list:
         app_dict = {}
+        # Remove /tmp/app_list with subprocess, to mute file not found error
+        if args.save and os.path.isfile(fn_list):
+            os.remove(fn_list)
         # Get all Legacy app desktop file content
         cmd = ['adb', 'shell', 'grep', '', '/usr/share/applications/*.desktop']
         output = subprocess.check_output(cmd).decode('utf8')
@@ -131,7 +136,7 @@ try:
                 app_dict[app]['info']))
         output = output.rstrip()
         if args.save:
-            with open('/tmp/app_list', 'w') as f:
+            with open(fn_list, 'w') as f:
                 f.write(output)
         else:
             print(output)

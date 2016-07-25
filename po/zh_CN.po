@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-20 03:22+0800\n"
+"POT-Creation-Date: 2016-07-25 14:07+0800\n"
 "PO-Revision-Date: 2016-07-12 22:45+0800\n"
 "Last-Translator: Po-Hsu Lin<po-hsu.lin@canonical.com>\n"
 "Language-Team: Chinese (simplified)\n"
@@ -16,48 +16,48 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: qml/AppLauncher.qml:37
+#: qml/AppLauncher.qml:38
 msgid "Ready"
 msgstr "就绪"
 
-#: qml/AppLauncher.qml:44 qml/AppLauncher.qml:81
+#: qml/AppLauncher.qml:47 qml/AppLauncher.qml:84
 msgid "Current running apps:\n"
 msgstr "当前执行中的应用程式：\n"
 
-#: qml/AppLauncher.qml:71
+#: qml/AppLauncher.qml:74
 msgid "App Launcher"
 msgstr "应用程式啟动器"
 
 #. TRANSLATORS: Please leave the ubuntu-app-watch command untranslated
-#: qml/AppLauncher.qml:97
+#: qml/AppLauncher.qml:100
 msgid "Status change from ubuntu-app-watch:\n"
 msgstr "来自 ubuntu-app-watch 指令的状态更新：\n"
 
-#: qml/AppLauncher.qml:104
+#: qml/AppLauncher.qml:107
 msgid "Maintainers: "
 msgstr "应用程式维护人员："
 
-#: qml/AppLauncher.qml:109 qml/AppLauncher.qml:131
+#: qml/AppLauncher.qml:112 qml/AppLauncher.qml:134
 msgid "(Please select an App...)"
 msgstr "(请选择一个应用程式...)"
 
-#: qml/AppLauncher.qml:147 qml/CheckConfig.qml:280
+#: qml/AppLauncher.qml:151 qml/CheckConfig.qml:280
 msgid "Start!"
 msgstr "开始！"
 
-#: qml/AppLauncher.qml:152
+#: qml/AppLauncher.qml:156
 msgid "App monitoring started"
 msgstr "已开始监测应用程式"
 
-#: qml/AppLauncher.qml:159
+#: qml/AppLauncher.qml:163
 msgid "Please select an app to start"
 msgstr "请选择一个应用程式来开始监测"
 
-#: qml/AppLauncher.qml:177
+#: qml/AppLauncher.qml:181
 msgid "Status: "
 msgstr "状态："
 
-#: qml/AppLauncher.qml:186
+#: qml/AppLauncher.qml:190
 msgid "Loading app list..."
 msgstr "读取应用程式列表..."
 
@@ -88,6 +88,10 @@ msgstr "手机未连线"
 #: qml/NetTraffic.qml:45
 msgid "Overall Bandwidth Monitor"
 msgstr "总体网路流量监视器"
+
+#: qml/Startup.qml:39
+msgid "Initializating..."
+msgstr "初始化中..."
 
 #: qml/Info.qml:35
 msgid "System Information"
@@ -273,14 +277,14 @@ msgstr "已传送位元组"
 msgid "Update every {} seconds"
 msgstr "每 {} 秒刷新一次"
 
-#: ../utils/bandwidth-all.py:41 ../utils/list_app.py:131
+#: ../utils/bandwidth-all.py:41 ../utils/list_app.py:155
 #: ../utils/watcher_dumpsys.py:66 ../utils/watcher_pactl.py:67
 #: ../utils/watcher_strace.py:133
 msgid "Process Terminated by user"
 msgstr "进程遭使用者中止"
 
 #: ../utils/bandwidth-all.py:43 ../utils/check_config.py:83
-#: ../utils/list_app.py:133 ../utils/watcher_dumpsys.py:68
+#: ../utils/list_app.py:157 ../utils/watcher_dumpsys.py:68
 #: ../utils/watcher_pactl.py:69 ../utils/watcher_strace.py:135
 msgid "Exception occurred - {}"
 msgstr "例外发生 - {}"

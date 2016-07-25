@@ -16,7 +16,6 @@ import Ubuntu.Components 1.3
 Item {
     Component.onCompleted: {
         console.log('App launcher loaded')
-        readfile()
         cmd_list.start(applicationDirPath + '/utils/list_app.py', ['--watch'])
         cmd_watch.start(applicationDirPath + '/utils/adb', ['shell', 'ubuntu-app-watch'])
     }
@@ -133,6 +132,7 @@ Item {
                     id: app_list
                     Component.onCompleted: {
                         append({'text': i18n.tr("(Please select an App...)"), 'keyword': '', 'name': '', 'proc': '', 'maintainer': i18n.tr("(Please select an App...)")})
+                        readfile()
                     }
                 }
                 onCurrentIndexChanged: {
