@@ -29,7 +29,7 @@ Window {
                 connectIndicator.color = Colour.palette['Green']
                 connectText.text = i18n.tr("Connected")
             }
-            loader.source = "AppLauncher.qml";
+            loader.source = "Startup.qml";
         }
     }
 

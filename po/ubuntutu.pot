@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-20 03:22+0800\n"
+"POT-Creation-Date: 2016-07-25 14:07+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,48 +17,48 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: qml/AppLauncher.qml:37
+#: qml/AppLauncher.qml:38
 msgid "Ready"
 msgstr ""
 
-#: qml/AppLauncher.qml:44 qml/AppLauncher.qml:81
+#: qml/AppLauncher.qml:47 qml/AppLauncher.qml:84
 msgid "Current running apps:\n"
 msgstr ""
 
-#: qml/AppLauncher.qml:71
+#: qml/AppLauncher.qml:74
 msgid "App Launcher"
 msgstr ""
 
 #. TRANSLATORS: Please leave the ubuntu-app-watch command untranslated
-#: qml/AppLauncher.qml:97
+#: qml/AppLauncher.qml:100
 msgid "Status change from ubuntu-app-watch:\n"
 msgstr ""
 
-#: qml/AppLauncher.qml:104
+#: qml/AppLauncher.qml:107
 msgid "Maintainers: "
 msgstr ""
 
-#: qml/AppLauncher.qml:109 qml/AppLauncher.qml:131
+#: qml/AppLauncher.qml:112 qml/AppLauncher.qml:134
 msgid "(Please select an App...)"
 msgstr ""
 
-#: qml/AppLauncher.qml:147 qml/CheckConfig.qml:280
+#: qml/AppLauncher.qml:151 qml/CheckConfig.qml:280
 msgid "Start!"
 msgstr ""
 
-#: qml/AppLauncher.qml:152
+#: qml/AppLauncher.qml:156
 msgid "App monitoring started"
 msgstr ""
 
-#: qml/AppLauncher.qml:159
+#: qml/AppLauncher.qml:163
 msgid "Please select an app to start"
 msgstr ""
 
-#: qml/AppLauncher.qml:177
+#: qml/AppLauncher.qml:181
 msgid "Status: "
 msgstr ""
 
-#: qml/AppLauncher.qml:186
+#: qml/AppLauncher.qml:190
 msgid "Loading app list..."
 msgstr ""
 
@@ -88,6 +88,10 @@ msgstr ""
 
 #: qml/NetTraffic.qml:45
 msgid "Overall Bandwidth Monitor"
+msgstr ""
+
+#: qml/Startup.qml:39
+msgid "Initializating..."
 msgstr ""
 
 #: qml/Info.qml:35
@@ -274,14 +278,14 @@ msgstr ""
 msgid "Update every {} seconds"
 msgstr ""
 
-#: ../utils/bandwidth-all.py:41 ../utils/list_app.py:131
+#: ../utils/bandwidth-all.py:41 ../utils/list_app.py:155
 #: ../utils/watcher_dumpsys.py:66 ../utils/watcher_pactl.py:67
 #: ../utils/watcher_strace.py:133
 msgid "Process Terminated by user"
 msgstr ""
 
 #: ../utils/bandwidth-all.py:43 ../utils/check_config.py:83
-#: ../utils/list_app.py:133 ../utils/watcher_dumpsys.py:68
+#: ../utils/list_app.py:157 ../utils/watcher_dumpsys.py:68
 #: ../utils/watcher_pactl.py:69 ../utils/watcher_strace.py:135
 msgid "Exception occurred - {}"
 msgstr ""
