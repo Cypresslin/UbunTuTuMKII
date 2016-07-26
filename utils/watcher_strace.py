@@ -68,7 +68,7 @@ try:
                     if 'setMedia()' not in output:
                         continue
                 # For internet watcher
-                if not connected and 'connect' in output:
+                if not connected and '] connect(' in output:
                     # Extract port and ip
                     pattern = r'sin_port\=htons\((?P<port>\d+)\).*sin_addr=inet_addr\("(?P<ip>.*)"'
                     addr = re.search(pattern, output)
