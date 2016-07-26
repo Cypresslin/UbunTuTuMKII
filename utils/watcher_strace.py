@@ -68,7 +68,7 @@ try:
                     if 'setMedia()' not in output:
                         continue
                 # For internet watcher
-                if not connected and 'connect' in output:
+                if not connected and '] connect(' in output:
                     # Extract port and ip
                     pattern = r'sin_port\=htons\((?P<port>\d+)\).*sin_addr=inet_addr\("(?P<ip>.*)"'
                     addr = re.search(pattern, output)
@@ -118,14 +118,14 @@ try:
                     for item in output.split('\\"'):
                         if 'file' in item:
                             filename = item
+                            common_tools.printer(
+                                app_name,
+                                app_keyword,
+                                proc_name,
+                                'write',
+                                'Set to play: ',
+                                filename.replace('file://', ''))
                             break
-                    common_tools.printer(
-                            app_name,
-                            app_keyword,
-                            proc_name,
-                            'write',
-                            'Set to play: ',
-                            filename.replace('file://', ''))
                 # For other personal data access events
                 elif home in output:
                     for item in dirs:
