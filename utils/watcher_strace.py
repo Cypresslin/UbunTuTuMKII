@@ -118,14 +118,14 @@ try:
                     for item in output.split('\\"'):
                         if 'file' in item:
                             filename = item
+                            common_tools.printer(
+                                app_name,
+                                app_keyword,
+                                proc_name,
+                                'write',
+                                'Set to play: ',
+                                filename.replace('file://', ''))
                             break
-                    common_tools.printer(
-                            app_name,
-                            app_keyword,
-                            proc_name,
-                            'write',
-                            'Set to play: ',
-                            filename.replace('file://', ''))
                 # For other personal data access events
                 elif home in output:
                     for item in dirs:
