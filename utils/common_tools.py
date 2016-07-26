@@ -12,6 +12,7 @@ import gettext
 import os
 import subprocess
 import sys
+import printer_dict as i18n
 
 locale_path = os.getcwd()
 if locale_path.split('/')[-1] == 'utils':
@@ -20,6 +21,8 @@ else:
     locale_path += '/share/locale'
 gettext.bindtextdomain('ubuntutu', locale_path)
 gettext.textdomain('ubuntutu')
+
+
 
 def kill(proc):
     '''Function to kill all targeted process on Ubuntu Phone.
@@ -46,6 +49,6 @@ def printer(app_name, app_keyword, proc_name, func_name, act_name, item):
         KEYWORD=app_keyword,
         PROC=proc_name,
         FUNC=func_name,
-        ACT=act_name,
+        ACT=i18n.table[act_name] if act_name in i18n.table else act_name,
         PARM=item))
     sys.stdout.flush()
