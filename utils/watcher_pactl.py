@@ -37,7 +37,7 @@ try:
         # Kill the old pactl subscribe task first
         common_tools.kill('pactl')
         # Track the audio recording event with pactl
-        cmd = ['adb', 'shell', 'pactl', 'subscribe', '|', 'grep', 'source #']
+        cmd = ['adb', 'shell', 'pactl', 'subscribe', '|', 'grep', 'source-output #']
         process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         while True:
             output = process.stdout.readline().decode('utf-8').strip()
