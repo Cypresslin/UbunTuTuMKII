@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-27 17:53+0800\n"
+"POT-Creation-Date: 2016-07-27 19:00+0800\n"
 "PO-Revision-Date: 2016-07-12 22:45+0800\n"
 "Last-Translator: Po-Hsu Lin<po-hsu.lin@canonical.com>\n"
 "Language-Team: Chinese (simplified)\n"
@@ -61,78 +61,9 @@ msgstr "状态："
 msgid "Loading app list..."
 msgstr "读取应用程式列表..."
 
-#: qml/main.qml:18
-msgid "UbunTuTuMKII - App monitoring tool"
-msgstr "UbunTuTuMKII - 应用程式监测工具"
-
-#: qml/main.qml:30
-msgid "Connected"
-msgstr "手机已连线"
-
-#: qml/main.qml:58
-msgid "Target: "
-msgstr "监测目标："
-
-#: qml/main.qml:67
-msgid "Keyword: "
-msgstr "关键字："
-
-#: qml/main.qml:76
-msgid "Process:"
-msgstr "进程名称："
-
-#: qml/main.qml:104
-msgid "Not Connected"
-msgstr "手机未连线"
-
-#: qml/NetTraffic.qml:45
-msgid "Overall Bandwidth Monitor"
-msgstr "总体网路流量监视器"
-
-#: qml/Startup.qml:39
-msgid "Initializating..."
-msgstr "初始化中..."
-
 #: qml/Info.qml:35
 msgid "System Information"
 msgstr "系统资讯"
-
-#: qml/LogWatcher.qml:62
-msgid "Internet Content Logger (TCP dump)"
-msgstr "互连网连线封包记录器 (TCP dump)"
-
-#: qml/LogWatcher.qml:81
-msgid "APP is not running"
-msgstr "应用程式尚未啟动"
-
-#: qml/LogWatcher.qml:114
-msgid "Save log"
-msgstr "储存纪录档"
-
-#: qml/LogWatcher.qml:119
-msgid "Please start TCP dump first"
-msgstr "请先啟动 TCP dump"
-
-#: qml/LogWatcher.qml:128 qml/CheckConfig.qml:201
-msgid "Please choose a directory for the log"
-msgstr "请选择要储存纪录档的资料夹"
-
-#: qml/LogWatcher.qml:135 qml/LogWatcher.qml:141 qml/CheckConfig.qml:186
-#: qml/CheckConfig.qml:209 qml/CheckConfig.qml:214
-msgid "File copy"
-msgstr "档案复制"
-
-#: qml/LogWatcher.qml:137 qml/CheckConfig.qml:210
-msgid "File copied to: "
-msgstr "档案复制到："
-
-#: qml/LogWatcher.qml:143 qml/CheckConfig.qml:216
-msgid "Operation cancelled"
-msgstr "操作已取消"
-
-#: qml/LogWatcher.qml:157
-msgid "Event Monitor"
-msgstr "事件监视器"
 
 #: qml/CheckConfig.qml:74
 msgid "App Config Check"
@@ -177,9 +108,26 @@ msgstr "复制"
 msgid "Error: App is not running"
 msgstr "错误：应用程式尚未啟动"
 
+#: qml/CheckConfig.qml:186 qml/CheckConfig.qml:209 qml/CheckConfig.qml:214
+#: qml/LogWatcher.qml:135 qml/LogWatcher.qml:141
+msgid "File copy"
+msgstr "档案复制"
+
 #: qml/CheckConfig.qml:189
 msgid "Failed to copy file"
 msgstr "档案复制失败"
+
+#: qml/CheckConfig.qml:201 qml/LogWatcher.qml:128
+msgid "Please choose a directory for the log"
+msgstr "请选择要储存纪录档的资料夹"
+
+#: qml/CheckConfig.qml:210 qml/LogWatcher.qml:137
+msgid "File copied to: "
+msgstr "档案复制到："
+
+#: qml/CheckConfig.qml:216 qml/LogWatcher.qml:143
+msgid "Operation cancelled"
+msgstr "操作已取消"
 
 #: qml/CheckConfig.qml:229
 msgid "Reset Permissions:"
@@ -208,6 +156,58 @@ msgstr "下列权限已重设"
 #: qml/CheckConfig.qml:300
 msgid "No target App / Permission selected"
 msgstr "没有选择欲重设的权限或没有目标应用程式"
+
+#: qml/NetTraffic.qml:45
+msgid "Overall Bandwidth Monitor"
+msgstr "总体网路流量监视器"
+
+#: qml/LogWatcher.qml:62
+msgid "Internet Content Logger (TCP dump)"
+msgstr "互连网连线封包记录器 (TCP dump)"
+
+#: qml/LogWatcher.qml:81
+msgid "APP is not running"
+msgstr "应用程式尚未啟动"
+
+#: qml/LogWatcher.qml:114
+msgid "Save log"
+msgstr "储存纪录档"
+
+#: qml/LogWatcher.qml:119
+msgid "Please start TCP dump first"
+msgstr "请先啟动 TCP dump"
+
+#: qml/LogWatcher.qml:157
+msgid "Event Monitor"
+msgstr "事件监视器"
+
+#: qml/Startup.qml:39
+msgid "Initializating..."
+msgstr "初始化中..."
+
+#: qml/main.qml:18
+msgid "UbunTuTuMKII - App monitoring tool"
+msgstr "UbunTuTuMKII - 应用程式监测工具"
+
+#: qml/main.qml:30
+msgid "Connected"
+msgstr "手机已连线"
+
+#: qml/main.qml:58
+msgid "Target: "
+msgstr "监测目标："
+
+#: qml/main.qml:67
+msgid "Keyword: "
+msgstr "关键字："
+
+#: qml/main.qml:76
+msgid "Process:"
+msgstr "进程名称："
+
+#: qml/main.qml:104
+msgid "Not Connected"
+msgstr "手机未连线"
 
 #: utils/launch_app.sh:22
 msgid "$APP launched"
@@ -279,13 +279,13 @@ msgstr "每 {} 秒刷新一次"
 
 #: ../utils/bandwidth-all.py:41 ../utils/list_app.py:155
 #: ../utils/watcher_dumpsys.py:66 ../utils/watcher_pactl.py:67
-#: ../utils/watcher_strace.py:166
+#: ../utils/watcher_strace.py:180
 msgid "Process Terminated by user"
 msgstr "进程遭使用者中止"
 
 #: ../utils/bandwidth-all.py:43 ../utils/check_config.py:83
 #: ../utils/list_app.py:157 ../utils/watcher_dumpsys.py:68
-#: ../utils/watcher_pactl.py:69 ../utils/watcher_strace.py:168
+#: ../utils/watcher_pactl.py:69 ../utils/watcher_strace.py:182
 msgid "Exception occurred - {}"
 msgstr "例外发生 - {}"
 
@@ -322,7 +322,7 @@ msgid "Camera #{}"
 msgstr "相机 #{}"
 
 #: ../utils/watcher_dumpsys.py:63 ../utils/watcher_pactl.py:64
-#: ../utils/watcher_strace.py:163
+#: ../utils/watcher_strace.py:177
 msgid "{} is not running"
 msgstr "{} 尚未啟动"
 
@@ -338,6 +338,10 @@ msgstr "建立汇入事件"
 msgid "From: "
 msgstr "来自："
 
-#: ../utils/watcher_strace.py:131
+#: ../utils/watcher_strace.py:115
+msgid "Exporting file: "
+msgstr "导出文件："
+
+#: ../utils/watcher_strace.py:145
 msgid "Set to play: "
 msgstr "准备播放"

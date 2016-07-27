@@ -102,6 +102,20 @@ try:
                         _('CreateImportFromPeer'),
                         filetype,
                         _('From: ') + source)
+                # For file export events
+                # (it's also a sendmsg event, put it here as we need to parse the output)
+                elif 'dbus.Transfer' in output and 'Charge' in output:
+                    for item in output.split('\\0'):
+                        if 'file' in item:
+                            filename = item
+                            common_tools.printer(
+                                app_name,
+                                app_keyword,
+                                proc_name,
+                                _('Exporting file: '),
+                                filename.replace('file://', ''),
+                                '')
+                            break
                 # For other events
                 elif 'sendmsg' in output:
                     # Search for the corresponding event
