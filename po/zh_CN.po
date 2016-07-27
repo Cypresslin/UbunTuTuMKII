@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-25 14:07+0800\n"
+"POT-Creation-Date: 2016-07-26 18:25+0800\n"
 "PO-Revision-Date: 2016-07-12 22:45+0800\n"
 "Last-Translator: Po-Hsu Lin<po-hsu.lin@canonical.com>\n"
 "Language-Team: Chinese (simplified)\n"
@@ -279,13 +279,13 @@ msgstr "每 {} 秒刷新一次"
 
 #: ../utils/bandwidth-all.py:41 ../utils/list_app.py:155
 #: ../utils/watcher_dumpsys.py:66 ../utils/watcher_pactl.py:67
-#: ../utils/watcher_strace.py:133
+#: ../utils/watcher_strace.py:161
 msgid "Process Terminated by user"
 msgstr "进程遭使用者中止"
 
 #: ../utils/bandwidth-all.py:43 ../utils/check_config.py:83
 #: ../utils/list_app.py:157 ../utils/watcher_dumpsys.py:68
-#: ../utils/watcher_pactl.py:69 ../utils/watcher_strace.py:135
+#: ../utils/watcher_pactl.py:69
 msgid "Exception occurred - {}"
 msgstr "例外发生 - {}"
 
@@ -322,7 +322,7 @@ msgid "Camera #{}"
 msgstr "相机 #{}"
 
 #: ../utils/watcher_dumpsys.py:63 ../utils/watcher_pactl.py:64
-#: ../utils/watcher_strace.py:130
+#: ../utils/watcher_strace.py:158
 msgid "{} is not running"
 msgstr "{} 尚未啟动"
 
@@ -330,6 +330,14 @@ msgstr "{} 尚未啟动"
 msgid "local recording"
 msgstr "本地录音"
 
-#: ../utils/watcher_strace.py:91
+#: ../utils/watcher_strace.py:101
 msgid "CreateImportFromPeer"
 msgstr "建立汇入事件"
+
+#: ../utils/watcher_strace.py:103
+msgid "From: "
+msgstr "来自："
+
+#: ../utils/watcher_strace.py:130
+msgid "Set to play: "
+msgstr "准备播放："

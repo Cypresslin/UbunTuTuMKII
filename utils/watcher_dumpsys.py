@@ -55,9 +55,9 @@ try:
                             app_name,
                             app_keyword,
                             proc_name,
-                            'NO_FUNC',
+                            item.group('stat'),
                             camera_id,
-                            item.group('stat'))
+                            '')
             time.sleep(1)
     else:
         print(_("{} is not running").format(proc_name))

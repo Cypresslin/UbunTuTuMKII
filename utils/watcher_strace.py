@@ -84,18 +84,24 @@ try:
                 # For file import events
                 # (it's also a sendmsg event, put it here as we need to parse the output)
                 elif 'CreateImportFromPeer' in output:
-                    pattern = '{}(.+)\"'.format(proc_name)
+                    pattern = r',\s\{'+ '\"(.+){}'.format(proc_name)
                     source = re.search(pattern, output).group(1)
                     # Filter message by parsing meaningful strings
-                    words = re.findall('[a-z][a-z]{2,}', source, re.I)
-                    source = ' '.join(words)
+                    # This is a process name, it contains numbers and symbols
+                    words = re.findall('[a-z][a-z.1-9_]{2,}', source, re.I)
+                    source = ''.join(words)
+                    pattern = '{}(.+)\"'.format(proc_name)
+                    filetype = re.search(pattern, output).group(1)
+                    # Filter message by parsing meaningful strings
+                    words = re.findall('[a-z][a-z]{2,}', filetype, re.I)
+                    filetype = ''.join(words)
                     common_tools.printer(
                         app_name,
                         app_keyword,
                         proc_name,
-                        'sendmsg',
                         _('CreateImportFromPeer'),
-                        source)
+                        filetype,
+                        _('From: ') + source)
                 # For other events
                 elif 'sendmsg' in output:
                     # Search for the corresponding event
@@ -108,9 +114,9 @@ try:
                                         app_name,
                                         app_keyword,
                                         proc_name,
-                                        'sendmsg',
                                         action,
-                                        item)
+                                        item,
+                                        '')
                                     break
                 # For file access, put it here to ignore sendmsg
                 # For music file being set to play
@@ -122,9 +128,9 @@ try:
                                 app_name,
                                 app_keyword,
                                 proc_name,
-                                'write',
-                                'Set to play: ',
-                                filename.replace('file://', ''))
+                                _('Set to play: '),
+                                filename.replace('file://', ''),
+                                '')
                             break
                 # For other personal data access events
                 elif home in output:
@@ -138,14 +144,18 @@ try:
                             # Remove the trailing '/', so we can get the name if it's a dir
                             path = path.rstrip('/')
                             root, filename = os.path.split(path)
-                            # Get the file access action here
-                            pattern = '",\s(?P<action>\w+)'
-                            act = re.search(pattern, output).group('action')
+                            # Get the file access action for "open" here
+                            pattern = r'",\s(?P<action>\w+)'
+                            act = re.search(pattern, output)
+                            if act:
+                                act = act.group('action')
+                            else:
+                                act = func
                             common_tools.printer(
                                 app_name,
                                 app_keyword,
                                 proc_name,
-                                '{}({})'.format(func, act),
+                                act,
                                 '~/{}/'.format(item),
                                 filename)
                             break

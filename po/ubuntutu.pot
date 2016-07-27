@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-25 14:07+0800\n"
+"POT-Creation-Date: 2016-07-26 18:25+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -280,13 +280,13 @@ msgstr ""
 
 #: ../utils/bandwidth-all.py:41 ../utils/list_app.py:155
 #: ../utils/watcher_dumpsys.py:66 ../utils/watcher_pactl.py:67
-#: ../utils/watcher_strace.py:133
+#: ../utils/watcher_strace.py:161
 msgid "Process Terminated by user"
 msgstr ""
 
 #: ../utils/bandwidth-all.py:43 ../utils/check_config.py:83
 #: ../utils/list_app.py:157 ../utils/watcher_dumpsys.py:68
-#: ../utils/watcher_pactl.py:69 ../utils/watcher_strace.py:135
+#: ../utils/watcher_pactl.py:69
 msgid "Exception occurred - {}"
 msgstr ""
 
@@ -323,7 +323,7 @@ msgid "Camera #{}"
 msgstr ""
 
 #: ../utils/watcher_dumpsys.py:63 ../utils/watcher_pactl.py:64
-#: ../utils/watcher_strace.py:130
+#: ../utils/watcher_strace.py:158
 msgid "{} is not running"
 msgstr ""
 
@@ -331,6 +331,14 @@ msgstr ""
 msgid "local recording"
 msgstr ""
 
-#: ../utils/watcher_strace.py:91
+#: ../utils/watcher_strace.py:101
 msgid "CreateImportFromPeer"
+msgstr ""
+
+#: ../utils/watcher_strace.py:103
+msgid "From: "
+msgstr ""
+
+#: ../utils/watcher_strace.py:130
+msgid "Set to play: "
 msgstr ""

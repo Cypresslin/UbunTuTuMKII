@@ -13,6 +13,8 @@ import os
 import subprocess
 import sys
 
+from printer_dict import i18n
+
 locale_path = os.getcwd()
 if locale_path.split('/')[-1] == 'utils':
     locale_path += '/../share/locale'
@@ -20,6 +22,8 @@ else:
     locale_path += '/share/locale'
 gettext.bindtextdomain('ubuntutu', locale_path)
 gettext.textdomain('ubuntutu')
+
+
 
 def kill(proc):
     '''Function to kill all targeted process on Ubuntu Phone.
@@ -35,17 +39,17 @@ def kill(proc):
             subprocess.check_output(['adb', 'shell', 'sudo', 'kill', '-9', pid])
 
 
-def printer(app_name, app_keyword, proc_name, func_name, act_name, item):
+def printer(app_name, app_keyword, proc_name, act_name, item, para):
     '''
     Function to print required format output.
     '''
     timestamp = '{:%m%d %H:%M:%S}'.format(datetime.datetime.now())
-    print("{TIME} <{APP}>[{KEYWORD}][{PROC}]:[{FUNC}] {ACT} {PARM}".format(
+    print("{TIME} <{APP}>[{KEYWORD}][{PROC}]:[{ACT}] {ITEM} {PARM}".format(
         TIME=timestamp,
         APP=app_name,
         KEYWORD=app_keyword,
         PROC=proc_name,
-        FUNC=func_name,
-        ACT=act_name,
-        PARM=item))
+        ACT=i18n(act_name),
+        ITEM=i18n(item),
+        PARM=para))
     sys.stdout.flush()
