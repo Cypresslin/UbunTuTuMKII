@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-26 18:25+0800\n"
+"POT-Creation-Date: 2016-07-27 17:53+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,48 +17,48 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: qml/AppLauncher.qml:38
+#: qml/AppLauncher.qml:39
 msgid "Ready"
 msgstr ""
 
-#: qml/AppLauncher.qml:47 qml/AppLauncher.qml:84
+#: qml/AppLauncher.qml:49 qml/AppLauncher.qml:86
 msgid "Current running apps:\n"
 msgstr ""
 
-#: qml/AppLauncher.qml:74
+#: qml/AppLauncher.qml:76
 msgid "App Launcher"
 msgstr ""
 
 #. TRANSLATORS: Please leave the ubuntu-app-watch command untranslated
-#: qml/AppLauncher.qml:100
+#: qml/AppLauncher.qml:102
 msgid "Status change from ubuntu-app-watch:\n"
 msgstr ""
 
-#: qml/AppLauncher.qml:107
+#: qml/AppLauncher.qml:109
 msgid "Maintainers: "
 msgstr ""
 
-#: qml/AppLauncher.qml:112 qml/AppLauncher.qml:134
+#: qml/AppLauncher.qml:114 qml/AppLauncher.qml:136
 msgid "(Please select an App...)"
 msgstr ""
 
-#: qml/AppLauncher.qml:151 qml/CheckConfig.qml:280
+#: qml/AppLauncher.qml:153 qml/CheckConfig.qml:280
 msgid "Start!"
 msgstr ""
 
-#: qml/AppLauncher.qml:156
+#: qml/AppLauncher.qml:158
 msgid "App monitoring started"
 msgstr ""
 
-#: qml/AppLauncher.qml:163
+#: qml/AppLauncher.qml:165
 msgid "Please select an app to start"
 msgstr ""
 
-#: qml/AppLauncher.qml:181
+#: qml/AppLauncher.qml:183
 msgid "Status: "
 msgstr ""
 
-#: qml/AppLauncher.qml:190
+#: qml/AppLauncher.qml:192
 msgid "Loading app list..."
 msgstr ""
 
@@ -280,13 +280,13 @@ msgstr ""
 
 #: ../utils/bandwidth-all.py:41 ../utils/list_app.py:155
 #: ../utils/watcher_dumpsys.py:66 ../utils/watcher_pactl.py:67
-#: ../utils/watcher_strace.py:161
+#: ../utils/watcher_strace.py:166
 msgid "Process Terminated by user"
 msgstr ""
 
 #: ../utils/bandwidth-all.py:43 ../utils/check_config.py:83
 #: ../utils/list_app.py:157 ../utils/watcher_dumpsys.py:68
-#: ../utils/watcher_pactl.py:69
+#: ../utils/watcher_pactl.py:69 ../utils/watcher_strace.py:168
 msgid "Exception occurred - {}"
 msgstr ""
 
@@ -323,22 +323,22 @@ msgid "Camera #{}"
 msgstr ""
 
 #: ../utils/watcher_dumpsys.py:63 ../utils/watcher_pactl.py:64
-#: ../utils/watcher_strace.py:158
+#: ../utils/watcher_strace.py:163
 msgid "{} is not running"
 msgstr ""
 
-#: ../utils/watcher_pactl.py:61
+#: ../utils/watcher_pactl.py:60
 msgid "local recording"
 msgstr ""
 
-#: ../utils/watcher_strace.py:101
+#: ../utils/watcher_strace.py:102
 msgid "CreateImportFromPeer"
 msgstr ""
 
-#: ../utils/watcher_strace.py:103
+#: ../utils/watcher_strace.py:104
 msgid "From: "
 msgstr ""
 
-#: ../utils/watcher_strace.py:130
+#: ../utils/watcher_strace.py:131
 msgid "Set to play: "
 msgstr ""

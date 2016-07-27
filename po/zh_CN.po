@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-26 18:25+0800\n"
+"POT-Creation-Date: 2016-07-27 17:53+0800\n"
 "PO-Revision-Date: 2016-07-12 22:45+0800\n"
 "Last-Translator: Po-Hsu Lin<po-hsu.lin@canonical.com>\n"
 "Language-Team: Chinese (simplified)\n"
@@ -16,48 +16,48 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: qml/AppLauncher.qml:38
+#: qml/AppLauncher.qml:39
 msgid "Ready"
 msgstr "就绪"
 
-#: qml/AppLauncher.qml:47 qml/AppLauncher.qml:84
+#: qml/AppLauncher.qml:49 qml/AppLauncher.qml:86
 msgid "Current running apps:\n"
 msgstr "当前执行中的应用程式：\n"
 
-#: qml/AppLauncher.qml:74
+#: qml/AppLauncher.qml:76
 msgid "App Launcher"
 msgstr "应用程式啟动器"
 
 #. TRANSLATORS: Please leave the ubuntu-app-watch command untranslated
-#: qml/AppLauncher.qml:100
+#: qml/AppLauncher.qml:102
 msgid "Status change from ubuntu-app-watch:\n"
 msgstr "来自 ubuntu-app-watch 指令的状态更新：\n"
 
-#: qml/AppLauncher.qml:107
+#: qml/AppLauncher.qml:109
 msgid "Maintainers: "
 msgstr "应用程式维护人员："
 
-#: qml/AppLauncher.qml:112 qml/AppLauncher.qml:134
+#: qml/AppLauncher.qml:114 qml/AppLauncher.qml:136
 msgid "(Please select an App...)"
 msgstr "(请选择一个应用程式...)"
 
-#: qml/AppLauncher.qml:151 qml/CheckConfig.qml:280
+#: qml/AppLauncher.qml:153 qml/CheckConfig.qml:280
 msgid "Start!"
 msgstr "开始！"
 
-#: qml/AppLauncher.qml:156
+#: qml/AppLauncher.qml:158
 msgid "App monitoring started"
 msgstr "已开始监测应用程式"
 
-#: qml/AppLauncher.qml:163
+#: qml/AppLauncher.qml:165
 msgid "Please select an app to start"
 msgstr "请选择一个应用程式来开始监测"
 
-#: qml/AppLauncher.qml:181
+#: qml/AppLauncher.qml:183
 msgid "Status: "
 msgstr "状态："
 
-#: qml/AppLauncher.qml:190
+#: qml/AppLauncher.qml:192
 msgid "Loading app list..."
 msgstr "读取应用程式列表..."
 
@@ -279,13 +279,13 @@ msgstr "每 {} 秒刷新一次"
 
 #: ../utils/bandwidth-all.py:41 ../utils/list_app.py:155
 #: ../utils/watcher_dumpsys.py:66 ../utils/watcher_pactl.py:67
-#: ../utils/watcher_strace.py:161
+#: ../utils/watcher_strace.py:166
 msgid "Process Terminated by user"
 msgstr "进程遭使用者中止"
 
 #: ../utils/bandwidth-all.py:43 ../utils/check_config.py:83
 #: ../utils/list_app.py:157 ../utils/watcher_dumpsys.py:68
-#: ../utils/watcher_pactl.py:69
+#: ../utils/watcher_pactl.py:69 ../utils/watcher_strace.py:168
 msgid "Exception occurred - {}"
 msgstr "例外发生 - {}"
 
@@ -322,22 +322,22 @@ msgid "Camera #{}"
 msgstr "相机 #{}"
 
 #: ../utils/watcher_dumpsys.py:63 ../utils/watcher_pactl.py:64
-#: ../utils/watcher_strace.py:158
+#: ../utils/watcher_strace.py:163
 msgid "{} is not running"
 msgstr "{} 尚未啟动"
 
-#: ../utils/watcher_pactl.py:61
+#: ../utils/watcher_pactl.py:60
 msgid "local recording"
 msgstr "本地录音"
 
-#: ../utils/watcher_strace.py:101
+#: ../utils/watcher_strace.py:102
 msgid "CreateImportFromPeer"
 msgstr "建立汇入事件"
 
-#: ../utils/watcher_strace.py:103
+#: ../utils/watcher_strace.py:104
 msgid "From: "
 msgstr "来自："
 
-#: ../utils/watcher_strace.py:130
+#: ../utils/watcher_strace.py:131
 msgid "Set to play: "
-msgstr "准备播放："
+msgstr "准备播放"
