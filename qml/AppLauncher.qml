@@ -23,20 +23,22 @@ Item {
         var rawFile = new XMLHttpRequest()
         rawFile.open('GET', '/tmp/app_list', false)
         rawFile.onreadystatechange = function (){
-            if(rawFile.status === 200 || rawFile.status == 0){
-                var allText = rawFile.responseText;
-                var items = allText.toString().replace(/\n$/, "").split('\n')
-                for (var i in items) {
-                    var name = items[i].split(',')[0].trim()
-                    var keyw = items[i].split(',')[1].trim()
-                    var vers = items[i].split(',')[2].trim()
-                    var exec = items[i].split(',')[3].trim()
-                    var info = items[i].split(',')[4].trim()
-                    console.log(name, vers, '-', exec)
-                    app_list.append( {'text': name + vers, 'keyword': keyw, 'name': name, 'proc': exec, 'maintainer': info} )
+            if(rawFile.readyState == 4){
+                if(rawFile.status === 200 || rawFile.status == 0){
+                    var allText = rawFile.responseText;
+                    var items = allText.toString().replace(/\n$/, "").split('\n');
+                    for (var i in items) {
+                        var name = items[i].split(',')[0].trim();
+                        var keyw = items[i].split(',')[1].trim();
+                        var vers = items[i].split(',')[2].trim();
+                        var exec = items[i].split(',')[3].trim();
+                        var info = items[i].split(',')[4].trim();
+                        console.log(name, vers, '-', exec)
+                        app_list.append( {'text': name + vers, 'keyword': keyw, 'name': name, 'proc': exec, 'maintainer': info} )
+                    }
+                    hintText.text = i18n.tr("Ready")
+                    hintText.color = "lime"
                 }
-                hintText.text = i18n.tr("Ready")
-                hintText.color = "lime"
             }
         }
         rawFile.send(null);
