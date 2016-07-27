@@ -57,9 +57,9 @@ try:
                                 app_name,
                                 app_keyword,
                                 proc_name,
-                                'audio',
                                 _('local recording'),
-                                stat)
+                                stat,
+                                '')
     else:
         print(_("{} is not running").format(proc_name))
 
