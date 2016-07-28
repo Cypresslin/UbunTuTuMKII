@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-27 19:32+0800\n"
+"POT-Creation-Date: 2016-07-28 10:35+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -62,8 +62,77 @@ msgstr ""
 msgid "Loading app list..."
 msgstr ""
 
+#: qml/main.qml:18
+msgid "UbunTuTuMKII - App monitoring tool"
+msgstr ""
+
+#: qml/main.qml:30
+msgid "Connected"
+msgstr ""
+
+#: qml/main.qml:58
+msgid "Target: "
+msgstr ""
+
+#: qml/main.qml:67
+msgid "Keyword: "
+msgstr ""
+
+#: qml/main.qml:76
+msgid "Process:"
+msgstr ""
+
+#: qml/main.qml:104
+msgid "Not Connected"
+msgstr ""
+
+#: qml/NetTraffic.qml:45
+msgid "Overall Bandwidth Monitor"
+msgstr ""
+
+#: qml/Startup.qml:39
+msgid "Initializating..."
+msgstr ""
+
 #: qml/Info.qml:35
 msgid "System Information"
+msgstr ""
+
+#: qml/LogWatcher.qml:62
+msgid "Internet Content Logger (TCP dump)"
+msgstr ""
+
+#: qml/LogWatcher.qml:81
+msgid "APP is not running"
+msgstr ""
+
+#: qml/LogWatcher.qml:114
+msgid "Save log"
+msgstr ""
+
+#: qml/LogWatcher.qml:119
+msgid "Please start TCP dump first"
+msgstr ""
+
+#: qml/LogWatcher.qml:128 qml/CheckConfig.qml:201
+msgid "Please choose a directory for the log"
+msgstr ""
+
+#: qml/LogWatcher.qml:135 qml/LogWatcher.qml:141 qml/CheckConfig.qml:186
+#: qml/CheckConfig.qml:209 qml/CheckConfig.qml:214
+msgid "File copy"
+msgstr ""
+
+#: qml/LogWatcher.qml:137 qml/CheckConfig.qml:210
+msgid "File copied to: "
+msgstr ""
+
+#: qml/LogWatcher.qml:143 qml/CheckConfig.qml:216
+msgid "Operation cancelled"
+msgstr ""
+
+#: qml/LogWatcher.qml:157
+msgid "Event Monitor"
 msgstr ""
 
 #: qml/CheckConfig.qml:74
@@ -109,25 +178,8 @@ msgstr ""
 msgid "Error: App is not running"
 msgstr ""
 
-#: qml/CheckConfig.qml:186 qml/CheckConfig.qml:209 qml/CheckConfig.qml:214
-#: qml/LogWatcher.qml:135 qml/LogWatcher.qml:141
-msgid "File copy"
-msgstr ""
-
 #: qml/CheckConfig.qml:189
 msgid "Failed to copy file"
-msgstr ""
-
-#: qml/CheckConfig.qml:201 qml/LogWatcher.qml:128
-msgid "Please choose a directory for the log"
-msgstr ""
-
-#: qml/CheckConfig.qml:210 qml/LogWatcher.qml:137
-msgid "File copied to: "
-msgstr ""
-
-#: qml/CheckConfig.qml:216 qml/LogWatcher.qml:143
-msgid "Operation cancelled"
 msgstr ""
 
 #: qml/CheckConfig.qml:229
@@ -156,58 +208,6 @@ msgstr ""
 
 #: qml/CheckConfig.qml:300
 msgid "No target App / Permission selected"
-msgstr ""
-
-#: qml/NetTraffic.qml:45
-msgid "Overall Bandwidth Monitor"
-msgstr ""
-
-#: qml/LogWatcher.qml:62
-msgid "Internet Content Logger (TCP dump)"
-msgstr ""
-
-#: qml/LogWatcher.qml:81
-msgid "APP is not running"
-msgstr ""
-
-#: qml/LogWatcher.qml:114
-msgid "Save log"
-msgstr ""
-
-#: qml/LogWatcher.qml:119
-msgid "Please start TCP dump first"
-msgstr ""
-
-#: qml/LogWatcher.qml:157
-msgid "Event Monitor"
-msgstr ""
-
-#: qml/Startup.qml:39
-msgid "Initializating..."
-msgstr ""
-
-#: qml/main.qml:18
-msgid "UbunTuTuMKII - App monitoring tool"
-msgstr ""
-
-#: qml/main.qml:30
-msgid "Connected"
-msgstr ""
-
-#: qml/main.qml:58
-msgid "Target: "
-msgstr ""
-
-#: qml/main.qml:67
-msgid "Keyword: "
-msgstr ""
-
-#: qml/main.qml:76
-msgid "Process:"
-msgstr ""
-
-#: qml/main.qml:104
-msgid "Not Connected"
 msgstr ""
 
 #: utils/launch_app.sh:22
@@ -340,9 +340,9 @@ msgid "From: "
 msgstr ""
 
 #: ../utils/watcher_strace.py:115
-msgid "Exporting file: "
+msgid "Exporting file"
 msgstr ""
 
 #: ../utils/watcher_strace.py:145
-msgid "Set to play: "
+msgid "Set to play"
 msgstr ""

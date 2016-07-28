@@ -112,7 +112,7 @@ try:
                                 app_name,
                                 app_keyword,
                                 proc_name,
-                                _('Exporting file: '),
+                                _('Exporting file'),
                                 filename.replace('file://', ''),
                                 '')
                             break
@@ -142,7 +142,7 @@ try:
                                 app_name,
                                 app_keyword,
                                 proc_name,
-                                _('Set to play: '),
+                                _('Set to play'),
                                 filename.replace('file://', ''),
                                 '')
                             break
